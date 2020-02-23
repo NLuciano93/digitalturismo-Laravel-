@@ -1,0 +1,86 @@
+Digital Turismo - PROYECTO 
+
+📁 carpeta_del_proyecto
+		📁/controladores
+		|---- 📄 controladorAutenticador.php
+			1.	validarRegistracion()
+			2.	validarLogin()
+			3.	persistirDatos()
+
+		|---- 📄 controladorBBDD.php
+			1.	guardarBBDD()
+			2.	abrirBBDD()
+
+
+		|---- 📄 controladorUsuario.php
+			1.	armarArrayUsuario()
+			2.	armarAvatarUsuario()
+			3.	crearSesionUsuario()
+			4.	buscarUsuarioPorMail()
+
+		|---- 📄 helpers.php
+			1.	pre()
+			2.	dd()
+
+		📁/css
+		|---- 📄 style.css
+		
+		📄 index.php
+		📄 registro.php
+		📄 login.php
+		📄 faq.php
+		📄 productos.php
+		📄 usuarios.json
+		📄 destinos.php
+		📄 autoload.php 
+
+
+HOME – index.php
+	1.	Verificar USUARIO REGISTRADO (si usuario tildo Recordar USUARIO) 
+	2.	Posibilidad a navegar como INVITADO 
+	3.	Visualizar Destinos Favoritos (desde BBDD “destinos.json”
+	4.	Visualizar otro Destinos (Promociones, Ofertas, etc) 
+	5.	Si USUARIO REGISTRADO deshabilitar “INGRESAR” (reemplazandolo con NOMBRE USUARIO y posibilidad ingresar a PERFIL)
+
+DESTINOS – productos.php
+	1.	Verificar USUARIO REGISTRADO / INVITADO
+	2.	Visualizar Productos Favoritos (desde BBDD “productos.json”)
+	3.	Si USUARIO REGISTRADO deshabilitar “INGRESAR” (reemplazandolo con NOMBRE USUARIO y posibilidad ingresar a PERFIL)
+
+FAQ – faq.php
+	1.	Verificar USUARIO REGISTRADO / INVITADO
+	2.	Si USUARIO REGISTRADO deshabilitar “INGRESAR” (reemplazandolo con NOMBRE USUARIO y posibilidad ingresar a PERFIL)
+
+REGSITRO – registro.php  
+	1.	REGISTRAR Usuario
+
+LOGIN – login.php
+	1.	LOGIN Usario
+
+
+Diagrama de Entidades - BBDD
+
+usuarios
+	id
+	nombreCompleto
+	mail
+	password
+	avatar
+
+destinos
+	id
+	nombrePaquete
+	provincia
+	detalleCorto 
+	detalleServicio 
+	costoXpasajero
+	promocion (porcentaje, 0-100%) 
+	stock
+
+favoritosUsuarios 
+	id
+	id_usuario 
+	id_destino
+
+	
+  

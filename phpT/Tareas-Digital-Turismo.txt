@@ -1,0 +1,17 @@
+TAREAS 
+
+	1. HOME PAGE
+	2. F.A.Q. Page
+		a. Indentificacion de Preguntas Frecuentes y Respuestas 
+	3. Register e Login Page
+	4. CONTAC PAGE
+	5. USER PROFILE 
+	6. ARMADO DE VARIABLES PARA SIMULACION DE BASE DE DATOS 
+		a. Usuarios 
+		b. Productos e imagenes 
+		c. Preguntas FAQ
+		d. Carrito compras
+	7. BUSQUEDA DE PROMOCIONES Y IMAGENES
+	8. PRODCUTOS con CARRO DE COMPRAS 
+	
+ 
