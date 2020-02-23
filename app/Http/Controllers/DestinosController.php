@@ -180,5 +180,15 @@ class DestinosController extends Controller
         $Destino->delete();
         return redirect("/adminDestinos")->with('mensaje', 'Destino '. $Destino->nombre_destino. ' borrado exitosamente');
     }
+
+    /** metodo para pagina DESTINOS  */
+    public function pagDestinos()
+    {
+        $destinos= Destino::paginate(12);
+        $destinosRandom = Destino::where("promocion", 0)->inRandomOrder()->take(4)->get();
+
+        $vac = compact('destinos', 'destinosRandom');
+        return view('/destinos', $vac);
+    }
     
 }

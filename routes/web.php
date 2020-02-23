@@ -29,6 +29,8 @@ Route::post('/destinoMod', "DestinosController@update")->middleware('auth', 'val
 Route::get('/destinoMod/{id}', 'DestinosController@edit')->middleware('auth', 'validarAdmin');
 Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('auth', 'validarAdmin');
 
+Route::get('/destinos', 'DestinosController@pagDestinos');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
