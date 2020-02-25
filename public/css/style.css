@@ -154,11 +154,15 @@
 .carta-promocion{
     position: relative;
     margin: 5% 0;
+    height: 40vh;
     border-radius: 20px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 20px rgb(255, 255, 255);
     transition: all .3s ease-in-out;
+}
+.avatar{
+    height: 100%;
 }
 .precio-promo{
     text-decoration: line-through;
@@ -230,8 +234,30 @@
     z-index: 20;
     
 }
+.carta-promocion .favorito-red{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    border-radius: 5px;
+    top: 2%;
+    left: 2%;
+    font-size: 2.5rem;
+    background: transparent;
+    color: red;
+    border: none;
+    transition: 500ms all ease;
+    z-index: 20;
+    
+}
 
 .carta-promocion .favorito i{
+    font-size: 25px;
+
+}
+.carta-promocion .favorito-red i{
     font-size: 25px;
 
 }

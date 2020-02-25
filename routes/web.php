@@ -19,7 +19,10 @@ Route::view('/adminInicio', 'adminInicio')->middleware('auth', 'validarAdmin');
 /*************  USUARIOS ***********/ 
 Route::get('/adminUsuarios', 'UsuariosController@index')->middleware('auth', 'validarAdmin');
 Route::get('/borrarUsuario/{id}', 'UsuariosController@destroy')->middleware('auth', 'validarAdmin');
-
+Route::post('/agregarFavorito', 'UsuariosController@agregarFav');
+Route::post('/quitarFavorito', 'UsuariosController@quitarFav');
+Route::view('/comentario', 'comentario');
+Route::post('/comentario', 'UsuariosController@agregarComentario');
 /********************* DESTINOS *******************/
 
 Route::get('/adminDestinos', 'DestinosController@index')->middleware('auth', 'validarAdmin');
@@ -28,6 +31,8 @@ Route::post('/destinoAlta', "DestinosController@store")->middleware('auth', 'val
 Route::post('/destinoMod', "DestinosController@update")->middleware('auth', 'validarAdmin');
 Route::get('/destinoMod/{id}', 'DestinosController@edit')->middleware('auth', 'validarAdmin');
 Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('auth', 'validarAdmin');
+Route::get('/verDestino/{id}', 'DestinosController@verComentarios');
+
 
 Auth::routes();
 

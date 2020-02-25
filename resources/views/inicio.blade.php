@@ -38,6 +38,12 @@ if (isset($_SESSION)) {
  @endsection
 
 @section('principal')
+@if (session()->has('mensaje'))
+  <div class="alert alert-success m-0  d-flex justify-content-center">
+    <strong>🌴{{ session()->get('mensaje') }}🌴</strong>
+  </div>
+@endif
+
 <div class="container-fluid contenedor-nav">
     <div class="row">
        
@@ -48,6 +54,7 @@ if (isset($_SESSION)) {
             </div> --}}
         <?php // endif; ?>
     </div>
+    
       <div class="col-12 carrusel-container">
       
         <section class="texto-carrusel">
@@ -84,9 +91,27 @@ if (isset($_SESSION)) {
         
         <div class="img-cont-promo d-flex flex-wrap">
           @foreach ($destinosPromo as $destinoPromo)
-              <article class="col-12 col-md-6 col-lg-4  flex-sm-shrink-0"> 
+            
+              <article class="col-12 col-md-6 col-xl-4 flex-sm-shrink-0"> 
                 <div class="card carta-promocion">
-                  <button class="favorito"><i class="fas fa-heart"></i></button>
+                  @guest
+                  <button type="submit" class="favorito" title="Agregar Favorito"><i class="fas fa-heart"></i></button>
+                  @else
+                  {{-- Devuelvo posicion del id favorito tener cuidado que puede dar cero comprobar con false --}}
+                    @if(Auth::user()->idFavoritos()->search($destinoPromo->id_destino) !== false)
+                    <form action="/quitarFavorito" method="post">
+                      @csrf
+                    <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                    <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$destinoPromo->id_destino}}"><i class="fas fa-heart"></i></button>
+                    </form>
+                    @else
+                    <form action="/agregarFavorito" method="post">
+                      @csrf
+                    <input type="hidden" name="usuario" value="{{Auth::user()->id}}"> 
+                    <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$destinoPromo->id_destino}}"><i class="fas fa-heart"></i></button>
+                  </form>
+                    @endif
+                  @endguest
                   <img src="{{asset('images/OfertaEspecial.png')}}" alt="promo" class="logo-promo">
                   <div class="imagen-articulo-contenedor">
                     <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
@@ -96,7 +121,7 @@ if (isset($_SESSION)) {
                     <p><b>${{$destinoPromo->precio - ($destinoPromo->precio * ($destinoPromo->promocion/100))}}</b></p>
                     </a> 
                   </div>
-                  <img src="{{asset('images/destinos/' .$destinoPromo->avatar_destino)}}" class="card-img-top" alt="..."> 
+                  <img src="{{asset('images/destinos/' .$destinoPromo->avatar_destino)}}" class="card-img-top avatar" alt="..."> 
                 </div>
           </article>
           @endforeach
@@ -110,7 +135,7 @@ if (isset($_SESSION)) {
           </h2>
         </div>
         <div class="img-cont-destacado d-flex flex-wrap">
-          <article class="col-12 col-md-6 col-lg-4  flex-sm-shrink-0">
+          <article class="col-12 col-md-6 col-xl-4  flex-sm-shrink-0">
             <div class="card carta-promocion">
               <button class="favorito"><i class="fas fa-heart"></i></button>
               <img class="star-destacado" src="images/stars.png" alt="">
@@ -121,7 +146,7 @@ if (isset($_SESSION)) {
                   <h4>$ 14.500</h4>
                 </a> 
               </div>
-              <img src="images/Destinos/Bariloche/barilocheEsquiando.jpg" class="card-img-top" alt="...">
+              <img src="images/Destinos/Bariloche/barilocheEsquiando.jpg" class="card-img-top avatar" alt="...">
             </div>
           </article>
 
@@ -167,9 +192,26 @@ if (isset($_SESSION)) {
         </div>
         <div class="img-cont-destino d-flex flex-wrap">
           @foreach ($destinos as $destino)
-          <article class="col-12 col-md-6 col-lg-4  flex-sm-shrink-0">
+          <article class="col-12 col-md-6 col-xl-4  flex-sm-shrink-0">
             <div class="card carta-promocion">
-              <button class="favorito"><i class="fas fa-heart"></i></button>
+              @guest
+                  <button type="submit" class="favorito" title="Agregar Favorito"><i class="fas fa-heart"></i></button>
+                  @else
+                  {{-- Devuelvo posicion del id favorito tener cuidado que puede dar cero comprobar con false --}}
+                    @if(Auth::user()->idFavoritos()->search($destino->id_destino) !== false)
+                    <form action="/quitarFavorito" method="post">
+                      @csrf
+                    <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                      <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                    </form>
+                    @else 
+                    <form action="/agregarFavorito" method="post">
+                      @csrf
+                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                    <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                    </form>
+                    @endif
+                  @endguest
               <div class="imagen-articulo-contenedor">
                 <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
                 <h3>{{$destino->nombre_destino}}</h3>
@@ -177,7 +219,7 @@ if (isset($_SESSION)) {
                   <h4>$ {{$destino->precio}}</h4>
                 </a> 
               </div>
-              <img src="{{asset('images/destinos/'.$destino->avatar_destino)}}" class="card-img-top" alt="...">
+              <img src="{{asset('images/destinos/'.$destino->avatar_destino)}}" class="card-img-top avatar" alt="...">
             </div>
           </article>
           @endforeach 

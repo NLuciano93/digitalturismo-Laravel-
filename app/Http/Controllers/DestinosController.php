@@ -180,5 +180,11 @@ class DestinosController extends Controller
         $Destino->delete();
         return redirect("/adminDestinos")->with('mensaje', 'Destino '. $Destino->nombre_destino. ' borrado exitosamente');
     }
+    public function verComentarios($id)
+    {
+        $Destino = Destino::find($id);
+        $vac= compact('Destino');
+        return view("/verComentarios", $vac);
+    }
     
 }

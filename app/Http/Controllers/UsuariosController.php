@@ -89,4 +89,33 @@ class UsuariosController extends Controller
 
         return redirect("/adminUsuarios");
     }
+
+    public function agregarFav(Request $request){
+        
+        $usuario = User::find($request->input('usuario'));
+        $usuario->favoritos()->attach($request["agregarFav"]);
+        return redirect('/')->with('mensaje', 'Destino agregado a Favoritos');
+    }
+    public function quitarFav(Request $request){
+        
+        $usuario = User::find($request->input('usuario'));
+        $usuario->favoritos()->detach($request["quitarFav"]);
+        return redirect('/')->with('mensaje', 'Destino quitado de Favoritos');
+    }
+    public function agregarComentario(Request $request)
+    {
+        
+        $usuario = User::find($request->input('usuario'));
+        $usuario->comentarios()->attach($request["agregarComent"], 
+                                        [
+                                            'puntuacion' => $request->input('calificacion'),
+                                            'comentario' => $request["comentario"]
+                                        ]);
+        return redirect('/comentario')->with('mensaje', 'Comentario agregado exitosamente');
+    }
+    public function quitarComentario(Request $request)
+    {
+
+    }
+    
 }

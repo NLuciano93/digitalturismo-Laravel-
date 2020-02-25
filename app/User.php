@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function favoritos()
+    {
+        return $this->belongsToMany("App\Destino", "favoritos", "id_usuario", "id_destino");
+    }
+    public function idfavoritos()
+    {
+        $arrayFavoritos = collect($this->favoritos->modelKeys());
+        
+        return $arrayFavoritos;
+    }
+    public function comentarios()
+    {
+        return $this->belongsToMany("App\Destino", "comentarios", "id_usuario", "id_destino")->withPivot("comentario", "puntuacion")->withTimestamps();
+
+    }
+    
 }
