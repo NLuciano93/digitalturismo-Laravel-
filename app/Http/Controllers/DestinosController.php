@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Destino;
 use App\Provincia;
+use App\Comentario;
 
 class DestinosController extends Controller
 {
@@ -186,9 +187,28 @@ class DestinosController extends Controller
     {
         $destinos= Destino::paginate(12);
         $destinosRandom = Destino::where("promocion", 0)->inRandomOrder()->take(4)->get();
+        $destinosPromo = Destino::where("promocion", ">", 0)->inRandomOrder()->take(3)->get();
 
-        $vac = compact('destinos', 'destinosRandom');
+        foreach ($destinos as $destino) {
+            $comments = Destino::find($destino->id_destino)->getComentariosXdestino;
+            
+            $promedioPts = 0;
+            foreach ($comments as $comment) {
+                $promedioPts = $promedioPts + $comment->puntuacion;
+            }
+
+            if ($comments->count()!=0) {
+                $puntaje[] =  $promedioPts/$comments->count();
+            } else {
+                $puntaje[] = 0;
+            }
+            
+            $cantComments [] = $comments->count();
+        }
+
+        $vac = compact('destinos', 'destinosRandom', 'cantComments', 'puntaje');
         return view('/destinos', $vac);
-    }
-    
+    }    
+
 }
+

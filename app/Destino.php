@@ -12,4 +12,10 @@ class Destino extends Model
     public function provincia(){
         return $this->belongsTo("App\Provincia", "id_provincia");
     }
+
+    public function getComentariosXdestino()
+    {
+        return $this->hasMany('App\Comentario', 'id_destino', 'id_destino');
+    }
+
 }

@@ -134,6 +134,7 @@
             <div class="container">
                 <div class="row">
 
+                    <?php $aux = 0; ?>
                     @foreach ($destinos as $destino)
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     
@@ -152,19 +153,21 @@
                                     </a>
                                     <div class="fondo-coment">
                                         <div class="puntuacion">
-                                            <small>4.5</small>
+                                            <small>{{ $puntaje[$aux] }}</small>
                                             <img class="estrella" src=
                                             "{{ asset('images/iconoEstrella.png') }}"
                                             alt="Estrellas">
                                         </div>
                                         <div class="coment">
-                                            <small>comentarios (1)</small>
+                                            <small>comentarios ( {{ $cantComments[$aux] }})
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
                                 
                             </article>                                
                         </div>
+                        <?php $aux = $aux + 1; ?>
                     @endforeach
                      
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 control-paginacion">
