@@ -22,4 +22,10 @@ class Destino extends Model
     {
         return $this->belongsToMany("App\User", "comentarios", "id_destino", "id_usuario")->withPivot("comentario", "puntuacion")->withTimestamps();
     }
+
+    public function getComentariosXdestino()
+    {
+        return $this->hasMany('App\Comentario', 'id_destino', 'id_destino');
+    }
+
 }

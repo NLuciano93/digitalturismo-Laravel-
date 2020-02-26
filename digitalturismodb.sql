@@ -37,6 +37,11 @@ CREATE TABLE `comentarios` (
   `fecha_publicacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_destino`, `comentario`, `puntuacion`, `fecha_publicacion`) VALUES
+(1, 1, 1,'muy bueno', 4, '2020-02-18'),
+(2, 1, 1,'genial', 5, '2020-02-18'),
+(3, 2, 1,'poco poco', 2, '2020-02-18');
+
 -- --------------------------------------------------------
 
 --

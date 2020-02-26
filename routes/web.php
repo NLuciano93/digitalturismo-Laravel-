@@ -34,6 +34,8 @@ Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('aut
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios');
 
 
+Route::get('/destinos', 'DestinosController@pagDestinos');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
