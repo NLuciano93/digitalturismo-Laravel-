@@ -128,6 +128,7 @@ if (isset($_SESSION)) {
         </div>  
       </section> 
       <!--------------------- DESTACADOS---------------------------->
+      
       <section class="col-12">
         <div class="col-12">
           <h2>
@@ -135,53 +136,25 @@ if (isset($_SESSION)) {
           </h2>
         </div>
         <div class="img-cont-destacado d-flex flex-wrap">
-          <article class="col-12 col-md-6 col-xl-4  flex-sm-shrink-0">
-            <div class="card carta-promocion">
-              <button class="favorito"><i class="fas fa-heart"></i></button>
-              <img class="star-destacado" src="images/stars.png" alt="">
-              <div class="imagen-articulo-contenedor">
-                <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
-                  <h3>BARILOCHE</h3>
-                  <p>"SKI ADVENTURE 7 DIAS"</p>
-                  <h4>$ 14.500</h4>
-                </a> 
+          @foreach ($destinosDestacados as $destinoDestacado)
+            <article class="col-12 col-md-6 col-xl-4  flex-sm-shrink-0">
+              <div class="card carta-promocion">
+                <button class="favorito"><i class="fas fa-heart"></i></button>
+                <img class="star-destacado" src="{{asset('images/stars.png')}}" alt="">
+                <div class="imagen-articulo-contenedor">
+                  <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
+                    <h3>{{$destinoDestacado->nombre_destino}}</h3>
+                  
+                    <h4>${{$destinoDestacado->precio}}</h4>
+                  </a> 
+                </div>
+                <img src="{{asset('images/destinos/'. $destinoDestacado->avatar_destino)}}" class="card-img-top avatar" alt="...">
               </div>
-              <img src="images/Destinos/Bariloche/barilocheEsquiando.jpg" class="card-img-top avatar" alt="...">
-            </div>
-          </article>
+            </article>
+          @endforeach
+          
 
-          <article class="col-12 col-md-6 col-lg-4  flex-sm-shrink-0">
-            <div class="card carta-promocion">
-              <button class="favorito"><i class="fas fa-heart"></i></button>
-              <img class="star-destacado" src="images/stars.png" alt="">
-              <div class="imagen-articulo-contenedor">
-                <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
-                  <h3>BARILOCHE</h3>
-                  <p>"SKI ADVENTURE 7 DIAS"</p>
-                  <h4>$ 14.500</h4>
-                </a> 
-              </div>
-              <img src="images/Destinos/Bariloche/barilocheEsquiando.jpg" class="card-img-top" alt="...">
-            </div>
-          </article>
-
-          <article class="col-12 col-md-6 col-lg-4  flex-sm-shrink-0">
-            <div class="card carta-promocion">
-              <button class="favorito"><i class="fas fa-heart"></i></button>
-              <img class="star-destacado" src="images/stars.png" alt="">
-              <div class="imagen-articulo-contenedor">
-                <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
-                  <h3>BARILOCHE</h3>
-                  <p>"SKI ADVENTURE 7 DIAS"</p>
-                  <h4>$ 14.500</h4>
-                </a> 
-              </div>
-              <img src="images/Destinos/Bariloche/barilocheEsquiando.jpg" class="card-img-top" alt="...">
-            </div>    
-          </article> 
-        </div>  
-      </section>
-      
+          
       <!--------------------- DESTINOS---------------------------->
       
       <section class="col-12">

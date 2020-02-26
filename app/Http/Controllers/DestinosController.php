@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Destino;
 use App\Provincia;
 use App\Comentario;
+use Illuminate\Support\Facades\DB;
 
 class DestinosController extends Controller
 {
@@ -15,7 +16,26 @@ class DestinosController extends Controller
     {
         $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
         $destinosPromo = Destino::where("promocion", ">", 0)->inRandomOrder()->take(3)->get();
-        $vac = compact('destinos','destinosPromo');
+        $destinosDestacados = DB::table('destinos')
+                                ->join('comentarios', 'destinos.id_destino','=', 'comentarios.id_destino')
+                                ->select('destinos.id_destino','nombre_destino', 'precio', 'promocion', 'avatar_destino', DB::raw('AVG(puntuacion) as promedio'), DB::raw('COUNT(comentario) as comentarios'))
+                                ->groupBy('destinos.id_destino','nombre_destino', 'precio', 'promocion', 'avatar_destino')
+                                ->orderBy('promedio', 'DESC')
+                                ->take(3)                               
+                                ->get();
+        
+        /* $destinosDestacados = Destino::with('comentarios');
+        $destinosDestacados =$destinosDestacados->select('destinos.*')
+                                ->selectSub('AVG(puntuacion)','promedio')
+                                ->groupBy('id_destino')
+                                ->get(); */
+        
+        
+        
+        /* with(['comentarios' => function($query){
+            $query->orderBy('puntuacion', '>', 2);
+        }])->get(); */
+        $vac = compact('destinos','destinosPromo', 'destinosDestacados');
         return view('inicio', $vac);
 
     }
