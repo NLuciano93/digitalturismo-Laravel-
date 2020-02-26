@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-02-2020 a las 15:17:01
+-- Tiempo de generación: 26-02-2020 a las 02:55:24
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -34,13 +34,20 @@ CREATE TABLE `comentarios` (
   `id_destino` int(11) NOT NULL,
   `comentario` text DEFAULT NULL,
   `puntuacion` tinyint(4) DEFAULT NULL,
-  `fecha_publicacion` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_destino`, `comentario`, `puntuacion`, `fecha_publicacion`) VALUES
-(1, 1, 1,'muy bueno', 4, '2020-02-18'),
-(2, 1, 1,'genial', 5, '2020-02-18'),
-(3, 2, 1,'poco poco', 2, '2020-02-18');
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_destino`, `comentario`, `puntuacion`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Gran Destino ', 5, '2020-02-25 00:00:00', '2020-02-25 00:00:00'),
+(2, 5, 10, 'Vamoo Chaco!', 5, '2020-02-25 00:00:00', '2020-02-25 00:00:00'),
+(3, 5, 1, 'Bariloo!', 4, '2020-02-25 00:00:00', '2020-02-25 00:00:00'),
+(4, 1, 10, 'Chaco loco!', 3, '2020-02-25 00:00:00', '2020-02-25 00:00:00'),
+(5, 1, 4, 'Vamo las cataratas', 3, '2020-02-25 18:36:14', '2020-02-25 18:36:14');
 
 -- --------------------------------------------------------
 
@@ -84,6 +91,15 @@ CREATE TABLE `favoritos` (
   `id_usuario` int(11) NOT NULL,
   `id_destino` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `favoritos`
+--
+
+INSERT INTO `favoritos` (`id_favorito`, `id_usuario`, `id_destino`) VALUES
+(14, 1, 3),
+(16, 1, 2),
+(17, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -390,7 +406,7 @@ ALTER TABLE `viajes_comprados`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `destinos`
@@ -402,7 +418,7 @@ ALTER TABLE `destinos`
 -- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `formas_pagos`
