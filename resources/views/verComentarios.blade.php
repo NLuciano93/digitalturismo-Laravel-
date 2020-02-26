@@ -10,6 +10,9 @@
 
     
 <h1>HOLA</h1>
+<h5>{{$Destino->comentarios->count()}}</h5>
+<h5>{{$cantidad}}</h5>
+<h5>{{$promedio}}</h5>
      @foreach ($Destino->comentarios as $comentario)
         <div class="card" style="width: 18rem;">
         <img src="..." class="card-img-top" alt="...">
@@ -20,7 +23,7 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">{{$comentario->pivot->puntuacion}}</li>
           <li class="list-group-item">{{$comentario->pivot->created_at}}</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item"></li>
         </ul>
         <div class="card-body">
           <a href="#" class="card-link">Card link</a>

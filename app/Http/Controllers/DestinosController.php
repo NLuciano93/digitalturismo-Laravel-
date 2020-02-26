@@ -184,8 +184,16 @@ class DestinosController extends Controller
     public function verComentarios($id)
     {
         $Destino = Destino::find($id);
-        $vac= compact('Destino');
+        $cantidad = $Destino->comentarios->count();
+        $promedio = round($Destino->comentarios()->avg('puntuacion'), 2);
+
+        $vac= compact('Destino', 'cantidad', 'promedio');
         return view("/verComentarios", $vac);
+    }
+    public function verTodosLosDestinos(){
+        $Destinos = Destino::all();
+        $vac = compact('Destinos');
+        return view('/verTodosLosDestinos', $vac);
     }
     
 

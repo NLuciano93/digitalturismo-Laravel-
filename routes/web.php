@@ -32,7 +32,7 @@ Route::post('/destinoMod', "DestinosController@update")->middleware('auth', 'val
 Route::get('/destinoMod/{id}', 'DestinosController@edit')->middleware('auth', 'validarAdmin');
 Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('auth', 'validarAdmin');
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios');
-
+Route::get('/verTodosLosDestinos', 'DestinosController@verTodosLosDestinos');
 
 Route::get('/destinos', 'DestinosController@pagDestinos');
 
