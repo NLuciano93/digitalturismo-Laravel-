@@ -121,7 +121,19 @@ if (isset($_SESSION)) {
                     <p><b>${{$destinoPromo->precio - ($destinoPromo->precio * ($destinoPromo->promocion/100))}}</b></p>
                     </a> 
                   </div>
-                  <img src="{{asset('images/destinos/' .$destinoPromo->avatar_destino)}}" class="card-img-top avatar" alt="..."> 
+                  <img src="{{asset('images/destinos/' .$destinoPromo->avatar_destino)}}" class="card-img-top avatar" alt="...">
+                  <div class="fondo-coment">
+                    <div class="puntuacion">
+                        <small>{{ round($destinoPromo->comentarios()->avg('puntuacion'), 2) }}</small>
+                        <img class="estrella" src=
+                        "{{ asset('images/iconoEstrella.png') }}"
+                        alt="Estrellas">
+                    </div>
+                    <div class="coment">
+                        <small>comentarios ({{$destinoPromo->comentarios->count()}})
+                        </small>
+                    </div>
+                </div>
                 </div>
           </article>
           @endforeach
@@ -139,16 +151,51 @@ if (isset($_SESSION)) {
           @foreach ($destinosDestacados as $destinoDestacado)
             <article class="col-12 col-md-6 col-xl-4  flex-sm-shrink-0">
               <div class="card carta-promocion">
-                <button class="favorito"><i class="fas fa-heart"></i></button>
+                @guest
+                     <button class="favorito"><i class="fas fa-heart"></i></button>
+                     @else
+                     @if (Auth::user()->idFavoritos()->search($destinoDestacado->id_destino)!==false)
+                     <form action="/quitarFavorito" method="post">
+                      @csrf
+                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                      <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$destinoDestacado->id_destino}}"><i class="fas fa-heart"></i></button>
+                    </form>                        
+                     @else
+                     <form action="/quitarFavorito" method="post">
+                      @csrf
+                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                      <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$destinoDestacado->id_destino}}"><i class="fas fa-heart"></i></button>
+                    </form> 
+                     @endif
+                @endguest
+               
                 <img class="star-destacado" src="{{asset('images/stars.png')}}" alt="">
                 <div class="imagen-articulo-contenedor">
                   <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
                     <h3>{{$destinoDestacado->nombre_destino}}</h3>
                   
-                    <h4>${{$destinoDestacado->precio}}</h4>
+                    @if ($destinoDestacado->promocion > 0 )
+                        <h4 class="precio-promo">$ {{$destinoDestacado->precio}}</h4><span> {{$destinoDestacado->promocion}}%OFF</span>
+                        <p><b>${{$destinoDestacado->precio - ($destinoDestacado->precio * ($destinoDestacado->promocion/100))}}</b></p>
+                    @else
+                        <h4>${{$destinoDestacado->precio}}</h4>
+                    @endif
+                    
                   </a> 
                 </div>
                 <img src="{{asset('images/destinos/'. $destinoDestacado->avatar_destino)}}" class="card-img-top avatar" alt="...">
+                  <div class="fondo-coment">
+                    <div class="puntuacion">
+                        <small>{{round($destinoDestacado->promedio,2)}}</small>
+                        <img class="estrella" src=
+                        "{{ asset('images/iconoEstrella.png') }}"
+                        alt="Estrellas">
+                    </div>
+                    <div class="coment">
+                        <small>comentarios ({{$destinoDestacado->comentarios}})
+                        </small>
+                    </div>
+                </div>
               </div>
             </article>
           @endforeach
@@ -193,6 +240,18 @@ if (isset($_SESSION)) {
                 </a> 
               </div>
               <img src="{{asset('images/destinos/'.$destino->avatar_destino)}}" class="card-img-top avatar" alt="...">
+              <div class="fondo-coment">
+                <div class="puntuacion">
+                    <small>{{ round($destino->comentarios()->avg('puntuacion'), 2) }}</small>
+                    <img class="estrella" src=
+                    "{{ asset('images/iconoEstrella.png') }}"
+                    alt="Estrellas">
+                </div>
+                <div class="coment">
+                    <small>comentarios ({{$destino->comentarios->count()}})
+                    </small>
+                </div>
+            </div>
             </div>
           </article>
           @endforeach 
@@ -201,6 +260,7 @@ if (isset($_SESSION)) {
         </div>
       </section>
     </div>
+  </div>
   </div>
   
   
@@ -220,18 +280,25 @@ if (isset($_SESSION)) {
                 
                 <div id="contacto" class="contacto mt-5 col-md-6">
                   <h3>Contacto</h3>
-                  <form action="#contacto" method="POST">
+                  <form action="/contacto" method="POST">
+                    @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email..." name="email" value="">
+                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email..." name="email" value="">
                       
                     </div>
+                    @error('email')
+                      <div class="alert alert-danger"> <strong>{{$message}}</strong></div>                        
+                    @enderror
                     
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Mensaje</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Mensaje..." name="mensaje" value=""></textarea>
+                      <textarea class="form-control @error('mensaje') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5" placeholder="Mensaje..." name="mensaje" value=""></textarea>
                       
                     </div>
+                    @error('mensaje')
+                      <div class="alert alert-danger"> <strong>{{$message}}</strong></div>                        
+                    @enderror
                     <button type="submit" class="btn btn-info btn-block">Enviar</button>
                   </form>
                 </div>
