@@ -44,7 +44,8 @@
                         "{{ asset('images/Destinos') }}/{{ $destinosRandom[0]->avatar_destino}}"
                                      class="d-block w-100 img-fluid" alt="Bariloche">
                                      <div class="puntuacion-carrusel">
-                                        <small class="letra-puntuacion-carrusel">4.5
+                                        <small class="letra-puntuacion-carrusel">
+                                            {{ $puntajeRandom[0] }}
                                         </small>
                                         <img class="estrella-carrusel" src=
                                         "{{ asset('images/iconoEstrella.png') }}"
@@ -62,7 +63,8 @@
                     "{{ asset('images/Destinos')}}/{{$destinosRandom[1]->avatar_destino}}"         
                                 class="d-block w-100 img-fluid" alt="...">
                                 <div class="puntuacion-carrusel">
-                                    <small class="letra-puntuacion-carrusel">4.5
+                                    <small class="letra-puntuacion-carrusel">
+                                        {{ $puntajeRandom[1] }}
                                     </small>
                                     <img class="estrella-carrusel" src=
                                     "{{ asset('images/iconoEstrella.png') }}"
@@ -80,7 +82,8 @@
                         "{{ asset('images/Destinos') }}/{{ $destinosRandom[2]->avatar_destino}}"
                                     class="d-block w-100 img-fluid" alt="...">
                                     <div class="puntuacion-carrusel">
-                                        <small class="letra-puntuacion-carrusel">4.5
+                                        <small class="letra-puntuacion-carrusel">
+                                            {{ $puntajeRandom[2] }}
                                         </small>
                                         <img class="estrella-carrusel" src=
                                         "{{ asset('images/iconoEstrella.png') }}"
@@ -98,7 +101,8 @@
                         "{{ asset('images/Destinos') }}/{{ $destinosRandom[3]->avatar_destino}}"
                                 class="d-block w-100 img-fluid" alt="...">
                                 <div class="puntuacion-carrusel">
-                                    <small class="letra-puntuacion-carrusel">4.5
+                                    <small class="letra-puntuacion-carrusel">
+                                        {{ $puntajeRandom[3] }}
                                     </small>
                                     <img class="estrella-carrusel" src=
                                     "{{ asset('images/iconoEstrella.png') }}"
