@@ -21,8 +21,14 @@ Route::get('/adminUsuarios', 'UsuariosController@index')->middleware('auth', 'va
 Route::get('/borrarUsuario/{id}', 'UsuariosController@destroy')->middleware('auth', 'validarAdmin');
 Route::post('/agregarFavorito', 'UsuariosController@agregarFav');
 Route::post('/quitarFavorito', 'UsuariosController@quitarFav');
+
+/********************* COMENTARIOSS *******************/
 Route::view('/comentario', 'comentario');
 Route::post('/comentario', 'UsuariosController@agregarComentario');
+Route::get('/verComentarios', 'DestinosController@verComentarios');
+Route::get('/verTodosComentarios', 'ComentariosController@todosComentarios');
+Route::get('/verComentariosDestino/{id}', 'DestinosController@verComentarioDestino');
+
 /********************* DESTINOS *******************/
 
 Route::get('/adminDestinos', 'DestinosController@index')->middleware('auth', 'validarAdmin');
@@ -33,7 +39,6 @@ Route::get('/destinoMod/{id}', 'DestinosController@edit')->middleware('auth', 'v
 Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('auth', 'validarAdmin');
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios');
 Route::get('/verTodosLosDestinos', 'DestinosController@verTodosLosDestinos');
-
 Route::get('/destinos', 'DestinosController@pagDestinos');
 
 Auth::routes();

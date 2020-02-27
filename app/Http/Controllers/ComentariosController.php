@@ -82,4 +82,13 @@ class ComentariosController extends Controller
     {
         //
     }
+
+    public function todosComentarios()
+    {
+        $comentarios= Comentario::paginate(12);
+        
+        $vac = compact('comentarios');
+
+        return view('/verTodosComentarios', $vac);
+    }
 }

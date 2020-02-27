@@ -210,13 +210,21 @@ class DestinosController extends Controller
         $vac= compact('Destino', 'cantidad', 'promedio');
         return view("/verComentarios", $vac);
     }
+    
     public function verTodosLosDestinos(){
         $Destinos = Destino::all();
         $vac = compact('Destinos');
         return view('/verTodosLosDestinos', $vac);
     }
+    public function verComentarioDestino($id)
+    {
+        $destino = Destino::find($id);
+        $comentarios = Comentario::find($id)->get();
+        
+        $vac= compact('comentarios');
+        return view("/verComentarioDestino", $vac);
+    }
     
-
     /** metodo para pagina DESTINOS - listado general y carrusel */
     public function pagDestinos()
     {

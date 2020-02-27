@@ -156,8 +156,10 @@
                                             alt="Estrellas">
                                         </div>
                                         <div class="coment">
-                                            <small>comentarios ( {{ $cantComments[$aux] }})
-                                            </small>
+                                            <a href="/verComentarios">
+                                                <small>comentarios ( {{ $cantComments[$aux] }})
+                                                </small>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -174,6 +176,10 @@
 
             </div>
     </div>
+    <a href="/verComentarios">
+        <small>comentarios ( {{ $cantComments[0] }})
+        </small>
+    </a>
 </div>
 </div>
 </div>    
