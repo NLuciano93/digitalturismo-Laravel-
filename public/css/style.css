@@ -304,6 +304,62 @@
     z-index: 20;
 
 }
+
+.fondo-coment {
+    position: absolute;
+    bottom: 2%;
+    left: 5%;
+    width: 95%;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    /* background-color: rgb(0, 0, 0); */
+    border-radius: 5px;
+    display: block;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.coment {
+    text-decoration: none;
+    text-align: right;
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+    width: 100%;
+    padding-right: 5%;
+    transform: translateY(-50%);
+   /*  background-color: rgba(0, 0, 0, 0.7);  */
+    display: block;
+    z-index: 100;
+}
+.estrella {
+    width: 15px;
+    height: 15px;
+}
+.puntuacion {
+    text-decoration: none;
+    text-align: left;
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    width: 100%;
+    padding-left: 5%;
+    transform: translateY(-50%);
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    display: block;
+    z-index: 100;
+}
+.coment small {
+    font-size: 0.9rem;
+    color: white;
+    font-family: 'Arial';
+}
+
+.puntuacion small {
+    font-size: 0.9rem;
+    color: white;
+    font-family: 'Arial';
+}
+
 /*
 Para poner en Querys más grandes
 .img-cont-promo article{

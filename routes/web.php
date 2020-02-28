@@ -13,6 +13,7 @@
 
 Route::get('/', 'DestinosController@inicio');
 Route::view('/faq', 'faq');
+Route::post('/contacto', 'MensajesController@store');
 
 ##################   ADMIN   ##############
 Route::view('/adminInicio', 'adminInicio')->middleware('auth', 'validarAdmin');
