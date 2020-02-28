@@ -63,13 +63,8 @@
                     <div class="costos">
                         <h6> Costo por Pasajero</h6>
                         <h4> {{$Destino->precio}}</h4>
-                    </div>
-                    <div>
-                        <small>{{$Destino->comentarios[0]->name}} - 
-                            {{$Destino->comentarios[0]->comentario}}</small>
-                        <small>  {{$Destino->comentarios}} </small>    
-                    <div> 
-                </article>
+                    </div> 
+                </article>  
             </div>
             
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">               
@@ -82,6 +77,33 @@
                     alt="carrito" title="Agregar al Carrito de Compras">
                 </div>
             </div>        
+        </div>
+
+        <div class="row">
+        
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                
+                    <div> <h3> Opiniones del Destino </h3>
+
+                    @foreach ($Destino->comentarios as $item)
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h4 class="card-title"> {{$item->name}} </h4>
+                                <div>
+                                    <h6 class="card-title">
+                                     {{$item->pivot->puntuacion}} 
+                                    </h6>
+                                    <img class="estrella" src=
+                                        "{{ asset('images/iconoEstrella.png') }}"
+                                            alt="Estrellas">
+                                </div>
+                                <h5 class="card-subtitle mb-2 text-muted">
+                                    {{$item->pivot->comentario}} 
+                                </h5>
+                            </div>
+                        </div>       
+                    @endforeach
+            </div>
         </div>
     </div>
 </div>

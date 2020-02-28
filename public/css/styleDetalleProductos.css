@@ -154,6 +154,11 @@ font-family: 'Roboto', sans-serif;
     height: 7vh;
 }
 
+.estrella {
+    width: 15px;
+    height: 15px;
+}
+
 /* mi carrito  */
 .carritoIcono {
     position: absolute;

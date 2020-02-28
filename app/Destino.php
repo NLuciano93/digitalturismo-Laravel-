@@ -20,7 +20,7 @@ class Destino extends Model
     }
     public function comentarios()
     {
-        return $this->belongsToMany("App\User", "comentarios", "id_destino", "id_usuario")->withPivot("id_comentario", "comentario", "puntuacion", "fecha_publicacion");
+        return $this->belongsToMany("App\User", "comentarios", "id_destino", "id_usuario")->withPivot("id_comentario", "comentario", "puntuacion");
     }
 
     public function getComentariosXdestino()
