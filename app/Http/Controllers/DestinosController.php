@@ -212,7 +212,7 @@ class DestinosController extends Controller
     }
     
     public function verTodosLosDestinos(){
-        $Destinos = Destino::all();
+        $Destinos = Destino::paginate(12);
         $vac = compact('Destinos');
         return view('/verTodosLosDestinos', $vac);
     }
