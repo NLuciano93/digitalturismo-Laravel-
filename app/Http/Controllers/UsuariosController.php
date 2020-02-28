@@ -7,6 +7,15 @@ use App\User;
 
 class UsuariosController extends Controller
 {
+
+    public function busquedaUsuarioAdmin(Request $request)
+    {
+        $usuarios = User::where('name', 'like', '%'. $request->input('busqueda') .'%')
+                          ->orWhere('email', 'like', '%'. $request->input('busqueda') .'%')
+                          ->paginate(8);
+        $vac = compact('usuarios');
+        return view('/adminUsuarios', $vac);
+    }
     /**
      * Display a listing of the resource.
      *

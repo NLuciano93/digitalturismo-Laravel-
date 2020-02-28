@@ -3,7 +3,26 @@
 
 
 @section('principal')
-
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <form method="POST" action="/busquedaUsuarios" class="col-12">
+            <div class="form-row d-flex justify-content-center">
+                <div class="form-group mx-sm-3 mb-2 col-6">
+                 
+                  <input type="text" class="form-control" id="busqueda" placeholder="Busqueda por nombre o email" name="busqueda">
+                </div>
+                 <div class="form-group col-2">
+                     <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </div>   
+            </div>
+                @csrf
+                                    
+                
+              </form>
+        </div>
+    </div>
+</div>
 <div class="container-fluid mt-5">
     <div class="row">
         <table class="table table-striped table-bordered table-hover">

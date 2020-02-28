@@ -11,7 +11,24 @@ use Illuminate\Support\Facades\DB;
 class DestinosController extends Controller
 {
 
-
+    public function busquedaDestinoAdmin(Request $request)
+    {
+       $provincias= Provincia::all();
+        if($request->input('provincia') && $request->input('busqueda') === null){
+            $destinos = Destino::where('id_provincia', '=', $request->input('provincia'))->paginate(8);
+        }else if($request->input('provincia') && $request->input('busqueda')){
+            
+            $destinos = Destino::where('nombre_destino', 'like', '%'.$request->input('busqueda').'%')
+                        ->orWhere('id_provincia', '=', $request->input('provincia'))
+                        ->paginate(8);
+        }else{
+            $destinos= Destino::where('nombre_destino', 'like', '%'. $request->input('busqueda'). '%')
+                        ->paginate(8);
+        }
+        
+        $vac = compact('destinos', 'provincias');
+        return view('/adminDestinos', $vac);
+    }
     public function inicio()
     {
         $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
@@ -47,8 +64,9 @@ class DestinosController extends Controller
     public function index()
     {
         $destinos= Destino::paginate(8);
+        $provincias = Provincia::all();
 
-        $vac = compact('destinos');
+        $vac = compact('destinos', 'provincias');
         return view('/adminDestinos', $vac);
     }
 

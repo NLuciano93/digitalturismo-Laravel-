@@ -273,9 +273,11 @@ if (isset($_SESSION)) {
         <div class="col-12 p-0">
             <footer>
               <div class="social d-flex flex-wrap">
-                <div class="mision col-12">
-                  <h3>Nuestra Misión</h3>
-                  <h4 class="mt-3">DigitalTurismo busca fomentar el turismo en Argentina, para que crezca el sector, trayéndole a los usuarios los más lindos paisajes para visitar.</h4>
+                <div class="mision col-12 row justify-content-center">
+                  <div class="col-sm-6">
+                    <h2>Nuestra Misión</h2>
+                    <h4 class="mt-3">DigitalTurismo busca fomentar el turismo en Argentina, para que crezca el sector, trayéndole a los usuarios los más lindos paisajes para visitar.</h4>
+                </div>
                 </div>
                 
                 <div id="contacto" class="contacto mt-5 col-md-6">
