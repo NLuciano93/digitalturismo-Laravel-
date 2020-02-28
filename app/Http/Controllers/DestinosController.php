@@ -210,38 +210,45 @@ class DestinosController extends Controller
         $vac= compact('Destino', 'cantidad', 'promedio');
         return view("/verComentarios", $vac);
     }
+    
     public function verTodosLosDestinos(){
         $Destinos = Destino::all();
         $vac = compact('Destinos');
         return view('/verTodosLosDestinos', $vac);
     }
+    public function verComentarioDestino($id)
+    {
+        $destino = Destino::find($id);
+        $comentarios = Comentario::find($id)->get();
+        
+        $vac= compact('comentarios');
+        return view("/verComentarioDestino", $vac);
+    }
     
-
-    /** metodo para pagina DESTINOS  */
+    /** metodo para pagina DESTINOS - listado general y carrusel */
     public function pagDestinos()
     {
         $destinos= Destino::paginate(12);
         $destinosRandom = Destino::where("promocion", 0)->inRandomOrder()->take(4)->get();
-        $destinosPromo = Destino::where("promocion", ">", 0)->inRandomOrder()->take(3)->get();
 
+        // Cant Comentarios x Destino y Promedio Puntaje - listado general 
         foreach ($destinos as $destino) {
             $comments = Destino::find($destino->id_destino)->getComentariosXdestino;
             
-            $promedioPts = 0;
-            foreach ($comments as $comment) {
-                $promedioPts = $promedioPts + $comment->puntuacion;
-            }
-
-            if ($comments->count()!=0) {
-                $puntaje[] =  $promedioPts/$comments->count();
-            } else {
-                $puntaje[] = 0;
-            }
-            
+            $puntaje[] = round($comments->avg('puntuacion'), 1, PHP_ROUND_HALF_DOWN);
+                     
             $cantComments [] = $comments->count();
         }
 
-        $vac = compact('destinos', 'destinosRandom', 'cantComments', 'puntaje');
+        // Promedio destinos Random en Carrusel
+        foreach ($destinosRandom as $destino) {
+            $comments = Destino::find($destino->id_destino)->getComentariosXdestino;
+            
+            $puntajeRandom[] = round($comments->avg('puntuacion'), 1, PHP_ROUND_HALF_DOWN);
+          }
+
+        $vac = compact('destinos', 'destinosRandom', 'cantComments', 'puntaje',
+                        'puntajeRandom');
         return view('/destinos', $vac);
     }    
 
