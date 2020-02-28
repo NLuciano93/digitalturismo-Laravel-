@@ -142,7 +142,7 @@
                         "{{ asset('images/Destinos') }}/{{ $destino->avatar_destino}}"
                                      alt="foto destino">
                                     <button class="favorito"><i class="fas fa-heart"></i></button>
-                                    <a href="detalleProducto.php" title="Mas Informacion">
+                                    <a href="/detalleDestino/{{$destino->id_destino}}" title="Mas Informacion">
                                         <div class="tit-Destino" >
                                             <h3 class="texto-card-titulo">{{$destino->nombre_destino}}</h3>
                                             <h3 class="texto-card-titulo">${{$destino->precio}}</h3>

@@ -41,6 +41,7 @@ Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('aut
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios');
 Route::get('/verTodosLosDestinos', 'DestinosController@verTodosLosDestinos');
 Route::get('/destinos', 'DestinosController@pagDestinos');
+Route::get('/detalleDestino/{id}', 'DestinosController@detalleDestino');
 
 Auth::routes();
 

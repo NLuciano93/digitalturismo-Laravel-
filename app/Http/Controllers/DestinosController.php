@@ -250,7 +250,17 @@ class DestinosController extends Controller
         $vac = compact('destinos', 'destinosRandom', 'cantComments', 'puntaje',
                         'puntajeRandom');
         return view('/destinos', $vac);
-    }    
+    }
+    
+    public function detalleDestino($id)
+    {
+        $Destino = Destino::find($id);
+        $cantidad = $Destino->comentarios->count();
+        $promedio = round($Destino->comentarios()->avg('puntuacion'), 2);
+
+        $vac= compact('Destino', 'cantidad', 'promedio');
+        return view('/detalleDestino', $vac);
+    }
 
 }
 
