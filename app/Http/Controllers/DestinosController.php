@@ -208,7 +208,7 @@ class DestinosController extends Controller
         $promedio = round($Destino->comentarios()->avg('puntuacion'), 2);
 
         $vac= compact('Destino', 'cantidad', 'promedio');
-        return view("/verComentarios", $vac);
+        return view("/verComentarioDestino", $vac);
     }
     
     public function verTodosLosDestinos(){

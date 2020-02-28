@@ -156,13 +156,17 @@
                                             alt="Estrellas">
                                         </div>
                                         <div class="coment">
-                                            <a href="/verComentarios">
+                                            <a href="/verComentariosDestino/ {{$destino->id_destino}}">
                                                 <small>comentarios ( {{ $cantComments[$aux] }})
                                                 </small>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
+                                <a href="/verComentariosDestino/{{$destino->id_destino}}">
+                                    <small>comentarios ( {{ $cantComments[$aux] }})
+                                    </small>
+                                </a>
                                 
                             </article>                                
                         </div>
@@ -176,10 +180,6 @@
 
             </div>
     </div>
-    <a href="/verComentarios">
-        <small>comentarios ( {{ $cantComments[0] }})
-        </small>
-    </a>
 </div>
 </div>
 </div>    

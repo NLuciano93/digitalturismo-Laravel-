@@ -26,15 +26,19 @@
     </tr>
     </thead>
     <tbody>
-        @foreach ($comentarios as $comentario)
+    
+    @if ($Destino->comentarios->count() > 0 )
+        
+
+        @foreach ($Destino->comentarios as $comentario)
         <tr>
         
-        <td>{{ $comentario->id_comentario }}</td>
-        <td>{{ $comentario->id_usuario }}</td>
-        <td>{{ $comentario->id_destino }}</td>
-        <td>{{ $comentario->puntuacion }}</td>
-        <td>{{ $comentario->comentario }}</td>
-        <td>{{ $comentario->fecha_publicacion }}</td>
+        <td>{{ $comentario->pivot->id_comentario }}</td>
+        <td>{{ $comentario->pivot->name }}</td>
+        <td>{{ $comentario->pivot->id_destino }}</td>
+        <td>{{ $comentario->pivot->puntuacion }}</td>
+        <td>{{ $comentario->pivot->comentario }}</td>
+        <td>{{ $comentario->pivot->fecha_publicacion }}</td>
         <td>
           <a href="#" class="btn btn-outline-secondary">
                 Modificar
@@ -47,7 +51,15 @@
         </td>
     </tr>
     @endforeach
+    @else
+    <tr>
+        <td> 
+        <div> <h3>No hay comentarios para este Destino ...</h3> </div>
+        </td>
+    </tr>
+    @endif
     </tbody>
+    
 </table>
 
 @endsection

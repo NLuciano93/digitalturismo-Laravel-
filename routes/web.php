@@ -27,7 +27,7 @@ Route::view('/comentario', 'comentario');
 Route::post('/comentario', 'UsuariosController@agregarComentario');
 Route::get('/verComentarios', 'DestinosController@verComentarios');
 Route::get('/verTodosComentarios', 'ComentariosController@todosComentarios');
-Route::get('/verComentariosDestino/{id}', 'DestinosController@verComentarioDestino');
+Route::get('/verComentariosDestino/{id}', 'DestinosController@verComentarios');
 
 /********************* DESTINOS *******************/
 
