@@ -83,6 +83,8 @@ font-family: 'Roboto', sans-serif;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    height: auto;
+    padding-bottom: 5%;
  }
 
  .contenedor-detalle {
@@ -90,6 +92,8 @@ font-family: 'Roboto', sans-serif;
      width: 80%;
      background-color: white;
      margin-left: 12%;
+     height: auto;
+
  }
 
  .box1 {
@@ -167,8 +171,8 @@ font-family: 'Roboto', sans-serif;
     justify-content: center;
     top: 2%;
     right: -8%;
-    width: 25%;
-    height: 13%;
+    width: 70px;
+    height: 70px;
     background-color: #343a40;
     border-radius: 50%;
     z-index: 100;
@@ -309,8 +313,8 @@ font-family: 'Roboto', sans-serif;
     .detalle-info .costos {
         text-align: right;
         width: 100%;
-        border-bottom: 1px solid gray;
-        height: 50vh;
+       /* border-bottom: 1px solid gray;*/
+       /* height: 50vh;*/
     }
 
     /* mi carrito  */
@@ -321,8 +325,8 @@ font-family: 'Roboto', sans-serif;
     justify-content: center;
     top: 2%;
     right: -8%;
-    width: 20%;
-    height: 12%;
+    width: 80px;
+    height: 80px;
     background-color: #343a40;
     border-radius: 50%;
     z-index: 100;
@@ -362,8 +366,8 @@ font-family: 'Roboto', sans-serif;
         justify-content: center;
         top: 2%;
         right: -8%;
-        width: 14%;
-        height: 9%;
+        width: 80px;
+        height: 80px;
         background-color: #343a40;
         border-radius: 50%;
         z-index: 100;
@@ -463,8 +467,8 @@ font-family: 'Roboto', sans-serif;
         justify-content: center;
         top: 2%;
         right: -8%;
-        width: 10%;
-        height: 16%;
+        width: 80px;
+        height: 80px;
         background-color: #343a40;
         border-radius: 50%;
         z-index: 100;
@@ -531,8 +535,8 @@ font-family: 'Roboto', sans-serif;
         justify-content: center;
         top: 2%;
         right: -4%;
-        width: 8%;
-        height: 16%;
+        width: 100px;
+        height: 100px;
         background-color: #343a40;
         border-radius: 50%;
         z-index: 100;
@@ -676,8 +680,8 @@ font-family: 'Roboto', sans-serif;
         justify-content: center;
         top: 2%;
         right: -4%;
-        width: 7%;
-        height: 16%;
+        width: 100px;
+        height: 100px;
         background-color: #343a40;
         border-radius: 50%;
         z-index: 100;

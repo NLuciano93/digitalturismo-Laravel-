@@ -5,14 +5,18 @@
 @endsection
 
 @section('principal')
-
-<div class="container-fluid p-0 m-0">
+@if (session()->has('mensaje'))
+<div class="alert alert-success m-0  d-flex justify-content-center">
+  <strong>🌴{{ session()->get('mensaje') }}🌴</strong>
+</div>
+@endif
+<div class="container-fluid p-0 m-0 ">
 <div class="row p-0 m-0">
 <div class="col-12 p-0 m-0">
 
 <div class="fondo_producto">
     
-    <div class=contenedor-detalle>
+    <div class="contenedor-detalle">
 
 <!-- icono Mi carrtito-->
     <div class="carritoIcono">
@@ -81,32 +85,77 @@
 
         <div class="row">
         
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="col-12">
                 
                     <div> <h3> Opiniones del Destino </h3>
 
                     @foreach ($Destino->comentarios as $item)
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
+                        <div class="card">
+                            
+                            <div class="card-body row col-12">
+                                <div class="imagen-card col-2">
+                            <img src="{{asset('images/usuarios/'. $item->avatar)}}" class="card-img border text-center border-dark rounded-circle mt-1 shadow-lg" alt="">
+                            </div>
+                            <div class="col-8">
                                 <h4 class="card-title"> {{$item->name}} </h4>
                                 <div>
-                                    <h6 class="card-title">
-                                     {{$item->pivot->puntuacion}} 
-                                    </h6>
-                                    <img class="estrella" src=
-                                        "{{ asset('images/iconoEstrella.png') }}"
-                                            alt="Estrellas">
+                                    <span class="card-title">
+                                        <img class="estrella" src=
+                                     "{{ asset('images/iconoEstrella.png') }}"
+                                         alt="Estrellas">
+                                     {{$item->pivot->puntuacion}}
+                                      
+                                    </span>
+                                    
                                 </div>
                                 <h5 class="card-subtitle mb-2 text-muted">
                                     {{$item->pivot->comentario}} 
                                 </h5>
                             </div>
+                                
+                            </div>
                         </div>       
                     @endforeach
             </div>
+            
         </div>
     </div>
+    <div class="card">
+        <h5 class="card-header">Comentar</h5>
+
+        <div class="card-body">
+          <form action="/comentario" method="post">
+            @csrf
+          <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+              <div class="form-group">
+                    <label for="puntuacion">Calificar:</label>
+                    <select name="puntuacion" id="puntuacion" class="form-control">
+                        <option>Elegir calificación</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+              </div>
+              <div class="form-group">
+                  <label for="comentario">Agregar Comentario</label>
+                <textarea class="form-control" name="comentario" id="comentario" cols="" rows="5" placeholder="Escribe un comentario...."></textarea>
+              </div>
+            <button type="submit" class="btn btn-info btn-lg btn-block" name="destino" value="{{$Destino->id_destino}}">Comentar</button>
+          </form>
+        </div>
+
+      </div>
 </div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -172,7 +221,5 @@
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
+
 @endsection

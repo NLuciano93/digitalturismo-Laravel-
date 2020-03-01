@@ -131,8 +131,8 @@
             <div class="container">
                 <div class="row">
 
-                    <?php $aux = 0; ?>
-                    @foreach ($destinos as $destino)
+                    
+                    @foreach ($Destinos as $destino)
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     
                             <article class="borderBox m-3 destino-individual">
@@ -141,7 +141,26 @@
                                     <img class="photo" src=
                         "{{ asset('images/Destinos') }}/{{ $destino->avatar_destino}}"
                                      alt="foto destino">
-                                    <button class="favorito"><i class="fas fa-heart"></i></button>
+                                    @guest
+                                      <button class="favorito"><i class="fas fa-heart"></i></button>
+                                      @else
+                                      
+                                      @if (Auth::user()->idFavoritos()->search($destino->id_destino) !== false)
+                                      <form action="/quitarFavorito" method="post">
+                                        @csrf
+                                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                                      <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                                      </form>
+                                      @else
+                                      <form action="/agregarFavorito" method="post">
+                                        @csrf
+                                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}"> 
+                                      <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                                    </form>
+                                      @endif
+                                    @endguest
+                                    
+
                                     <a href="/detalleDestino/{{$destino->id_destino}}" title="Mas Informacion">
                                         <div class="tit-Destino" >
                                             <h3 class="texto-card-titulo">{{$destino->nombre_destino}}</h3>
@@ -150,31 +169,31 @@
                                     </a>
                                     <div class="fondo-coment">
                                         <div class="puntuacion">
-                                            <small>{{ $puntaje[$aux] }}</small>
+                                            <small>{{ round($destino->comentarios()->avg('puntuacion'),2) }}</small>
                                             <img class="estrella" src=
                                             "{{ asset('images/iconoEstrella.png') }}"
                                             alt="Estrellas">
                                         </div>
                                         <div class="coment">
                                             <a href="/verComentariosDestino/ {{$destino->id_destino}}">
-                                                <small>comentarios ( {{ $cantComments[$aux] }})
+                                                <small>comentarios ( {{ $destino->comentarios()->count()}})
                                                 </small>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                                 <a href="/verComentariosDestino/{{$destino->id_destino}}">
-                                    <small>comentarios ( {{ $cantComments[$aux] }})
+                                    <small>comentarios ( {{ $destino->comentarios()->count() }})
                                     </small>
                                 </a>
                                 
                             </article>                                
                         </div>
-                        <?php $aux = $aux + 1; ?>
+                        
                     @endforeach
                      
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 control-paginacion">
-                            {{ $destinos->links() }}
+                            {{ $Destinos->links() }}
                     </div>  
                 </div>
 

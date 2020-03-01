@@ -144,6 +144,27 @@ font-family: 'Roboto', sans-serif;
     z-index: 20;   
 }
 
+.favorito-red{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    border-radius: 5px;
+    top: 2%;
+    left: 2%;
+    font-size: 2.5rem;
+    background: transparent;
+    color: red;
+    border: none;
+    transition: 500ms all ease;
+    z-index: 20;
+}
+.favorito-red i{
+    font-size: 25px;
+}
+
 .favorito i{
     font-size: 20px;
 

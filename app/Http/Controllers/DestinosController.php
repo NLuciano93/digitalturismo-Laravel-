@@ -228,17 +228,18 @@ class DestinosController extends Controller
     /** metodo para pagina DESTINOS - listado general y carrusel */
     public function pagDestinos()
     {
-        $destinos= Destino::paginate(12);
+        $Destinos = Destino::paginate(12);
+       
         $destinosRandom = Destino::where("promocion", 0)->inRandomOrder()->take(4)->get();
 
         // Cant Comentarios x Destino y Promedio Puntaje - listado general 
-        foreach ($destinos as $destino) {
+       /*  foreach ($destinos as $destino) {
             $comments = Destino::find($destino->id_destino)->getComentariosXdestino;
             
             $puntaje[] = round($comments->avg('puntuacion'), 1, PHP_ROUND_HALF_DOWN);
                      
             $cantComments [] = $comments->count();
-        }
+        } */
 
         // Promedio destinos Random en Carrusel
         foreach ($destinosRandom as $destino) {
@@ -247,7 +248,7 @@ class DestinosController extends Controller
             $puntajeRandom[] = round($comments->avg('puntuacion'), 1, PHP_ROUND_HALF_DOWN);
           }
 
-        $vac = compact('destinos', 'destinosRandom', 'cantComments', 'puntaje',
+        $vac = compact('Destinos', 'destinosRandom',
                         'puntajeRandom');
         return view('/destinos', $vac);
     }
