@@ -195,6 +195,7 @@ class DestinosController extends Controller
         $Destino->nombre_destino = $request["nombre"];
         $Destino->precio = $request["precio"];
         $Destino->promocion = $request["promocion"];
+        
         if ($request->file('imagenPerfil')) {
             $imageName = time(). $request->imagenPerfil->getClientOriginalName();
             $request->imagenPerfil->move(public_path('images/destinos'), $imageName);

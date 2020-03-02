@@ -37,6 +37,7 @@
               <h2 class="mb-3">Actualizar Datos</h2>
               <form action="/usuarioActualizado" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}   
+                
                 <div class="form-row">
                   <div class="col-md-12">
                     <div class="md-form form-group">
@@ -80,7 +81,7 @@
                   <span id="archivoHelp" class="form-text text-danger"></span>
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-primary btn-md">Actualizar datos</button>                    
+                <button type="submit" class="btn btn-primary btn-md" name="user" value="{{Auth::user()->id}}">Actualizar datos</button>                    
                 </div>                   
               </form>
             </div>
