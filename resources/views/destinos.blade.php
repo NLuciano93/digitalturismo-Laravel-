@@ -127,7 +127,38 @@
         
         
         <!-- Todos los destinos  -->
-       
+       <section>
+        <nav class="navbar navbar-light bg-dark d-flex justify-content-center">
+            <form class="form" action="/busDestinosUser" method="post">
+                @csrf
+             <div class="form-row">
+                <div class="form-group my-1">
+                    <input class="form-control mr-sm-3" type="search" name='busqueda' value="{{--  /* isset($_POST['destino']) ? $_POST['destino'] : ''  */ --}}" placeholder="Buscar Destino" aria-label="Default" 
+                                    aria-describedby="inputGroup-sizing-default">
+                                     
+                </div>
+            
+           
+                 
+                <div class="form-group mx-3 my-1">
+                <select id="inputState" class="form-control mr-sm-5" name="provincia">
+                    <option value="">Elegir Provincia...</option>
+                     @foreach ($provincias as $provincia)
+                <option value="{{$provincia->id_provincia}}">{{$provincia->nombre_provincia}}</option>
+                     
+                     @endforeach
+                        
+                            
+                </select>
+                </div> 
+
+
+                <button class="btn btn-outline-success boton my-1" type="submit">Buscar</button>
+            </div>
+            
+               
+            </form>
+        </nav>
             <div class="container">
                 <div class="row">
 
@@ -205,6 +236,7 @@
                 </div>
 
             </div>
+        </section>
     </div>
 </div>
 </div>

@@ -247,6 +247,7 @@ class DestinosController extends Controller
     public function pagDestinos()
     {
         $Destinos = Destino::paginate(12);
+        $provincias = Provincia::all();
        
         $destinosRandom = Destino::where("promocion", 0)->inRandomOrder()->take(4)->get();
 
@@ -267,7 +268,7 @@ class DestinosController extends Controller
           }
 
         $vac = compact('Destinos', 'destinosRandom',
-                        'puntajeRandom');
+                        'puntajeRandom', 'provincias');
         return view('/destinos', $vac);
     }
     
@@ -279,6 +280,31 @@ class DestinosController extends Controller
 
         $vac= compact('Destino', 'cantidad', 'promedio');
         return view('/detalleDestino', $vac);
+    }
+    public function busDestinosUser(Request $request){
+
+
+        $provincias= Provincia::all();
+        if($request->input('provincia') && $request->input('busqueda') === null){
+            $Destinos = Destino::where('id_provincia', $request->input('provincia'))->paginate(8);
+        }else if($request->input('provincia') && $request->input('busqueda')){
+            
+            $Destinos = Destino::where('nombre_destino', 'like', '%'.$request->input('busqueda').'%')
+                        ->where('id_provincia', $request->input('provincia'))
+                        ->paginate(8);
+        }else{
+            $Destinos= Destino::where('nombre_destino', 'like', '%'. $request->input('busqueda'). '%')
+                        ->paginate(8);
+        }
+        $destinosRandom = Destino::where("promocion", 0)->inRandomOrder()->take(4)->get();
+        foreach ($destinosRandom as $destino) {
+            $comments = Destino::find($destino->id_destino)->getComentariosXdestino;
+            
+            $puntajeRandom[] = round($comments->avg('puntuacion'), 1, PHP_ROUND_HALF_DOWN);
+          }
+
+        $vac = compact('Destinos', 'provincias', 'puntajeRandom', 'destinosRandom');
+        return view('/destinos', $vac);
     }
 
 }

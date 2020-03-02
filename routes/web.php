@@ -32,7 +32,7 @@ Route::get('/verTodosComentarios', 'ComentariosController@todosComentarios');
 Route::get('/verComentariosDestino/{id}', 'DestinosController@verComentarios');
 
 /********************* DESTINOS *******************/
-
+/*---------------------ADMIN---------------------------*/
 Route::get('/adminDestinos', 'DestinosController@index')->middleware('auth', 'validarAdmin');
 Route::get('/destinoAlta', 'DestinosController@create')->middleware('auth', 'validarAdmin');
 Route::post('/destinoAlta', "DestinosController@store")->middleware('auth', 'validarAdmin');
@@ -40,10 +40,15 @@ Route::post('/destinoMod', "DestinosController@update")->middleware('auth', 'val
 Route::get('/destinoMod/{id}', 'DestinosController@edit')->middleware('auth', 'validarAdmin');
 Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('auth', 'validarAdmin');
 Route::post('/busquedaDestinos', 'DestinosController@busquedaDestinoAdmin');
+
+
+/*---------------------usuariocomun-----------------------*/
+
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios');
 Route::get('/verTodosLosDestinos', 'DestinosController@verTodosLosDestinos');
 Route::get('/destinos', 'DestinosController@pagDestinos');
 Route::get('/detalleDestino/{id}', 'DestinosController@detalleDestino');
+Route::post('busDestinosUser', 'DestinosController@busDestinosUser');
 
 Auth::routes();
 

@@ -9,6 +9,9 @@ font-family: 'Roboto', sans-serif;
     padding: 0;
     box-sizing: border-box;
 }
+.boton{
+    max-height: 40px;
+}
 
 [class ^= "col-"]{
     padding: 0;
