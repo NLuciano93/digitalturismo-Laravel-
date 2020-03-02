@@ -35,7 +35,6 @@
                 data-parent="#accordionEx2">
                 <div class="card-body rgba-teal-strong white-text">
                   <p>Digital turismo: es una agencia de turismo que opera 100% online. Los usuarios podrán contratar hoteles, autos,viajes, paquetes turísticos, cruceros; y elegir entre más de 100 líneas aéreas y entre más de 10.000 mil opciones en hoteles, casas y departamentos en alquiler, aprovechando las ofertas. Las personas que deseen contratar cualquiera de esos servicios de Digital Turismo, deberán generarse un usuario en el sitio web; podrán consultar el estado de la compra en “Digital Turismo” y una vez efectuado el viaje, podrán publicar en comentarios la experiencia de su viaje. Junto con Banco Galincia lanzaron "DIGITALQUIERO". Es una propuesta en la que permiten canjear puntos por pasajes; reservar hoteles en cualquier ciudad del mundo o acceder a paquetes turísticos. Además hay una opción de DTurismo Pymes con propuestas exclusivas.</p>
-          
                 </div>
               </div>
             </div>      

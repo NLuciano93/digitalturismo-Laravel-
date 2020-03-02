@@ -16,7 +16,7 @@
               <a class="nav-link" href="/faq"><i class="far fa-question-circle"></i><p>FAQ</p></a>
             </li>
             <li class="nav-item items-barra">
-              <a class="nav-link" href="productos.php"><i class="fas fa-suitcase"></i><p>DESTINOS</p></a>
+              <a class="nav-link" href="/destinos"><i class="fas fa-suitcase"></i><p>DESTINOS</p></a>
             </li>
           </ul>
           

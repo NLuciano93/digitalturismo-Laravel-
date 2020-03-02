@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Digital Turismo | Productos</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/styleProductos.css')}}">
-    <link rel="stylesheet" href="css/style-login-registro.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton|Oswald:500|Roboto&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/67f61afa3e.js" crossorigin="anonymous"></script>
-</head>
-<body>
+@extends('layout.plantillaDestinos')
+
+@section('cssProductos')
+     {{ asset('css/styleProductos.css') }}
+@endsection
+
+@section('principal')
 
 <div class="container-fluid">
 <div class="row">
@@ -44,7 +37,8 @@
                         "{{ asset('images/Destinos') }}/{{ $destinosRandom[0]->avatar_destino}}"
                                      class="d-block w-100 img-fluid" alt="Bariloche">
                                      <div class="puntuacion-carrusel">
-                                        <small class="letra-puntuacion-carrusel">4.5
+                                        <small class="letra-puntuacion-carrusel">
+                                            {{ $puntajeRandom[0] }}
                                         </small>
                                         <img class="estrella-carrusel" src=
                                         "{{ asset('images/iconoEstrella.png') }}"
@@ -62,7 +56,8 @@
                     "{{ asset('images/Destinos')}}/{{$destinosRandom[1]->avatar_destino}}"         
                                 class="d-block w-100 img-fluid" alt="...">
                                 <div class="puntuacion-carrusel">
-                                    <small class="letra-puntuacion-carrusel">4.5
+                                    <small class="letra-puntuacion-carrusel">
+                                        {{ $puntajeRandom[1] }}
                                     </small>
                                     <img class="estrella-carrusel" src=
                                     "{{ asset('images/iconoEstrella.png') }}"
@@ -80,7 +75,8 @@
                         "{{ asset('images/Destinos') }}/{{ $destinosRandom[2]->avatar_destino}}"
                                     class="d-block w-100 img-fluid" alt="...">
                                     <div class="puntuacion-carrusel">
-                                        <small class="letra-puntuacion-carrusel">4.5
+                                        <small class="letra-puntuacion-carrusel">
+                                            {{ $puntajeRandom[2] }}
                                         </small>
                                         <img class="estrella-carrusel" src=
                                         "{{ asset('images/iconoEstrella.png') }}"
@@ -98,7 +94,8 @@
                         "{{ asset('images/Destinos') }}/{{ $destinosRandom[3]->avatar_destino}}"
                                 class="d-block w-100 img-fluid" alt="...">
                                 <div class="puntuacion-carrusel">
-                                    <small class="letra-puntuacion-carrusel">4.5
+                                    <small class="letra-puntuacion-carrusel">
+                                        {{ $puntajeRandom[3] }}
                                     </small>
                                     <img class="estrella-carrusel" src=
                                     "{{ asset('images/iconoEstrella.png') }}"
@@ -134,8 +131,8 @@
             <div class="container">
                 <div class="row">
 
-                    <?php $aux = 0; ?>
-                    @foreach ($destinos as $destino)
+                    
+                    @foreach ($Destinos as $destino)
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     
                             <article class="borderBox m-3 destino-individual">
@@ -144,34 +141,66 @@
                                     <img class="photo" src=
                         "{{ asset('images/Destinos') }}/{{ $destino->avatar_destino}}"
                                      alt="foto destino">
-                                    <button class="favorito"><i class="fas fa-heart"></i></button>
-                                    <a href="detalleProducto.php" title="Mas Informacion">
+                                    @guest
+                                      <button class="favorito"><i class="fas fa-heart"></i></button>
+                                      @else
+                                      
+                                      @if (Auth::user()->idFavoritos()->search($destino->id_destino) !== false)
+                                      <form action="/quitarFavorito" method="post">
+                                        @csrf
+                                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                                      <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                                      </form>
+                                      @else
+                                      <form action="/agregarFavorito" method="post">
+                                        @csrf
+                                      <input type="hidden" name="usuario" value="{{Auth::user()->id}}"> 
+                                      <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                                    </form>
+                                      @endif
+                                    @endguest
+                                    
+
+                                    <a href="/detalleDestino/{{$destino->id_destino}}" title="Mas Informacion">
                                         <div class="tit-Destino" >
                                             <h3 class="texto-card-titulo">{{$destino->nombre_destino}}</h3>
+                                            @if ($destino->promocion >0)
+                                        <h3 class="texto-card-titulo"> <span class=" precio-promo">${{$destino->precio}} </span>{{$destino->promocion}}%OFF</h3>
+                                        <h3><b>${{$destino->precio - ($destino->precio *($destino->promocion/100))}}</b></h3>
+                                            @else
                                             <h3 class="texto-card-titulo">${{$destino->precio}}</h3>
+                                                
+                                            @endif
+                                            
                                         </div>
                                     </a>
                                     <div class="fondo-coment">
                                         <div class="puntuacion">
-                                            <small>{{ $puntaje[$aux] }}</small>
+                                            <small>{{ round($destino->comentarios()->avg('puntuacion'),2) }}</small>
                                             <img class="estrella" src=
                                             "{{ asset('images/iconoEstrella.png') }}"
                                             alt="Estrellas">
                                         </div>
                                         <div class="coment">
-                                            <small>comentarios ( {{ $cantComments[$aux] }})
-                                            </small>
+                                            <a href="/verComentariosDestino/ {{$destino->id_destino}}">
+                                                <small>comentarios ( {{ $destino->comentarios()->count()}})
+                                                </small>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                                <a href="/verComentariosDestino/{{$destino->id_destino}}">
+                                    <small>comentarios ( {{ $destino->comentarios()->count() }})
+                                    </small>
+                                </a>
                                 
                             </article>                                
                         </div>
-                        <?php $aux = $aux + 1; ?>
+                        
                     @endforeach
                      
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 control-paginacion">
-                            {{ $destinos->links() }}
+                            {{ $Destinos->links() }}
                     </div>  
                 </div>
 
@@ -179,9 +208,10 @@
     </div>
 </div>
 </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</div>    
+@endsection
+{{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
 </body>
-</html>
+</html> --}}

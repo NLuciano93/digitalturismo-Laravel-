@@ -37,8 +37,8 @@ font-family: 'Roboto', sans-serif;
 
 .titEncabeza h2 {
     font-size: 1.6rem;
-    color: black;
-    font-family: 'Anton', sans-serif;
+    color: white;
+    font-family: 'Oswald', sans-serif;
 }
 
 /* -- Imagen Carrusel */
@@ -144,6 +144,30 @@ font-family: 'Roboto', sans-serif;
     z-index: 20;   
 }
 
+.favorito-red{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    border-radius: 5px;
+    top: 2%;
+    left: 2%;
+    font-size: 2.5rem;
+    background: transparent;
+    color: red;
+    border: none;
+    transition: 500ms all ease;
+    z-index: 20;
+}
+.favorito-red i{
+    font-size: 25px;
+}
+.favorito-red:hover{
+    cursor: pointer;
+}
+
 .favorito i{
     font-size: 20px;
 
@@ -151,6 +175,9 @@ font-family: 'Roboto', sans-serif;
 .favorito:hover{
     cursor: pointer;
     color: red;
+}
+.precio-promo{
+    text-decoration: line-through;
 }
 
 .tit-Destino{
@@ -205,6 +232,7 @@ font-family: 'Roboto', sans-serif;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.7); 
     display: block;
+    border-radius: 5px;
 }
 
 .puntuacion {

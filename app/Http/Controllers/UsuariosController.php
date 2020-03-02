@@ -115,12 +115,12 @@ class UsuariosController extends Controller
     {
         
         $usuario = User::find($request->input('usuario'));
-        $usuario->comentarios()->attach($request["agregarComent"], 
+        $usuario->comentarios()->attach($request["destino"], 
                                         [
-                                            'puntuacion' => $request->input('calificacion'),
+                                            'puntuacion' => $request->input('puntuacion'),
                                             'comentario' => $request["comentario"]
                                         ]);
-        return redirect('/comentario')->with('mensaje', 'Comentario agregado exitosamente');
+        return redirect('/detalleDestino/'. $request["destino"])->with('mensaje', 'Comentario agregado exitosamente');
     }
     public function quitarComentario(Request $request)
     {

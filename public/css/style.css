@@ -261,6 +261,9 @@
     font-size: 25px;
 
 }
+.favorito-red:hover{
+    cursor: pointer;
+}
 .carta-promocion .favorito:hover{
     cursor: pointer;
     color: red;

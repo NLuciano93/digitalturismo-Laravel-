@@ -1,0 +1,705 @@
+
+/* Familia de letras usadas
+font-family: 'Anton', sans-serif;
+font-family: 'Oswald', sans-serif;
+font-family: 'Roboto', sans-serif;
+ */
+
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* [class ^= "col-"]{
+    padding: 0;
+} */
+
+/* --- barra navegacion --- */
+.barraNavegacion{
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgba(36, 36, 62, 0.6), rgba(48, 43, 99, 0.6), rgba(15, 12, 41, 0.6)),url("../images/imgNav.png");  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(36, 36, 62, 0.6), rgba(48, 43, 99, 0.6), rgba(15, 12, 41, 0.6)),url("../images/imgNav.png"); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+    background-size: cover;
+     background-repeat: no-repeat;
+    border-bottom: 5px solid rgb(211, 182, 17);
+    
+}
+.logo-barra{
+    max-width: 200px;
+    max-height: 75px;
+}
+.menu-hamburguesa{
+    color: white;
+}
+.items-barra{
+    border-top: 1px solid white;
+    text-align: center;
+}
+.items-barra:last-child{
+    border-bottom: 1px solid white;
+    
+}
+
+.items-barra a:hover{
+    
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgba(44, 83, 100, 0.7), rgba(32, 58, 67, 0.7), rgba(15, 32, 39, 0.7));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(44, 83, 100, 0.7), rgba(32, 58, 67, 0.7), rgba(15, 32, 39, 0.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    transition: ease all 1000ms;
+   
+}
+.items-barra a p{
+    
+    margin: 0;
+
+}
+.items-barra a p, .items-barra a i{
+    color: white;
+    font-weight: bold;
+}
+.boton-ingreso{
+    background: #2C3E50; 
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px !important;
+    border: 1px solid black;
+
+}
+.boton-ingreso i{
+    margin-right: 5px;
+}
+.boton-ingreso:hover{
+    background-color: rgba(255, 255, 255, 0.61);
+    color: black;
+}
+
+/* --- fondo body --- */
+.fondo_producto{
+    background: #30E8BF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgba(7, 7, 7, 0.603), rgba(10, 10, 10, 0.603)),url("../images/Destinos/fondoMinaClavero.jpg");  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(10, 10, 10, 0.603), rgba(12, 12, 12, 0.603)),url("../images/Destinos/fondoMinaClavero.jpg"); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    padding-bottom: 5%;
+ }
+
+ .contenedor-detalle {
+     position: relative;
+     width: 80%;
+     background-color: white;
+     margin-left: 12%;
+     height: auto;
+
+ }
+
+ .box1 {
+     width: 100%;
+     text-align: center;
+     border-bottom: 1px solid gray; 
+     margin-left: 15px;
+     margin-right: 15px;    
+ }
+
+ .box1 h4 {
+     margin-top: 5px;
+     font-weight: bold;
+ }
+
+ .contenedor-collage {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.collage {
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+
+.img-Principal {
+    border: 1px solid white;
+    width: 100%;
+    height: 100%;
+}
+
+.detalle-info {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 85%;
+    height: 45vh;
+    padding: 10px;
+    text-align: justify;
+}
+
+.detalle-info .costos {
+    text-align: right;
+    width: 100%;
+    /*border-bottom: 1px solid gray;*/
+}
+
+ /* -- Iconos pie Cards */
+ .iconos-pie-card {
+    text-align: center;
+}
+
+.icon-compar {
+    margin: 1%;
+    width: 10%;
+    height: auto;
+}
+
+.box-iconos {
+    width: 100%;
+    height: 7vh;
+}
+
+.estrella {
+    width: 15px;
+    height: 15px;
+}
+
+/* mi carrito  */
+.carritoIcono {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 2%;
+    right: -8%;
+    width: 70px;
+    height: 70px;
+    background-color: #343a40;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.carritoIcono .tit-carrito {
+    position: relative;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.carritoIcono .tit-carrito i {
+    font-size: 1.3rem;
+}
+
+.carritoIcono .tit-carrito i:hover {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/*-- modal --*/
+.modal .modal-header {
+    background-color: #2C3E50;
+    color: white;
+}
+
+.modal h4 {
+    font-weight: bolder;
+
+}
+
+.modal ul {
+    list-style: none;
+}
+
+.modal h5 {
+    font-size: 0.9rem;
+    text-align: center;
+    width: 80px;
+}
+
+.modal h6 {
+    display: inline-block;
+    font-size: 0.9rem;
+    text-align: center;
+    width: 80px;
+}
+
+.modal .total {
+    text-align: right;
+}
+
+.modal .total h4 {
+    font-size: 0.8rem;
+    width: 150px;
+    color: red;
+}
+
+.boton-modal:hover {
+    cursor: pointer;
+}
+
+/* -- carrito --*/
+.carritoIcono .tit-carrito span {
+    position: absolute;
+    top: -50%;
+    right: 17%;
+    color: red;
+    font-weight: bolder;
+}
+
+.carritoIcono .tit-carrito .boton-modal {
+    position: relative;
+    background: transparent;
+    border: none;
+    z-index: -1;
+}
+
+
+/*--------------------FOOTER------------*/
+
+.social{
+    background-color: #2C3E50;
+    color: white;
+    padding: 4rem 1rem;
+}
+
+.a-iconos{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.a-iconos i{
+    width: 20px;
+}
+
+.a-iconos:hover{
+    background-color: white;
+    color: #2C3E50;
+    border: 1px solid #2C3E50;
+    transition: all 1000ms ease;
+}
+.copyright{
+    color: white;
+    text-align: center;
+}
+.copyright span{
+    font-weight: bold;
+}
+.red-social, .mision, .contacto h3{
+    text-align: center;
+}
+
+@media (min-width : 380px) {
+
+    .contenedor-detalle {
+        width: 80%;
+        background-color: white;
+        margin-left: 10%;
+    }
+
+    .detalle-info {
+        margin-top: 10px;
+        margin-left: 20px;
+        width: 85%;
+        height: 45vh;
+        padding: 10px;
+        text-align: justify;
+    }
+    
+    .detalle-info .costos {
+        text-align: right;
+        width: 100%;
+       /* border-bottom: 1px solid gray;*/
+       /* height: 50vh;*/
+    }
+
+    /* mi carrito  */
+.carritoIcono {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 2%;
+    right: -8%;
+    width: 80px;
+    height: 80px;
+    background-color: #343a40;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.carritoIcono .tit-carrito {
+    position: relative;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.carritoIcono .tit-carrito span {
+    position: absolute;
+    top: -50%;
+    right: 17%;
+    color: red;
+    font-weight: bolder;
+}
+ 
+}
+
+
+@media (min-width : 576px) {
+   
+    .box-iconos {
+        width: 100%;
+        height: 15vh;
+    }
+
+/* mi carrito  */
+    .carritoIcono {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 2%;
+        right: -8%;
+        width: 80px;
+        height: 80px;
+        background-color: #343a40;
+        border-radius: 50%;
+        z-index: 100;
+    }
+
+    .carritoIcono .tit-carrito {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .carritoIcono .tit-carrito span {
+        position: absolute;
+        top: -50%;
+        right: 17%;
+        color: red;
+        font-weight: bolder;
+    }
+
+    /*-- modal --*/
+    .modal .modal-header {
+        background-color: #2C3E50;
+        color: white;
+    }
+
+    .modal h4 {
+        font-weight: bolder;
+    }
+
+    .modal ul {
+        list-style: none;
+    }
+
+    .modal h5 {
+        text-align: center;
+        width: 120px;
+    }
+
+    .modal h6 {
+        display: inline-block;
+        text-align: center;
+        width: 120px;
+    }
+
+    .modal .total {
+        text-align: right;
+    }
+
+    .modal .total h4 {
+        font-size: 1.2rem;
+        width: 230px;
+        color: red;
+    }
+
+    .boton-modal:hover {
+        cursor: pointer;
+    }
+   
+ 
+}
+
+@media (min-width : 768px) {
+
+    .box1 {
+        width: 100%;
+        text-align: center; 
+        margin-left: 15px;
+        margin-right: 15px;    
+    }
+
+        /* -- Iconos pie Cards */
+    .iconos-pie-card {
+        text-align: right;
+        margin-top: 2%;
+        margin-left: 20%;
+    }
+
+    .icon-compar {
+        margin: 2%;
+        margin-left: 3%;
+        width: 10%;
+        height: auto;
+    }
+
+    .box-iconos {
+        width: 100%;
+        height: 10vh;
+    }
+
+    /* mi carrito  */
+    .carritoIcono {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 2%;
+        right: -8%;
+        width: 80px;
+        height: 80px;
+        background-color: #343a40;
+        border-radius: 50%;
+        z-index: 100;
+    }
+
+    .carritoIcono .tit-carrito .boton-modal {
+        background: black;
+        border: none;
+    }
+
+    .carritoIcono .tit-carrito {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .carritoIcono .tit-carrito span {
+        position: absolute;
+        top: -50%;
+        right: 17%;
+        color: red;
+        font-weight: bolder;
+    }
+
+}
+
+@media (min-width: 992px){
+
+    /*---------------Barra de Navegacion -------------------*/
+
+    .div-barralinks{
+        display: flex;
+        justify-content: space-between;
+        margin-left: 10%;
+    }
+    .contenedor-links{
+        display: flex;
+        
+        width: 50%;
+    }
+    .items-barra{
+        flex: 1;
+        border: none;
+       border-left: 1px solid white;
+    }
+    .items-barra:last-child{
+        border: none;
+        border-left:1px solid white;
+        border-right: 1px solid white;
+    }
+    .boton-ingreso{
+        background-color: #2C3E50;
+        width: initial;
+       /* margin: initial !important;*/
+    }
+
+/* mi carrito  */
+       .carritoIcono {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 2%;
+        right: -4%;
+        width: 100px;
+        height: 100px;
+        background-color: #343a40;
+        border-radius: 50%;
+        z-index: 100;
+    }
+
+    .carritoIcono .tit-carrito {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .carritoIcono .tit-carrito span {
+        position: absolute;
+        top: -50%;
+        right: 17%;
+        color: red;
+        font-weight: bolder;
+    }
+
+    /*-- modal --*/
+    .modal .modal-header {
+        background-color: #2C3E50;
+        color: white;
+    }
+
+    .modal h4 {
+        font-weight: bolder;
+    }
+
+    .modal ul {
+        list-style: none;
+    }
+
+    .modal h5 {
+        text-align: center;
+        width: 120px;
+    }
+
+    .modal h6 {
+        display: inline-block;
+        text-align: center;
+        width: 120px;
+    }
+
+    .modal .total {
+        text-align: right;
+    }
+
+    .modal .total h4 {
+        width: 230px;
+        color: red;
+    }
+
+    .boton-modal:hover {
+        cursor: pointer;
+    }
+
+}
+
+@media (min-width : 1200px) {
+
+    .contenedor-detalle {
+        width: 80%;
+        background-color: white;
+        margin-left: 12%;
+    }
+   
+    .box1 {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid gray; 
+        margin-left: 15px;
+        margin-right: 15px;    
+    }
+   
+    .box1 h4 {
+        margin-top: 5px;
+        font-weight: bold;
+    }
+   
+    .contenedor-collage {
+       width: 100%;
+       height: 100%;
+       overflow: hidden;
+   }
+   
+   
+   .collage {
+       width: 50%;
+       height: 50%;
+       float: left;
+   }
+   
+   .img-Principal {
+       border: 1px solid white;
+       width: 100%;
+       height: 100%;
+   }
+   
+   .detalle-info {
+       margin-top: 10px;
+       margin-left: 20px;
+       width: 85%;
+       height: 20vh;
+       padding: 10px;
+       text-align: justify;
+   }
+   
+   .detalle-info .costos {
+       text-align: right;
+       width: 100%;
+   }
+   
+            /* -- Iconos pie Cards */
+            .iconos-pie-card {
+                text-align: right;
+                margin-top: 1%;
+                margin-left: 20%;
+                margin-bottom: 5%;
+            }
+        
+            .icon-compar {
+                margin: 2%;
+                margin-left: 3%;
+                width: 10%;
+                height: auto;
+            }
+        
+            .box-iconos {
+                width: 100%;
+                height: 7vh;
+            }
+
+ /* mi carrito  */
+    .carritoIcono {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 2%;
+        right: -4%;
+        width: 100px;
+        height: 100px;
+        background-color: #343a40;
+        border-radius: 50%;
+        z-index: 100;
+    }
+
+    .carritoIcono .tit-carrito {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .carritoIcono .tit-carrito span {
+        position: absolute;
+        top: -50%;
+        right: 17%;
+        color: red;
+        font-weight: bolder;
+    }
+}
