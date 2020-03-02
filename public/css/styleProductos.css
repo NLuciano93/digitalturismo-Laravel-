@@ -164,6 +164,9 @@ font-family: 'Roboto', sans-serif;
 .favorito-red i{
     font-size: 25px;
 }
+.favorito-red:hover{
+    cursor: pointer;
+}
 
 .favorito i{
     font-size: 20px;
@@ -172,6 +175,9 @@ font-family: 'Roboto', sans-serif;
 .favorito:hover{
     cursor: pointer;
     color: red;
+}
+.precio-promo{
+    text-decoration: line-through;
 }
 
 .tit-Destino{

@@ -164,7 +164,14 @@
                                     <a href="/detalleDestino/{{$destino->id_destino}}" title="Mas Informacion">
                                         <div class="tit-Destino" >
                                             <h3 class="texto-card-titulo">{{$destino->nombre_destino}}</h3>
+                                            @if ($destino->promocion >0)
+                                        <h3 class="texto-card-titulo"> <span class=" precio-promo">${{$destino->precio}} </span>{{$destino->promocion}}%OFF</h3>
+                                        <h3><b>${{$destino->precio - ($destino->precio *($destino->promocion/100))}}</b></h3>
+                                            @else
                                             <h3 class="texto-card-titulo">${{$destino->precio}}</h3>
+                                                
+                                            @endif
+                                            
                                         </div>
                                     </a>
                                     <div class="fondo-coment">
