@@ -41,22 +41,22 @@
                 <div class="contenedor-collage">
                     <div class="collage">
                         <img class="img-Principal" src=
-                        "{{ asset('images/Destinos') }}/{{ $Destino->avatar_destino}}"alt="Bariloche"> 
+                        "{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}"alt="Bariloche"> 
                     </div>
             
                     <div class="collage">
                         <img class="img-Principal" src=
-                        "{{ asset('images/Destinos') }}/{{ $Destino->avatar_destino}}" alt="Bariloche">
+                        "{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}" alt="Bariloche">
                     </div>
 
                     <div class="collage">
                         <img class="img-Principal" src=
-                        "{{ asset('images/Destinos') }}/{{ $Destino->avatar_destino}}"  alt="Bariloche">
+                        "{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}"  alt="Bariloche">
                     </div>
 
                     <div class="collage">
                         <img class="img-Principal" src=
-                        "{{ asset('images/Destinos') }}/{{ $Destino->avatar_destino}}"  alt="Bariloche">
+                        "{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}"  alt="Bariloche">
                     </div>
                 </div>
             </div>

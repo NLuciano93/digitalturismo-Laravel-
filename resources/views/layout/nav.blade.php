@@ -33,7 +33,7 @@
                  @if (Auth::user()->email == "admin@admin.com" )
                   <a class="dropdown-item" href="/adminInicio">Mi perfil</a>
                 @else
-                    <a class="dropdown-item" href="user.php">Mi perfil</a>
+                    <a class="dropdown-item" href="/user">Mi perfil</a>
                 @endif
                                         
 

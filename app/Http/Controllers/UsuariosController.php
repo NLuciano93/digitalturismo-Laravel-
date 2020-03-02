@@ -126,5 +126,17 @@ class UsuariosController extends Controller
     {
 
     }
+ 
+    public function perfilUsuario()
+    {
+        return view ('/user');
+    }
     
+    public function actualizarDatos(Request $vac){
+
+      
+
+    }
+
+
 }

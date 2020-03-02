@@ -283,7 +283,6 @@ class DestinosController extends Controller
     }
     public function busDestinosUser(Request $request){
 
-
         $provincias= Provincia::all();
         if($request->input('provincia') && $request->input('busqueda') === null){
             $Destinos = Destino::where('id_provincia', $request->input('provincia'))->paginate(8);

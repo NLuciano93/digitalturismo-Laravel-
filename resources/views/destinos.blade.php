@@ -34,7 +34,7 @@
                             <div class="carousel-inner">
                                 <div class="carousel-item active imgCarrusel">
                                     <img class = "imgCarruseltamano" src=
-                        "{{ asset('images/Destinos') }}/{{ $destinosRandom[0]->avatar_destino}}"
+                        "{{ asset('images/destinos') }}/{{ $destinosRandom[0]->avatar_destino}}"
                                      class="d-block w-100 img-fluid" alt="Bariloche">
                                      <div class="puntuacion-carrusel">
                                         <small class="letra-puntuacion-carrusel">
@@ -53,7 +53,7 @@
                                 
                                 <div class="carousel-item imgCarrusel">
                                     <img class = "imgCarruseltamano" src=
-                    "{{ asset('images/Destinos')}}/{{$destinosRandom[1]->avatar_destino}}"         
+                    "{{ asset('images/destinos')}}/{{$destinosRandom[1]->avatar_destino}}"         
                                 class="d-block w-100 img-fluid" alt="...">
                                 <div class="puntuacion-carrusel">
                                     <small class="letra-puntuacion-carrusel">
@@ -72,7 +72,7 @@
                                 
                                 <div class="carousel-item imgCarrusel">
                                     <img class = "imgCarruseltamano" src=
-                        "{{ asset('images/Destinos') }}/{{ $destinosRandom[2]->avatar_destino}}"
+                        "{{ asset('images/destinos') }}/{{ $destinosRandom[2]->avatar_destino}}"
                                     class="d-block w-100 img-fluid" alt="...">
                                     <div class="puntuacion-carrusel">
                                         <small class="letra-puntuacion-carrusel">
@@ -91,7 +91,7 @@
                                 
                                 <div class="carousel-item imgCarrusel" >
                                     <img class = "imgCarruseltamano" src=
-                        "{{ asset('images/Destinos') }}/{{ $destinosRandom[3]->avatar_destino}}"
+                        "{{ asset('images/destinos') }}/{{ $destinosRandom[3]->avatar_destino}}"
                                 class="d-block w-100 img-fluid" alt="...">
                                 <div class="puntuacion-carrusel">
                                     <small class="letra-puntuacion-carrusel">
@@ -170,7 +170,7 @@
                                 
                                 <div class="photo-container">
                                     <img class="photo" src=
-                        "{{ asset('images/Destinos') }}/{{ $destino->avatar_destino}}"
+                        "{{ asset('images/destinos/'. $destino->avatar_destino) }}"
                                      alt="foto destino">
                                     @guest
                                       <button class="favorito"><i class="fas fa-heart"></i></button>
