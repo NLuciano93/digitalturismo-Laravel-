@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2020 a las 02:55:24
+-- Tiempo de generación: 02-03-2020 a las 01:15:07
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -21,10 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `digitalturismodb`
 --
-	
-CREATE DATABASE digitalturismodb;
+
 -- --------------------------------------------------------
-USE digitalturismodb;
+
 --
 -- Estructura de tabla para la tabla `comentarios`
 --
@@ -49,9 +48,7 @@ INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_destino`, `comenta
 (3, 5, 1, 'Bariloo!', 4, '2020-02-25 00:00:00', '2020-02-25 00:00:00'),
 (4, 1, 10, 'Chaco loco!', 3, '2020-02-25 00:00:00', '2020-02-25 00:00:00'),
 (5, 1, 4, 'Vamo las cataratas', 3, '2020-02-25 18:36:14', '2020-02-25 18:36:14'),
-(6, 3, 3,'bueno', 4, '2020-02-25 18:36:14', '2020-02-25 18:36:14'),
-(7, 1, 4,'excelente', 5,'2020-02-25 18:36:14', '2020-02-25 18:36:14'),
-(8, 4, 2,'pobre lugar', 2,'2020-02-25 18:36:14', '2020-02-25 18:36:14');
+(7, 1, 3, 'Que lindo lugar!', 5, '2020-03-01 19:49:29', '2020-03-01 19:49:29');
 
 -- --------------------------------------------------------
 
@@ -82,12 +79,7 @@ INSERT INTO `destinos` (`id_destino`, `nombre_destino`, `precio`, `promocion`, `
 (5, 'MINA CLAVERO PURA AVENTURA', '10000.00', 0, 'paisaje1.jpg', 5, NULL, '0000-00-00 00:00:00'),
 (6, 'SALTA ALPINISMO EXTREMO', '11000.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
 (8, 'USHUAIA \"EL FIN DEL MUNDO\"', '10000.00', 0, 'img_5e3827062232a.jpg', 22, NULL, '0000-00-00 00:00:00'),
-(10, 'Chaco Love', '10000.00', 10, '1582034162foto.jpg', 3, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
-(11, 'SAN JUAN WINE', 10500, 0, "paisaje1.jpg", 6, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
-(12, 'NEUQUEN VERDE', 11000, 10, "paisaje1.jpg", 1, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
-(13, 'RIO NEGRO VACA MUERTA', 12000, 20, "paisaje1.jpg", 2, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
-(14, 'SANTA CRUZ PAGONICA', 11000, 15, "paisaje1.jpg", 4, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
-(15, 'LA RIOJA OLIVARES', 15000, 5, "paisaje1.jpg", 7, '2020-02-18 13:56:02', '2020-02-18 13:56:02');
+(10, 'Chaco Love', '10000.00', 10, '1582034162foto.jpg', 3, '2020-02-18 13:56:02', '2020-02-18 13:56:02');
 
 -- --------------------------------------------------------
 
@@ -106,9 +98,9 @@ CREATE TABLE `favoritos` (
 --
 
 INSERT INTO `favoritos` (`id_favorito`, `id_usuario`, `id_destino`) VALUES
-(14, 1, 3),
-(16, 1, 2),
-(17, 1, 1);
+(19, 1, 2),
+(20, 1, 10),
+(21, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -156,6 +148,46 @@ CREATE TABLE `localidad` (
   `nombre_localidad` varchar(50) DEFAULT NULL,
   `id_provincia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mensajes`
+--
+
+CREATE TABLE `mensajes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mensaje` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `mensajes`
+--
+
+INSERT INTO `mensajes` (`id`, `email`, `mensaje`, `created_at`, `updated_at`) VALUES
+(1, 'natielloluciano@gmail.com', 'Hola digital capo', '2020-02-28 02:29:35', '2020-02-28 02:29:35');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2020_02_27_211729_create_mensajes_table', 1);
 
 -- --------------------------------------------------------
 
@@ -261,11 +293,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `facebook`, `twitter`, `instagram`, `avatar`, `rol_id`, `remember_token`, `updated_at`, `created_at`) VALUES
-(1, 'Luciano', 'natielloluciano@gmail.com', '$2y$10$m6891nXhtw.kxveSHvtg5.8mhXclbwuAYH5RkVIJ0P3VUVlzsI7j2', NULL, NULL, NULL, '', 1, NULL, '2020-02-22 01:30:49', '2020-02-22 01:30:49'),
-(2, 'admin', 'admin@admin.com', '$2y$10$BVBR04gXjPm8axnUbS6jGuzNlZU9VWa5hl3EUMYAWCQ6qkpLMVn/C', NULL, NULL, NULL, '', 2, NULL, '2020-02-22 01:37:48', '2020-02-22 01:37:48'),
-(3, 'carla', 'carlos@asd.com', '$2y$10$4UiA2RVfdhpk2g2inL6C0ulaM2xX3zmb026UKvHDAoNKrhB407qFe', NULL, NULL, NULL, NULL, 1, NULL, '2020-02-23 02:41:52', '2020-02-23 02:41:52'),
+(1, 'Luciano', 'natielloluciano@gmail.com', '$2y$10$m6891nXhtw.kxveSHvtg5.8mhXclbwuAYH5RkVIJ0P3VUVlzsI7j2', NULL, NULL, NULL, 'userImage.png', 1, NULL, '2020-02-22 01:30:49', '2020-02-22 01:30:49'),
+(2, 'admin', 'admin@admin.com', '$2y$10$BVBR04gXjPm8axnUbS6jGuzNlZU9VWa5hl3EUMYAWCQ6qkpLMVn/C', NULL, NULL, NULL, 'userImage.png', 2, NULL, '2020-02-22 01:37:48', '2020-02-22 01:37:48'),
+(3, 'carla', 'carlos@asd.com', '$2y$10$4UiA2RVfdhpk2g2inL6C0ulaM2xX3zmb026UKvHDAoNKrhB407qFe', NULL, NULL, NULL, 'userImage.png', 1, NULL, '2020-02-23 02:41:52', '2020-02-23 02:41:52'),
 (4, 'carla', 'carla@carla.com', '$2y$10$6GS8PdGnwRdnURmoGqI/gepqEi8xRHdVXiD5s5EsqsCjRGnQCfoTu', 'https://www.facebook.com/', 'https://twitter.com/home', 'https://www.instagram.com/?hl=es-la', '1582415124Foto.png', 1, NULL, '2020-02-23 02:45:24', '2020-02-23 02:45:24'),
-(5, 'Fullmove', 'asd@asd.com', '$2y$10$xYEZi4UBePaZ4Qnmbw/jyOxrPFDXT7/BG2WTr0fMB1Q0qDOBQn8ge', 'facebook.com', NULL, NULL, 'user.png', 1, NULL, '2020-02-23 03:00:43', '2020-02-23 03:00:43'),
+(5, 'Fullmove', 'asd@asd.com', '$2y$10$xYEZi4UBePaZ4Qnmbw/jyOxrPFDXT7/BG2WTr0fMB1Q0qDOBQn8ge', 'facebook.com', NULL, NULL, 'userImage.png', 1, NULL, '2020-02-23 03:00:43', '2020-02-23 03:00:43'),
 (6, 'Luciano', 'natielloluciano@gmail.co', '$2y$10$3YE7bUXj1z2E50eE/ALz4.s548S4Io7MPlJCO8L4lpeUMVSWJqbJi', 'https://www.facebook.com/', 'https://twitter.com/home', 'https://www.instagram.com/?hl=es-la', '1582459446Foto.png', 1, NULL, '2020-02-23 15:04:07', '2020-02-23 15:04:07');
 
 -- --------------------------------------------------------
@@ -364,6 +396,18 @@ ALTER TABLE `localidad`
   ADD KEY `id_provincia` (`id_provincia`);
 
 --
+-- Indices de la tabla `mensajes`
+--
+ALTER TABLE `mensajes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `pais`
 --
 ALTER TABLE `pais`
@@ -415,7 +459,7 @@ ALTER TABLE `viajes_comprados`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `destinos`
@@ -427,7 +471,7 @@ ALTER TABLE `destinos`
 -- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `formas_pagos`
@@ -452,6 +496,18 @@ ALTER TABLE `imagenes_usuarios`
 --
 ALTER TABLE `localidad`
   MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mensajes`
+--
+ALTER TABLE `mensajes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
