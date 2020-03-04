@@ -11,7 +11,7 @@
         @endif
         
         <div class="col-12 my-3">
-            <a href="/agregarCarrito" class="btn btn-primary btn-lg" tabindex="-1" role="button">AGREGAR DESTINO AL CARRITO</a>
+            <a href="/carritoAlta" class="btn btn-primary btn-lg" tabindex="-1" role="button">AGREGAR DESTINO AL CARRITO</a>
         </div>
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-dark">
@@ -30,12 +30,12 @@
         
             <tr>
                 
-                <td>{{$item->id_item_carrito}}</td>
-                <td>${{$item->id_destino}}</td>
-                <td>{{$item->id_user}}</td>
+                <td>{{$item->id}}</td>
+                <td>{{$item->id_destino}}</td>
+                <td>{{$item->id_usuario}}</td>
                 <td>{{$item->cantidad}}</td>
-                <td>{{$item->costo_unidad}}</td>
-                <td>{{$item->update_at}}</td>
+                <td>{{$item->costoXunidad}}</td>
+                <td>{{$item->updated_at}}</td>
                 <td>{{$item->created_at}}</td>
             
             </tr>

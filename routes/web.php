@@ -56,3 +56,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user', 'UsuariosController@perfilUsuario');
 Route::post('/usuarioActualizado','UsuariosController@usuarioActualizado');
+
+/*----------------CARRITO--------------------*/
+Route::get('/adminCarrito', 'CarritoController@index')->middleware('auth', 'validarAdmin');
+Route::get('/carritoAlta', 'CarritoController@create')->middleware('auth', 'validarAdmin');
+Route::post('/carritoAlta', "CarritoController@store")->middleware('auth', 'validarAdmin');
