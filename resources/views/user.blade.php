@@ -3,6 +3,11 @@
      {{ asset('css/style-user.css') }}
  @endsection
  @section ('principal')
+ @if (session()->has('mensaje'))
+  <div class="alert alert-success m-0  d-flex justify-content-center">
+    <strong>🌴{{ session()->get('mensaje') }}🌴</strong>
+  </div>
+@endif
 {{--  Auth::user() --}}
  <!-- Imagen usuario-->
  <div class="contenedor_usuario">

@@ -55,4 +55,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user', 'UsuariosController@perfilUsuario');
-Route::post('/usuarioActualizado','UsuariosController@usuarioActualizado');
+Route::post('/usuarioActualizado','UsuariosController@actualizarDatos');
+Route::post('/usuarioActualizado','UsuariosController@actualizarpass');

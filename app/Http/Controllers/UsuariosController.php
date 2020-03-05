@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 /** PARA USAR LOS REDIRECT */
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class UsuariosController extends Controller
@@ -137,11 +138,27 @@ class UsuariosController extends Controller
         return view ('/user');
     }
     
-    public function actualizarDatos(Request $vac){
-
+    public function actualizarDatos(Request $request){
       
+     $usuario = User::find(Auth::user()->id);
+     if (isset($request["avatar"])) {
+        $imageName = time(). $request["avatar"]->getClientOriginalName();
+        $request["avatar"]->move(public_path('images/usuarios'), $imageName);
+        $usuario->avatar=$imageName;
+    }
+     $usuario->name=$request->input('nombre');
+     $usuario->email=$request->input('email');
+     $usuario->facebook=$request->input('facebook');
+     $usuario->twitter=$request->input('twitter');
+     $usuario->instagram=$request->input('instagram');
 
+     $usuario->save();
+     return redirect ('/user')->with('mensaje', 'Cambios realzados con exito!.');;
     }
 
-
+    public function actualizarPass(Request $request){
+      
+        $usuario = User::find(Auth::user()->id);
+        $usuario->password=$request->input('password');
+        $usuario->repassword=$request->input('repassword');
 }
