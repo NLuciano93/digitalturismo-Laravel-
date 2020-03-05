@@ -1,29 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-
+/** PARA USAR LOS REDIRECT */
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\User;
 
 class UsuariosController extends Controller
 {
 
-    public function busquedaUsuarioAdmin(Request $request)
+    /* public function busquedaUsuarioAdmin(Request $request)
     {
-        $usuarios = User::where('name', 'like', '%'. $request->input('busqueda') .'%')
-                          ->orWhere('email', 'like', '%'. $request->input('busqueda') .'%')
+        $usuarios = User::where('name', 'like', '%'. $request->get('busqueda') .'%')
+                          ->orWhere('email', 'like', '%'. $request->get('busqueda') .'%')
                           ->paginate(8);
         $vac = compact('usuarios');
         return view('/adminUsuarios', $vac);
-    }
+    } */
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usuarios = User::paginate(8);
+        $usuarios = User::where('name', 'like', '%'. $request->get('busqueda') .'%')
+                ->orWhere('email', 'like', '%'. $request->get('busqueda') .'%')->paginate(8);
 
         $vac= compact('usuarios');
         return view('adminUsuarios', $vac);
@@ -103,14 +105,17 @@ class UsuariosController extends Controller
         
         $usuario = User::find($request->input('usuario'));
         $usuario->favoritos()->attach($request["agregarFav"]);
-        return redirect('/')->with('mensaje', 'Destino agregado a Favoritos');
+        /**Necesita el paquete redirect use Illuminate\Support\Facades\Redirect; */
+        return Redirect::back()->with('mensaje', 'Destino agregado a Favoritos');
     }
     public function quitarFav(Request $request){
         
         $usuario = User::find($request->input('usuario'));
         $usuario->favoritos()->detach($request["quitarFav"]);
-        return redirect('/')->with('mensaje', 'Destino quitado de Favoritos');
+        return Redirect::back()->with('mensaje', 'Destino quitado de Favoritos');
     }
+
+
     public function agregarComentario(Request $request)
     {
         

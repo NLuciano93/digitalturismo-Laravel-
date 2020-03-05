@@ -114,7 +114,7 @@ if (isset($_SESSION)) {
                   @endguest
                   <img src="{{asset('images/OfertaEspecial.png')}}" alt="promo" class="logo-promo">
                   <div class="imagen-articulo-contenedor">
-                    <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
+                  <a href="/detalleDestino/{{$destinoPromo->id_destino}}" class="acceso-carrito" title="Más información">
                       <h3>{{$destinoPromo->nombre_destino}}</h3>
                       
                     <h4 class="precio-promo">$ {{$destinoPromo->precio}}</h4><span> {{$destinoPromo->promocion}}%OFF</span>
@@ -171,7 +171,7 @@ if (isset($_SESSION)) {
                
                 <img class="star-destacado" src="{{asset('images/stars.png')}}" alt="">
                 <div class="imagen-articulo-contenedor">
-                  <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
+                <a href="/detalleDestino/{{$destinoDestacado->id_destino}}" class="acceso-carrito" title="Más información">
                     <h3>{{$destinoDestacado->nombre_destino}}</h3>
                   
                     @if ($destinoDestacado->promocion > 0 )
@@ -233,7 +233,7 @@ if (isset($_SESSION)) {
                     @endif
                   @endguest
               <div class="imagen-articulo-contenedor">
-                <a href="detalleProducto.php" class="acceso-carrito" title="Más información">
+              <a href="/detalleDestino/{{$destino->id_destino}}" class="acceso-carrito" title="Más información">
                 <h3>{{$destino->nombre_destino}}</h3>
                  
                   <h4>$ {{$destino->precio}}</h4>

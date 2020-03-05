@@ -31,7 +31,29 @@
                                 <a class="nav-item nav-link active" href="#3">Viajes Comprados</a>
                                 
                                 </div>
+                                <ul class="navbar-nav ml-md-auto">
+                                    <li class="nav-item dropdown ">
+                                    <a class="nav-link dropdown-toggle boton-ingreso p-2 d-flex justify-content-center align-items-center text-uppercase text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ Auth::user()->name}}</a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                     @if (Auth::user()->email == "admin@admin.com" )
+                      <a class="dropdown-item" href="/adminInicio">Mi perfil</a>
+                    @else
+                        <a class="dropdown-item" href="/user">Mi perfil</a>
+                    @endif
+                                            
+    
+                                              <div class="dropdown-divider"></div>
+                                             
+                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">Salir</a>
+                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                              @csrf
+                                          </form>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
+                            
                         </nav>
                     </div>    
                 

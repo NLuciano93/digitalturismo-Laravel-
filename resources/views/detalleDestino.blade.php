@@ -1,6 +1,6 @@
-@extends('layout.plantillaDestinos')
+@extends('layout.plantilla')
 
-@section('cssProductos')
+@section('css')
      {{ asset('css/styleDetalleProductos.css') }}
 @endsection
 

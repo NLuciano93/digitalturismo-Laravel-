@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class DestinosController extends Controller
 {
 
-    public function busquedaDestinoAdmin(Request $request)
+ /*    public function busquedaDestinoAdmin(Request $request)
     {
        $provincias= Provincia::all();
         if($request->input('provincia') && $request->input('busqueda') === null){
@@ -28,7 +28,7 @@ class DestinosController extends Controller
         
         $vac = compact('destinos', 'provincias');
         return view('/adminDestinos', $vac);
-    }
+    } */
     public function inicio()
     {
         $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
@@ -61,11 +61,26 @@ class DestinosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $destinos= Destino::paginate(8);
+        if($request->get('provincia') && $request->get('busqueda') === null){
+            $destinos = Destino::where('id_provincia', '=', $request->get('provincia'))->paginate(8);
+        }else if($request->get('provincia') && $request->get('busqueda')){
+            
+            $destinos = Destino::where('nombre_destino', 'like', '%'.$request->get('busqueda').'%')
+                        ->orWhere('id_provincia', '=', $request->get('provincia'))
+                        ->paginate(8);
+        }else{
+            $destinos= Destino::where('nombre_destino', 'like', '%'. $request->get('busqueda'). '%')
+                        ->paginate(8);
+        }
         $provincias = Provincia::all();
-
+        if($request->get('provincia') == -1){
+            dd("HOLA");
+            $destinos= Destino::paginate(8);
+            $vac = compact('destinos', 'provincias');
+            return view('/adminDestinos', $vac);
+        }
         $vac = compact('destinos', 'provincias');
         return view('/adminDestinos', $vac);
     }
