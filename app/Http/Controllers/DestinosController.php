@@ -111,10 +111,13 @@ class DestinosController extends Controller
        
         $reglas = [
             "nombre" => "required|string|min:3",
+            "detalle"=> "required|string|min:10",
+            "descripcion"=> "required|string|min:10",
             "precio" => "required|integer",
             "promocion" => "required|integer|min:0|max:100",
             "provincia" => "required",
-            "imagenPerfil" => "required|image|mimes:jpeg,jpg,png,svg,bmp,webp"
+            "imagenPerfil" => "required|image|mimes:jpeg,jpg,png,svg,bmp,webp",
+            
 
         ];
         $mensajes =[
@@ -140,6 +143,8 @@ class DestinosController extends Controller
         $destinoNuevo = new Destino();
        
         $destinoNuevo->nombre_destino = strtoupper($request["nombre"]);
+        $destinoNuevo->detalle = $request["detalle"];
+        $destinoNuevo->descripcion = $request["descripcion"];
         $destinoNuevo->precio = $request["precio"];
         $destinoNuevo->promocion = $request["promocion"];
         $destinoNuevo->avatar_destino = $imageName;
@@ -187,11 +192,14 @@ class DestinosController extends Controller
      */
     public function update(Request $request)
     {
+        
         $reglas = [
             "nombre" => "required|string|min:3",
             "precio" => "required|integer",
             "promocion" => "required|integer|min:0|max:100",
             "provincia" => "required",
+            "descripcion" => "required|string|min:10",
+            "detalle"=>"required|string|min:10"
             
 
         ];
@@ -208,6 +216,8 @@ class DestinosController extends Controller
 
         $Destino = Destino::find($request->input('id'));
         $Destino->nombre_destino = $request["nombre"];
+        $Destino->detalle = $request["detalle"];
+        $Destino->descripcion= $request["descripcion"];
         $Destino->precio = $request["precio"];
         $Destino->promocion = $request["promocion"];
         
