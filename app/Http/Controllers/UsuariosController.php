@@ -161,4 +161,5 @@ class UsuariosController extends Controller
         $usuario = User::find(Auth::user()->id);
         $usuario->password=$request->input('password');
         $usuario->repassword=$request->input('repassword');
+        return redirect ('/usef');
 }
