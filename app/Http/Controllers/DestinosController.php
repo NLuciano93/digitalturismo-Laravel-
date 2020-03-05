@@ -31,6 +31,10 @@ class DestinosController extends Controller
     }
     public function inicio()
     {
+        session(['CantProductos' => 0, 'idUsuario'=>0, 'idDestino'=> 0, 'destino'=>"", 
+                 'precioXunidad' => 0, 'cantPasajeros' => 0]);
+
+
         $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
         $destinosPromo = Destino::where("promocion", ">", 0)->inRandomOrder()->take(3)->get();
         $destinosDestacados = DB::table('destinos')
@@ -185,10 +189,9 @@ class DestinosController extends Controller
             "min" => "El campo :attribute tiene un mínimo de :min",
             "max" => "El campo :attribute tiene un máximos de :max",
             "integer" => "El campo :attribute debe ser un número",
-            "required" => "El campo :attribute es obligatorio",
-             
+            "required" => "El campo :attribute es obligatorio"   
         ];
-        
+
         $this->validate($request, $reglas, $mensajes);
 
         $Destino = Destino::find($request->input('id'));
