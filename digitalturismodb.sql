@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-03-2020 a las 15:07:56
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.6
+-- Servidor: localhost
+-- Tiempo de generación: 05-03-2020 a las 15:53:45
+-- Versión del servidor: 5.7.26-0ubuntu0.18.10.1
+-- Versión de PHP: 7.2.19-0ubuntu0.18.10.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_destino` int(11) NOT NULL,
-  `comentario` text DEFAULT NULL,
+  `comentario` text,
   `puntuacion` tinyint(4) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -59,6 +59,8 @@ INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_destino`, `comenta
 CREATE TABLE `destinos` (
   `id_destino` int(11) NOT NULL,
   `nombre_destino` varchar(100) NOT NULL,
+  `detalle` text NOT NULL,
+  `descripcion` text NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `promocion` tinyint(4) DEFAULT NULL,
   `avatar_destino` varchar(100) NOT NULL,
@@ -71,15 +73,16 @@ CREATE TABLE `destinos` (
 -- Volcado de datos para la tabla `destinos`
 --
 
-INSERT INTO `destinos` (`id_destino`, `nombre_destino`, `precio`, `promocion`, `avatar_destino`, `id_provincia`, `created_at`, `updated_at`) VALUES
-(1, 'BARILOCHE \"SKI\" 7 DIAS', '14500.00', 10, 'barilocheEsquiando.jpg', 1, NULL, '2020-02-18 15:52:03'),
-(2, 'SALTA \"LA LINDA\"', '28900.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
-(3, 'MENDOZA CITY TOUR', '15000.00', 0, 'mendozaCiudad.jpg', 12, NULL, '0000-00-00 00:00:00'),
-(4, 'CATARATAS EXTREM 10 DIAS', '8900.00', 10, 'cataratas-iguazu.jpg', 13, NULL, '0000-00-00 00:00:00'),
-(5, 'MINA CLAVERO PURA AVENTURA', '10000.00', 0, 'paisaje1.jpg', 5, NULL, '0000-00-00 00:00:00'),
-(6, 'SALTA ALPINISMO EXTREMO', '11000.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
-(8, 'USHUAIA \"EL FIN DEL MUNDO\"', '10000.00', 0, 'img_5e3827062232a.jpg', 22, NULL, '0000-00-00 00:00:00'),
-(10, 'Chaco Love', '10000.00', 10, '1582034162foto.jpg', 3, '2020-02-18 13:56:02', '2020-02-18 13:56:02');
+INSERT INTO `destinos` (`id_destino`, `nombre_destino`, `detalle`, `descripcion`, `precio`, `promocion`, `avatar_destino`, `id_provincia`, `created_at`, `updated_at`) VALUES
+(1, 'BARILOCHE \"SKI\" 7 DIAS', 'Lugar fantástico', 'Lo que vos necesitas para dormir', '14500.00', 10, 'barilocheEsquiando.jpg', 1, NULL, '2020-03-05 18:31:35'),
+(2, 'SALTA \"LA LINDA\"', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '28900.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
+(3, 'MENDOZA CITY TOUR', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '15000.00', 0, 'mendozaCiudad.jpg', 12, NULL, '0000-00-00 00:00:00'),
+(4, 'CATARATAS EXTREM 10 DIAS', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '8900.00', 10, 'cataratas-iguazu.jpg', 13, NULL, '0000-00-00 00:00:00'),
+(5, 'MINA CLAVERO PURA AVENTURA', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '10000.00', 0, 'paisaje1.jpg', 5, NULL, '0000-00-00 00:00:00'),
+(6, 'SALTA ALPINISMO EXTREMO', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '11000.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
+(8, 'USHUAIA \"EL FIN DEL MUNDO\"', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '10000.00', 0, 'img_5e3827062232a.jpg', 22, NULL, '0000-00-00 00:00:00'),
+(10, 'Chaco Love', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '10000.00', 10, '1582034162foto.jpg', 3, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
+(12, 'MENDOZA CITY WINE', 'Visita el viñedo', 'Vino a full', '300000.00', 15, '1583433568Wallpaper-01.png', 12, '2020-03-05 18:39:28', '2020-03-05 18:39:28');
 
 -- --------------------------------------------------------
 
@@ -311,7 +314,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `facebook`, `twitter`, `instagram`, `avatar`, `rol_id`, `remember_token`, `updated_at`, `created_at`) VALUES
-(1, 'Luciano', 'natielloluciano@gmail.com', '$2y$10$m6891nXhtw.kxveSHvtg5.8mhXclbwuAYH5RkVIJ0P3VUVlzsI7j2', NULL, NULL, NULL, 'userImage.png', 1, '1WAF4H8PQeIzaYP6rHcKD1eOZXe8fw4DzYDqqYQCuQLgUyE2KLu4DvdXaGEv', '2020-02-22 01:30:49', '2020-02-22 01:30:49'),
+(1, 'Luciano', 'natielloluciano@gmail.com', '$2y$10$m6891nXhtw.kxveSHvtg5.8mhXclbwuAYH5RkVIJ0P3VUVlzsI7j2', NULL, NULL, NULL, 'userImage.png', 1, '9IAVWfHa1DJe5HgJ4HUE5zArDc0KCKoBL9xttHTmALqO0OxM0Cae9jF0zg7N', '2020-02-22 01:30:49', '2020-02-22 01:30:49'),
 (2, 'admin', 'admin@admin.com', '$2y$10$BVBR04gXjPm8axnUbS6jGuzNlZU9VWa5hl3EUMYAWCQ6qkpLMVn/C', NULL, NULL, NULL, 'userImage.png', 2, NULL, '2020-02-22 01:37:48', '2020-02-22 01:37:48'),
 (3, 'carla', 'carlos@asd.com', '$2y$10$4UiA2RVfdhpk2g2inL6C0ulaM2xX3zmb026UKvHDAoNKrhB407qFe', NULL, NULL, NULL, 'userImage.png', 1, NULL, '2020-02-23 02:41:52', '2020-02-23 02:41:52'),
 (4, 'carla', 'carla@carla.com', '$2y$10$6GS8PdGnwRdnURmoGqI/gepqEi8xRHdVXiD5s5EsqsCjRGnQCfoTu', 'https://www.facebook.com/', 'https://twitter.com/home', 'https://www.instagram.com/?hl=es-la', '1582415124Foto.png', 1, NULL, '2020-02-23 02:45:24', '2020-02-23 02:45:24'),
@@ -494,7 +497,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `destinos`
 --
 ALTER TABLE `destinos`
-  MODIFY `id_destino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_destino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
