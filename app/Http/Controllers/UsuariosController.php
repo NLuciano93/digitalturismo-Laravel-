@@ -140,13 +140,22 @@ class UsuariosController extends Controller
 
     public function carritoAlta(Request $request) {
 
-        $cant = session('CantProductos')+1;
+        $cant = session('cantProductos')+1;
+
+        $arrayItemsCarrito [] = [
+            'idUsuario'=>$request->input('idUsuario'),
+            'idDestino'=>$request->input('idDestino'),
+            'destino'=>$request->input('nombreDestino'), 
+            'precio' =>$request->input('precio'),
+            'cantPasajeros' => $request->input('cantidadPasajes')
+        ];
+
+        session(['itemsCarrito' => $arrayItemsCarrito]);
+        
+        dd(session('itemsCarrito'));
+
         session(['CantProductos'=>$cant]);
-        session(['idUsuario'=>$request->input('idUsuario')]);
-        session(['idDestino'=>$request->input('idDestino')]);
-        session(['nombreDestino'=>$request->input('nombreDestino')]);
-        session(['precio'=>$request->input('precio')]);
-        session(['cantPasajeros'=>$request->input('cantPasajes')]);
+        
         return redirect('/detalleDestino/'. $request->input('idDestino'));
     }
 

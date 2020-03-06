@@ -198,16 +198,16 @@
             <!-- renglon productos -->
                 <div class="row">
                     <div class="col-xs-3">
-                        <h6>2</h6>
+                        <h6>{{session('cantPasajeros')}}</h6>
                     </div>
                     <div class="col-xs-3">
                         <h6>{{session('nombreDestino')}}</h6>
                     </div>
                     <div class="col-xs-3">
-                        <h6>{{session('precioXunidad')}}</h6>
+                        <h6>{{session('precio')}}</h6>
                     </div>
                     <div class="col-xs-3">
-                        <h6>{{session('precioXunidad')*session('cantPasajes')}}</h6>
+                        <h6>{{session('precio')*session('cantPasajeros')}}</h6>
                     </div>
                 </div>
             <!-- renglon total -->           

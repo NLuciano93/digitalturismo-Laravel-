@@ -31,9 +31,12 @@ class DestinosController extends Controller
     }
     public function inicio()
     {
-        session(['CantProductos' => 0, 'idUsuario'=>0, 'idDestino'=> 0, 'destino'=>"", 
-                 'precioXunidad' => 0, 'cantPasajeros' => 0]);
+        $arrayItemsCarrito = [];
+        
+        $cantProductos=0;
 
+        session(['itemsCarrito' => $arrayItemsCarrito]);
+        session(['cantProductos' => $cantProductos]);
 
         $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
         $destinosPromo = Destino::where("promocion", ">", 0)->inRandomOrder()->take(3)->get();
