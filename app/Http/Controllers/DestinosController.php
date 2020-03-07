@@ -7,6 +7,7 @@ use App\Destino;
 use App\Provincia;
 use App\Comentario;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DestinosController extends Controller
 {
@@ -152,7 +153,8 @@ class DestinosController extends Controller
        
 
         $destinoNuevo->save();
-        return redirect("/adminDestinos")->with('mensaje', 'Destino '. $destinoNuevo->nombre_destino. ' agregado con éxito');
+        Alert::success('Destino Agregado' , $destinoNuevo->nombre_destino);
+        return redirect("/adminDestinos");
     }
 
     /**
@@ -229,7 +231,8 @@ class DestinosController extends Controller
         
         $Destino->id_provincia = (int)$request["provincia"];
         $Destino->save();
-        return redirect('/adminDestinos')->with('mensaje', 'Destino '. $Destino->nombre_destino. ' fue modificado correctamente');
+        Alert::success('Destino Actualizado' , $Destino->nombre_destino);
+        return redirect('/adminDestinos');
     }
 
     /**

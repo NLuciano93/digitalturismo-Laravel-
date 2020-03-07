@@ -7,11 +7,7 @@
 {{-- {{dd($destinos)}} --}}
 <div class="container-fluid mt-5">
     <div class="row">
-        @if (session('mensaje'))
-            <div class="col-12 my-3 alert alert-success">
-                {{session('mensaje')}}
-            </div>
-        @endif
+       
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">

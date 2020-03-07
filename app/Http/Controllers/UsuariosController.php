@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 /** PARA USAR LOS REDIRECT */
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Destino;
+
 
 class UsuariosController extends Controller
 {
@@ -107,13 +112,18 @@ class UsuariosController extends Controller
         $usuario = User::find($request->input('usuario'));
         $usuario->favoritos()->attach($request["agregarFav"]);
         /**Necesita el paquete redirect use Illuminate\Support\Facades\Redirect; */
-        return Redirect::back()->with('mensaje', 'Destino agregado a Favoritos');
+        $destino = Destino::find($request["agregarFav"]);
+        Alert::success('🌴Destino agregado a Favoritos🌴', $destino->nombre_destino);
+        return Redirect::back();
     }
     public function quitarFav(Request $request){
         
         $usuario = User::find($request->input('usuario'));
         $usuario->favoritos()->detach($request["quitarFav"]);
-        return Redirect::back()->with('mensaje', 'Destino quitado de Favoritos');
+        $destino = Destino::find($request["quitarFav"]);
+        
+        Alert::success('🌴Destino quitado de Favoritos🌴' , $destino->nombre_destino);
+        return Redirect::back();
     }
 
 
@@ -126,6 +136,7 @@ class UsuariosController extends Controller
                                             'puntuacion' => $request->input('puntuacion'),
                                             'comentario' => $request["comentario"]
                                         ]);
+        Alert::success("",'🌴Comentario agregado exitosamente🌴');
         return redirect('/detalleDestino/'. $request["destino"])->with('mensaje', 'Comentario agregado exitosamente');
     }
     public function quitarComentario(Request $request)
@@ -139,7 +150,15 @@ class UsuariosController extends Controller
     }
     
     public function actualizarDatos(Request $request){
-      
+
+        $reglas =[
+            "nombre" => 'required|string|min:3',
+            'email' => 'required|email',
+            'avatar'=> 'mimes:jpeg, jpg, png, svg, bmp, webp'    
+        ];
+
+        $this->validate($request, $reglas);
+     
      $usuario = User::find(Auth::user()->id);
      if (isset($request["avatar"])) {
         $imageName = time(). $request["avatar"]->getClientOriginalName();
@@ -153,12 +172,42 @@ class UsuariosController extends Controller
      $usuario->instagram=$request->input('instagram');
 
      $usuario->save();
-     return redirect ('/user')->with('mensaje', 'Cambios realzados con exito!.');;
+     Alert::success('🌴Cambios realizados con exito!.🌴');
+     return redirect ('/user');
     }
 
     public function actualizarPass(Request $request){
       
+        
+        
+        $validator = Validator::make($request->all(),[
+            'passwordActual' => [ 
+                'required',
+                function($attribute, $value, $fail){
+                $pass = Auth::user()->password;
+                
+                if (!Hash::check($value, $pass)) {
+                  
+                    $fail('La contraseña no coincide');
+                    }
+                },
+            ],
+            'password' => 'required|confirmed|min:8'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/user/#list-profile')
+                ->withErrors($validator)
+                ->withInput();  
+        }
+
         $usuario = User::find(Auth::user()->id);
-        $usuario->password=$request->input('password');
-        $usuario->repassword=$request->input('repassword');
+
+        
+        $usuario->password=Hash::make($request->input('password'));
+
+        $usuario->save();
+        Alert::success('','🌴Cambios realizados con exito!.🌴');
+        return redirect ('/user');
+        
+    }
 }

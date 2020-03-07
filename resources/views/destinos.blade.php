@@ -1,15 +1,11 @@
-@extends('layout.plantillaDestinos')
+@extends('layout.plantilla')
 
-@section('cssProductos')
+@section('css')
      {{ asset('css/styleProductos.css') }}
 @endsection
 
 @section('principal')
-@if (session()->has('mensaje'))
-  <div class="alert alert-success m-0  d-flex justify-content-center">
-    <strong>🌴{{ session()->get('mensaje') }}🌴</strong>
-  </div>
-@endif
+
 
 <div class="container-fluid">
 <div class="row">

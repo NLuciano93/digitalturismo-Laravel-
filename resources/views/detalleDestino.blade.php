@@ -5,11 +5,7 @@
 @endsection
 
 @section('principal')
-@if (session()->has('mensaje'))
-<div class="alert alert-success m-0  d-flex justify-content-center">
-  <strong>🌴{{ session()->get('mensaje') }}🌴</strong>
-</div>
-@endif
+
 <div class="container-fluid p-0 m-0 ">
 <div class="row p-0 m-0">
 <div class="col-12 p-0 m-0">
@@ -31,7 +27,9 @@
 
         <div class="row">
             <div class="col-xs-12 box1">
-                 <h4>{{$Destino->nombre_destino}}</h4>
+                 <h4>{{$Destino->nombre_destino}}
+                    
+                </h4>
             </div>
         </div>
 
@@ -62,23 +60,47 @@
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <article class="detalle-info">        
-                    <p>{{$Destino->nombre_destino}}</p>
+                <article class="detalle-infao">        
+                    <span class="m-1">{{$Destino->nombre_destino}}
+                        
+                    </span>
+               
+                    
                     <div class="costos">
-                        <h6> Costo por Pasajero</h6>
-                        <h4> {{$Destino->precio}}</h4>
+                        <h6 class="text-right m-1">Costo por Pasajero</h6>
+                        <h4 class="text-right m-1">${{$Destino->precio}}</h4>
+                        <h3 class="m-1">Detalle</h3>
+                        <p class="m-1">{{$Destino->detalle}}</p>
+                        <h3 class="m-1">Descripcion</h3>
+                        <p class="m-1">{{$Destino->descripcion}}</p>
                     </div> 
                 </article>  
             </div>
             
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">               
                 <div class="iconos-pie-card box-iconos">
+                   
                     <img class="icon-compar" src="
                     {{ asset('images/compartir-Icon.png') }}"
                     alt="compartir" title="Compartir">
                     <img class="icon-compar" src="
                     {{ asset('images/botonCarritoCompra-2.png') }}"
                     alt="carrito" title="Agregar al Carrito de Compras">
+                    <span>
+                        @if (Auth::user()->idFavoritos()->search($Destino->id_destino) !== false)
+                        <form action="/quitarFavorito" method="post" class="form-fav">
+                          @csrf
+                        <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+                        <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$Destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                        </form>
+                        @else
+                        <form action="/agregarFavorito" method="post" class="form-fav">
+                          @csrf
+                        <input type="hidden" name="usuario" value="{{Auth::user()->id}}"> 
+                        <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$Destino->id_destino}}"><i class="fas fa-heart"></i></button>
+                      </form>
+                        @endif
+                    </span>
                 </div>
             </div>        
         </div>
@@ -93,14 +115,14 @@
                         <div class="card">
                             
                             <div class="card-body row col-12">
-                                <div class="imagen-card col-2">
-                            <img src="{{asset('images/usuarios/'. $item->avatar)}}" class="card-img border text-center border-dark rounded-circle mt-1 shadow-lg" alt="">
+                                <div class="imagen-card col-sm-3 col-md-1">
+                            <img src="{{asset('images/usuarios/'. $item->avatar)}}" class="card-img border text-center border-dark rounded-circle mt-1 shadow-lg img-comentario" alt="">
                             </div>
-                            <div class="col-8">
+                            <div class="col-7">
                                 <h4 class="card-title"> {{$item->name}} </h4>
                                 <div>
-                                    <span class="card-title">
-                                        <img class="estrella" src=
+                                    <span class="card-title badge badge-light">
+                                        <img class="estrella mb-1" src=
                                      "{{ asset('images/iconoEstrella.png') }}"
                                          alt="Estrellas">
                                      {{$item->pivot->puntuacion}}

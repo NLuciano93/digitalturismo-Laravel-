@@ -126,6 +126,23 @@ font-family: 'Roboto', sans-serif;
     width: 100%;
     height: 100%;
 }
+.img-comentario{
+    max-width: 80px;
+    
+}
+.form-fav{
+    display: inline-block;
+}
+.favorito{
+    background: #43C6AC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: none;
+    color: white;
+}
 
 .detalle-info {
     margin-top: 10px;
@@ -137,7 +154,7 @@ font-family: 'Roboto', sans-serif;
 }
 
 .detalle-info .costos {
-    text-align: right;
+    
     width: 100%;
     /*border-bottom: 1px solid gray;*/
 }
@@ -311,7 +328,7 @@ font-family: 'Roboto', sans-serif;
     }
     
     .detalle-info .costos {
-        text-align: right;
+        
         width: 100%;
        /* border-bottom: 1px solid gray;*/
        /* height: 50vh;*/
@@ -648,7 +665,7 @@ font-family: 'Roboto', sans-serif;
    }
    
    .detalle-info .costos {
-       text-align: right;
+       
        width: 100%;
    }
    

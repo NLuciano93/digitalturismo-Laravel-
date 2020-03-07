@@ -52,7 +52,8 @@ class MensajesController extends Controller
         $mensaje->email = $request->input('email');
         $mensaje->mensaje = $request->input('mensaje');
         $mensaje->save();
-        return redirect("/")->with('mensaje', 'Mensaje enviado correctamente');
+        Alert::success('' , 'Mensaje enviado correctamente' );
+        return redirect("/");
     }
 
     /**

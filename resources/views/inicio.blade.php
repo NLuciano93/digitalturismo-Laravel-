@@ -1,59 +1,14 @@
 @extends('layout.plantilla')
 
-
-<?php
-  
-  /* include_once 'config.php'; */
-
-
-/*   function okActualizar(){
-    if (isset($_GET["actualizar"])) {
-        if ($_GET["actualizar"] == "ok") {
-            return true;                
-        }
-    }   
-} */
-/* 
-if (isset($_SESSION)) {
-    if ($_SESSION) {
-        if ($_SESSION["email"] == "admin@admin.com") {
-            $usuarioAdmin = new UsuarioAdmin($_SESSION);
-
-            }else{
-            
-            $usuario = new UsuarioComun($_SESSION);
-
-            }
-
-    }
-
-      
-}
-     */
-
-        
-?>
  @section('css')
      {{ asset('css/style.css') }}
  @endsection
 
 @section('principal')
-@if (session()->has('mensaje'))
-  <div class="alert alert-success m-0  d-flex justify-content-center">
-    <strong>🌴{{ session()->get('mensaje') }}🌴</strong>
-  </div>
-@endif
+
 
 <div class="container-fluid contenedor-nav">
     <div class="row">
-       
-      <div class="col-12">
-       <?php // if(okActualizar()): ?>
-            {{-- <div class="alert alert-success m-0" role="alert">
-               <b>🌴 ACTUALIZACIÓN EXITOSA! INGRESE PARA COMPROBAR CAMBIOS 😄</b> 
-            </div> --}}
-        <?php // endif; ?>
-    </div>
     
       <div class="col-12 carrusel-container">
       
@@ -286,7 +241,7 @@ if (isset($_SESSION)) {
                     @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email..." name="email" value="">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email..." name="email" value="{{old('email')}}">
                       
                     </div>
                     @error('email')
@@ -295,7 +250,7 @@ if (isset($_SESSION)) {
                     
                     <div class="form-group">
                       <label for="exampleFormControlTextarea1">Mensaje</label>
-                      <textarea class="form-control @error('mensaje') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5" placeholder="Mensaje..." name="mensaje" value=""></textarea>
+                    <textarea class="form-control @error('mensaje') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5" placeholder="Mensaje..." name="mensaje" value="">{{old('mensaje')}}</textarea>
                       
                     </div>
                     @error('mensaje')
