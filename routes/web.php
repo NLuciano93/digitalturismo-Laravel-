@@ -58,7 +58,7 @@ Route::get('/user', 'UsuariosController@perfilUsuario');
 Route::post('/usuarioActualizado','UsuariosController@usuarioActualizado');
 
 /*----------------CARRITO--------------------*/
-Route::get('/adminCarrito', 'CarritoController@index')->middleware('auth', 'validarAdmin');
-Route::get('/carritoAlta', 'CarritoController@create')->middleware('auth', 'validarAdmin');
-Route::post('/carritoAlta', "UsuariosController@carritoAlta")->middleware('auth', 'validarAdmin');
-Route::get('/carritoCompras', 'UsuariosController@carrito')->middleware('auth', 'validarAdmin');
+Route::get('/adminCarrito', 'CarritoController@index');
+Route::get('/carritoAlta', 'CarritoController@create');
+Route::post('/carritoAlta', "UsuariosController@carritoAlta");
+Route::get('/carritoCompras', 'UsuariosController@carrito');
