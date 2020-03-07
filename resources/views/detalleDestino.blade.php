@@ -23,9 +23,11 @@
     <div class="carritoIcono">
     
         <div class="tit-carrito">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">       
+
+            <a href="/carritoCompras" class="btn btn-dark">       
                 <i class="fas fa-shopping-cart"></i>
-            </button>
+            </a>
+        
             <span> {{session('CantProductos')}} </span>
         </div>  
     </div> 
@@ -174,7 +176,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-      
+
             <div class="modal-body">
             <!-- <-- renglon titulos -->
                 <div class="row">

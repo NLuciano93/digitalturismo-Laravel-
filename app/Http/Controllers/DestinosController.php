@@ -288,8 +288,9 @@ class DestinosController extends Controller
         $vac= compact('Destino', 'cantidad', 'promedio');
         return view('/detalleDestino', $vac);
     }
-    public function busDestinosUser(Request $request){
 
+    public function busDestinosUser(Request $request)
+    {
         $provincias= Provincia::all();
         if($request->input('provincia') && $request->input('busqueda') === null){
             $Destinos = Destino::where('id_provincia', $request->input('provincia'))->paginate(8);
@@ -312,6 +313,5 @@ class DestinosController extends Controller
         $vac = compact('Destinos', 'provincias', 'puntajeRandom', 'destinosRandom');
         return view('/destinos', $vac);
     }
-
 }
 

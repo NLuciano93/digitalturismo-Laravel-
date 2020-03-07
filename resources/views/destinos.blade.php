@@ -219,11 +219,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="/verComentariosDestino/{{$destino->id_destino}}">
-                                    <small>comentarios ( {{ $destino->comentarios()->count() }})
-                                    </small>
-                                </a>
-                                
                             </article>                                
                         </div>
                         
