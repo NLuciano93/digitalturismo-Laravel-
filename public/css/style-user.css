@@ -80,7 +80,7 @@
     color: black;
 }
 /* Stylo imagen user */
-}
+
 .image_outer_container{
     margin-top: auto;
     margin-bottom: auto;
@@ -127,8 +127,27 @@ h2{
 .fab{
     border-radius: 50%;
 }
+.testimonial-card{
+    position: relative;
+}
+.form-fav{
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    right: 2px;
 
+}
 
+.boton-fav{
+    color: red;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    z-index: 20;
+}
+.precio-promo{
+    text-decoration: line-through;
+}
 .mujer{
 height: 30px;
 width: auto;

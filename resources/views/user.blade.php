@@ -26,15 +26,15 @@
       <div class="row">
         <div class="col-4">
           <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action @if(!($errors->first('passwordActual') || $errors->first('password')))active @endif" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Información personal</a>
-            <a class="list-group-item list-group-item-action @if(($errors->first('passwordActual') || $errors->first('password')))show active @endif" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Cambiar contraseña</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Favoritos</a>
+            <a class="list-group-item list-group-item-action  @if(!session('favorito')) @if(!($errors->first('passwordActual') || $errors->first('password')))active @endif @endif" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Información personal</a>
+            <a class="list-group-item list-group-item-action  @if(!session('favorito')) @if(($errors->first('passwordActual') || $errors->first('password')))active @endif @endif" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Cambiar contraseña</a>
+            <a class="list-group-item list-group-item-action  @if(session('favorito')) active @endif" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Favoritos</a>
             <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Contactos</a>
           </div>
         </div>
         <div class="col-8">
           <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade @if(!($errors->first('viejaPassword') || $errors->first('password')))show active @endif" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <div class="tab-pane fade  @if(!session('favorito')) @if(!($errors->first('viejaPassword') || $errors->first('password')))show active @endif @endif" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
               <h2 class="mb-3">Actualizar Datos</h2>
               <form action="/usuarioActualizado" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}   
@@ -99,7 +99,7 @@
               </form>
             </div>
 
-            <div class="tab-pane fade @if(($errors->first('viejaPassword') || $errors->first('password')))show active @endif" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <div class="tab-pane fade @if(!session('favorito')) @if(($errors->first('viejaPassword') || $errors->first('password')))show active @endif @endif" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
               <h2>Cambia tu contraseña</h2>
                       
               <form action="/passActualizar" method="POST">
@@ -140,52 +140,42 @@
               </form>               
             </div>
 
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-              <section class="section pb-3 text-center">                
-                <div class="row">                    
+            <div class="tab-pane fade @if(session('favorito')) show active @endif" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+              <section class="section pb-3 text-center">               
+                <div class="row">
+                  
+                  @forelse ($favoritos as $favorito)
                   <div class="col-lg-4 col-md-12 mb-4">                      
-                    <div class="card testimonial-card">                        
+                    <div class="card testimonial-card">
+                      <form action="/quitarFavoritoUser" method="POST" class="form-fav">
+                        @csrf
+                      <button type="submit" class="boton-fav" name="quitarFav" value="{{$favorito->id_destino}}" title="Eliminar Favorito"><i class="fas fa-times"></i></button>  
+                      </form>
+                    <a class="detalleDestinoRedireccion" href="/detalleDestino/{{$favorito->id_destino}}">
+                      <div>                       
                       <div class="card-up teal lighten-2">
                       </div>                        
-                      <div class="avatar mx-auto white"><img src="images/img-user/sanluis.jpg"
+                      <div class="avatar mx-auto white"><img src="{{asset('images/destinos/'. $favorito->avatar_destino)}}"
                         alt="avatar mx-auto white" class="rounded-circle img-fluid">
-                      </div>                        
+                      </div></a>                        
                       <div class="card-body">
-                        <h4 class="card-title mt-1">Valle de Talampaya</h4>
+                        <h4 class="card-title mt-1"><strong>{{$favorito->nombre_destino}}</strong></h4>
                         <hr>
-                        <p>El parque nacional Talampaya se encuentra ubicado en el centro-oeste de la provincia de La Rioja en Argentina </p>
-                      </div>                        
+                         @if ($favorito->promocion > 0)
+                      <h5><span class="precio-promo">${{$favorito->precio}}</span> {{$favorito->promocion}}%OFF</h5>
+                      <h5>Ahora ${{$favorito->precio - ($favorito->precio *($favorito->promocion / 100))}}</h5>
+                        @else
+                        <h5>${{$favorito->precio}}</h5>  
+                        @endif                        
+                        <small>{{$favorito->descripcion}}</small>
+                      </div>
+                    </div> 
+                    
                     </div>                      
-                  </div>                    
-                  <div class="col-lg-4 col-md-12 mb-4">                      
-                    <div class="card testimonial-card">                        
-                      <div class="card-up blue lighten-2">
-                      </div>                        
-                      <div class="avatar mx-auto white"><img src="images/img-user/bariloche.jpg"
-                        alt="avatar mx-auto white" class="rounded-circle img-fluid">
-                      </div>                        
-                      <div class="card-body">
-                        <h4 class="card-title mt-1">Bariloche
-                        </h4>
-                        <hr>
-                        <p>San Carlos de Bariloche, conocida simplemente como Bariloche,1​ es una ciudad ubicada en la provincia de Río Negro, Argentina.
-                        </p>
-                      </div>                        
-                    </div>                      
-                  </div>                    
-                  <div class="col-lg-4 col-md-12 mb-4">                      
-                    <div class="card testimonial-card">                        
-                      <div class="card-up deep-purple lighten-2"></div>                        
-                      <div class="avatar mx-auto white"><img src="images/img-user/calafate.jpg"
-                        alt="avatar mx-auto white" class="rounded-circle img-fluid">
-                      </div>                        
-                      <div class="card-body">
-                        <h4 class="card-title mt-1">El Calafate</h4>
-                        <hr>
-                        <p>Es una ciudad ubicada en la ribera meridional del lago Argentino, en la región de la Patagonia, en la provincia de Santa Cruz, Argentina</p>
-                      </div>                        
-                    </div>                      
-                  </div>                    
+                  </div>
+                  @empty
+                      <h3>No hay favoritos</h3>
+                  @endforelse                                      
                 </div>                  
               </section>
             </div>

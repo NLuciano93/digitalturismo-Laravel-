@@ -125,6 +125,15 @@ class UsuariosController extends Controller
         Alert::success('🌴Destino quitado de Favoritos🌴' , $destino->nombre_destino);
         return Redirect::back();
     }
+    public function quitarFavUser(Request $request){
+        
+        $usuario = User::find(Auth::user()->id);
+        $usuario->favoritos()->detach($request["quitarFav"]);
+        $destino = Destino::find($request["quitarFav"]);
+        
+        Alert::success('🌴Destino quitado de Favoritos🌴' , $destino->nombre_destino);
+        return redirect('/user')->with('favorito', 'eliminado');
+    }
 
 
     public function agregarComentario(Request $request)
@@ -156,7 +165,10 @@ class UsuariosController extends Controller
  
     public function perfilUsuario()
     {
-        return view ('/user');
+        $usuario = User::find(Auth::user()->id);
+        $favoritos = $usuario->favoritos()->paginate(6);
+        $vac = compact('favoritos');
+        return view('/user', $vac);
     }
     
     public function actualizarDatos(Request $request){

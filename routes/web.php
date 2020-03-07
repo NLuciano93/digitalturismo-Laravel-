@@ -23,6 +23,7 @@ Route::get('/borrarUsuario/{id}', 'UsuariosController@destroy')->middleware('aut
 /*Route::post('/busquedaUsuarios', 'UsuariosController@busquedaUsuarioAdmin')->middleware('auth', 'validarAdmin');*/
 Route::post('/agregarFavorito', 'UsuariosController@agregarFav');
 Route::post('/quitarFavorito', 'UsuariosController@quitarFav');
+Route::post('/quitarFavoritoUser', 'UsuariosController@quitarFavUser');
 
 /********************* COMENTARIOSS *******************/
 Route::view('/comentario', 'comentario');
