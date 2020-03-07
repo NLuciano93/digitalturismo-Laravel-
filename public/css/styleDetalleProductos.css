@@ -133,15 +133,70 @@ font-family: 'Roboto', sans-serif;
 .form-fav{
     display: inline-block;
 }
-.favorito{
-    background: #43C6AC;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    padding: 10px;
+.carrito-agregar{
+    background: #ad5389;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+    height: 50px;
     font-size: 2rem;
     border-radius: 50%;
     border: none;
     color: white;
+    transition: 500ms all ease;
+}
+.carrito-agregar:hover{
+    color: gold;
+}
+.favorito{
+    background: #43C6AC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    transition: 500ms all ease;
+}
+
+.favorito-red{
+    background: #43C6AC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: none;
+    color: red;
+    transition: 500ms all ease;
+}
+.favorito:hover{
+    cursor: pointer;
+    color: red;
+}
+.favorito:hover{
+    cursor: pointer;
+    
+}
+.cantidadFav{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 1rem;
+    top: -20px;
+    right: -20px;
+    border-radius: 50%;
+    padding: 10%;
+    background: #ED213A;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color: white;
+    z-index: 100;
 }
 
 .detalle-info {
@@ -269,6 +324,11 @@ background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Fi
     border: none;
     z-index: -1;
 }
+.comentarios{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
 
 
 /*--------------------FOOTER------------*/
