@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Carrito;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Destino;
+use Session;
 
 
 class UsuariosController extends Controller
@@ -230,6 +232,18 @@ class UsuariosController extends Controller
         $usuario->save();
         Alert::success('','🌴Cambios realizados con exito!.🌴');
         return redirect ('/user');
+        
+    }
+    public function carritoCompra(){
+        if (!Session::has('carrito')) {
+            return view('/carritoCompra');
+        }else{
+            $viejoCarrito = Session::get('carrito');
+            $carrito = new Carrito($viejoCarrito);
+
+            return view('/carritoCompra', ['productos' =>$carrito->items, 'precioTotal' =>$carrito->totalPrecio]);
+        }
+
         
     }
 }

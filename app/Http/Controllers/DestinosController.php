@@ -341,16 +341,21 @@ class DestinosController extends Controller
     public function agregarCarrito(Request $request, $id)
     {
         $Destino = Destino::find($id);
+        $cantidadPasajes = $request->input('cantidadPasajes');
+        
         /* compruebo si en la sesion ya existe un carrito y se la paso a la variable */
-        $carritoViejo = Session::has('cart') ? Session::get('cart') :null;
+        /* Session::flush();*/
+       /*  dd(Session::get('carrito'));  */
+        $carritoViejo = Session::has('carrito') ? Session::get('carrito') : null;
         /*Le paso al constructor el viejo carrito */
         $carrito = new Carrito($carritoViejo);
         /* aca le mando el destino comprado al metodo agregar */
-        $carrito->agregar($Destino, $Destino->$id);
+        $carrito->agregar($Destino, $Destino->id_destino, $cantidadPasajes);
+        /* dd(Session::get('carrito')); */
 
         $request->session()->put('carrito', $carrito);
-        dd($request->session()->get('carrito'));
-        return view('/verCarrito');
+        
+        return redirect()->back();
     }
 
 }

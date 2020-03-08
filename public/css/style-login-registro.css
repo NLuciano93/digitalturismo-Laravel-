@@ -76,6 +76,24 @@
     background-color: rgba(255, 255, 255, 0.61);
     color: black;
 }
+/**********************carrito*********************************************/
+
+.aviso-carrito{
+    width:10px;
+    height: 10px;
+    border-radius: 50%;
+   /* background-color: red !important;*/
+}
+.circulo{
+    font-size: 0.5rem;
+    position:absolute;
+    top: -5px;
+    right: -8px;
+}
+.carrito-nav{
+    position:relative;
+
+}
 /* FIN DEL HEADER */
 .contenedor{
     width: 100%;

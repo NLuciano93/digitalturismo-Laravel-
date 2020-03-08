@@ -18,23 +18,29 @@
             <li class="nav-item items-barra">
               <a class="nav-link" href="/destinos"><i class="fas fa-suitcase"></i><p>DESTINOS</p></a>
             </li>
+            
           </ul>
           
           @guest
               
           
-          
+        
         <a href="{{route('login')}}"><button class="btn my-2 my-sm-0 boton-ingreso" type="submit"><i class="fas fa-user"></i>INGRESAR</button></a>
           @else
+          
             <ul class="navbar-nav ml-md-auto">
+            
                                 <li class="nav-item dropdown ">
-                                <a class="nav-link dropdown-toggle boton-ingreso p-2 d-flex justify-content-center align-items-center text-uppercase text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ Auth::user()->name}}</a>
+                                <a class="nav-link dropdown-toggle boton-ingreso p-2 d-flex justify-content-center align-items-center text-uppercase text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ Auth::user()->name}}@if(Session::has('carrito'))<span class="aviso-carrito mb-3 bg-danger"></span>@endif</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                 @if (Auth::user()->email == "admin@admin.com" )
+                 @if (Auth::user()->rol_id == 2)
                   <a class="dropdown-item" href="/adminInicio">Mi perfil</a>
                 @else
                     <a class="dropdown-item" href="/user">Mi perfil</a>
                 @endif
+                  <a class="dropdown-item" href="/carritoCompra">Mi carrito<i class="fas fa-shopping-cart carrito-nav">
+                      @if(Session::has('carrito'))<i class="fas fa-circle text-danger circulo"></i>@endif
+                  </i></a>
                                         
 
                                           <div class="dropdown-divider"></div>

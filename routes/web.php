@@ -60,3 +60,4 @@ Route::post('/usuarioActualizado','UsuariosController@actualizarDatos');
 Route::post('/passActualizar','UsuariosController@actualizarPass');
 /**-------------------------------CARRITO----------------------- */
 Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito');
+Route::get('/carritoCompra', 'UsuariosController@carritoCompra');

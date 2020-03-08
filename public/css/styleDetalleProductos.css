@@ -369,6 +369,24 @@ background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, F
 .red-social, .mision, .contacto h3{
     text-align: center;
 }
+/**********************carrito*********************************************/
+
+.aviso-carrito{
+    width:10px;
+    height: 10px;
+    border-radius: 50%;
+   /* background-color: red !important;*/
+}
+.circulo{
+    font-size: 0.5rem;
+    position:absolute;
+    top: -5px;
+    right: -8px;
+}
+.carrito-nav{
+    position:relative;
+
+}
 
 @media (min-width : 380px) {
 

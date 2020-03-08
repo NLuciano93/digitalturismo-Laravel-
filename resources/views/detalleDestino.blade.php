@@ -119,7 +119,7 @@
                     alt="carrito" title="Agregar al Carrito de Compras"> --}}
                    <span>
 
-                        <a href="#agregarCarrito" class="carrito-agregar mx-2"><i class="fas fa-shopping-cart" title="Agregar al Carrito"></i></a>        
+                        <a href="#agregarCarrito" class="carrito-agregar mx-2" data-toggle="modal" data-target="#agregarCarrito"><i class="fas fa-shopping-cart" title="Agregar al Carrito"></i></a>        
                    </span> 
                     <span>
                         @if (Auth::user()->idFavoritos()->search($Destino->id_destino) !== false)
@@ -334,8 +334,8 @@
             <!-- renglon INGRESAR CANTIDAD -->           
                 <div class="row">
                     <div class="col-md-12 mx-auto">
-                        <form action="/carritoAlta" method="POST" enctype="multipart/form-data">
-                            @csrf
+                        <form action="/agregarCarrito/{{$Destino->id_destino}}" method="GET">
+                            
                             <input type="hidden" value='{{Auth::user()->id}}' name="idUsuario">
                             <input type="hidden" value='{{$Destino->id_destino}}' name="idDestino">
                             <input type="hidden" value='{{$Destino->nombre_destino}}' name="nombreDestino">
@@ -343,7 +343,7 @@
                             <div class="form-group col-md-4 mx-auto">
                                 <label for="exampleInputEmail1">Cant.Pasajeros</label>
                                 <input type="number" class="form-control {{ null!=$errors->first('cantidadPasajes') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1" name="cantidadPasajes"
-                                value="{{old("cantidadPasajes")}}">
+                                value="{{old("cantidadPasajes",1)}}">
                                 <span id="archivoHelp" class="form-text text-danger invalid-fedback">{{$errors->first('cantidadPasajes')}}</span>
                             </div>
 
