@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Destino;
 use App\Provincia;
 use App\Comentario;
+use App\Carrito;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Session;
+
 
 class DestinosController extends Controller
 {
@@ -333,6 +336,21 @@ class DestinosController extends Controller
 
         $vac = compact('Destinos', 'provincias', 'puntajeRandom', 'destinosRandom');
         return view('/destinos', $vac);
+    }
+
+    public function agregarCarrito(Request $request, $id)
+    {
+        $Destino = Destino::find($id);
+        /* compruebo si en la sesion ya existe un carrito y se la paso a la variable */
+        $carritoViejo = Session::has('cart') ? Session::get('cart') :null;
+        /*Le paso al constructor el viejo carrito */
+        $carrito = new Carrito($carritoViejo);
+        /* aca le mando el destino comprado al metodo agregar */
+        $carrito->agregar($Destino, $Destino->$id);
+
+        $request->session()->put('carrito', $carrito);
+        dd($request->session()->get('carrito'));
+        return view('/verCarrito');
     }
 
 }

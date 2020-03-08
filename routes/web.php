@@ -58,3 +58,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user', 'UsuariosController@perfilUsuario');
 Route::post('/usuarioActualizado','UsuariosController@actualizarDatos');
 Route::post('/passActualizar','UsuariosController@actualizarPass');
+/**-------------------------------CARRITO----------------------- */
+Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito');

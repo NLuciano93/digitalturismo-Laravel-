@@ -174,10 +174,22 @@
                     </div>                      
                   </div>
                   @empty
+                  <div>
                       <h3>No hay favoritos</h3>
-                  @endforelse                                      
-                </div>                  
-              </section>
+                  </div>
+                  @endforelse
+                  <div class="container">
+                    <div class="row">
+                          {{$favoritos->links()}}
+                    </div>
+
+                  </div>
+
+                   </section>                                     
+                </div> 
+
+              
+
             </div>
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
               <section class="section pb-3 text-center">               
