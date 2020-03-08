@@ -119,7 +119,7 @@
                     alt="carrito" title="Agregar al Carrito de Compras"> --}}
                    <span>
 
-                        <a href="" class="carrito-agregar mx-2"><i class="fas fa-shopping-cart" title="Agregar al Carrito"></i></a>        
+                        <a href="#agregarCarrito" class="carrito-agregar mx-2"><i class="fas fa-shopping-cart" title="Agregar al Carrito"></i></a>        
                    </span> 
                     <span>
                         @if (Auth::user()->idFavoritos()->search($Destino->id_destino) !== false)
@@ -292,6 +292,72 @@
                 <button type="button" class="btn btn-warning">Finalizar Compra</button>
             </div>
         </div>
+    </div>
+</div>
+
+
+<!-- Modal de agregar al carrito -->
+<div class="modal fade" id="agregarCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">AGREGAR DESTINO</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+      
+            <div class="modal-body">
+            <!-- <-- renglon Titulos datos -->
+                <div class="row">
+                    <div class="col-md-4 mx-auto">
+                        <h5>Destino</h5>
+                    </div>
+
+                    <div class="col-md-4 mx-auto">
+                        <h5>Costo Unit.</h5>
+                    </div>
+                </div>
+
+            <!-- renglon destinos -->
+                <div class="row">
+                    
+                    <div class="col-md-4 mx-auto">
+                        <h6>{{$Destino->nombre_destino}}</h6>
+                    </div>
+                    <div class="col-md-4 mx-auto">
+                        <h6>{{$Destino->precio}}</h6>
+                    </div>
+
+                </div>
+
+            <!-- renglon INGRESAR CANTIDAD -->           
+                <div class="row">
+                    <div class="col-md-12 mx-auto">
+                        <form action="/carritoAlta" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value='{{Auth::user()->id}}' name="idUsuario">
+                            <input type="hidden" value='{{$Destino->id_destino}}' name="idDestino">
+                            <input type="hidden" value='{{$Destino->nombre_destino}}' name="nombreDestino">
+                            <input type="hidden" value='{{$Destino->precio}}' name="precio">
+                            <div class="form-group col-md-4 mx-auto">
+                                <label for="exampleInputEmail1">Cant.Pasajeros</label>
+                                <input type="number" class="form-control {{ null!=$errors->first('cantidadPasajes') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1" name="cantidadPasajes"
+                                value="{{old("cantidadPasajes")}}">
+                                <span id="archivoHelp" class="form-text text-danger invalid-fedback">{{$errors->first('cantidadPasajes')}}</span>
+                            </div>
+
+                            <div class="modal-footer col-md-12 mx-auto">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-warning">Agregar al Carrito</button>
+                            </div>                        
+                        </form>
+                    </div>
+            
+                </div>
+
+            </div>
+        </div>      
     </div>
 </div>
 
