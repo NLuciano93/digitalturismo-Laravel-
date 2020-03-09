@@ -9,6 +9,7 @@ use App\Comentario;
 use App\Carrito;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 use Session;
 
 
@@ -57,7 +58,7 @@ class DestinosController extends Controller
             $query->orderBy('puntuacion', '>', 2);
         }])->get(); */
         $vac = compact('destinos','destinosPromo', 'destinosDestacados');
-        return view('inicio', $vac);
+        return view('/index/index', $vac);
 
     }
     /**
@@ -261,11 +262,11 @@ class DestinosController extends Controller
         return view("/verComentarioDestino", $vac);
     }
     
-    public function verTodosLosDestinos(){
+   /*  public function verTodosLosDestinos(){
         $Destinos = Destino::paginate(12);
         $vac = compact('Destinos');
         return view('/verTodosLosDestinos', $vac);
-    }
+    } */
     public function verComentarioDestino($id)
     {
         $destino = Destino::find($id);
@@ -340,6 +341,12 @@ class DestinosController extends Controller
 
     public function agregarCarrito(Request $request, $id)
     {
+       
+        $validarCant= $request->input('cantidadPasajes');
+        if ($validarCant < 1 || $validarCant >10) {
+            Alert::warning('' , 'Falla en la cantidad asignada');
+            return redirect()->back();
+        }
         $Destino = Destino::find($id);
         $cantidadPasajes = $request->input('cantidadPasajes');
         
@@ -357,6 +364,6 @@ class DestinosController extends Controller
         
         return redirect()->back();
     }
-
+    
 }
 

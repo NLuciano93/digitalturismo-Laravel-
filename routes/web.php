@@ -46,7 +46,7 @@ Route::post('/busquedaDestinos', 'DestinosController@busquedaDestinoAdmin');
 /*---------------------usuariocomun-----------------------*/
 
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios')->middleware('auth');
-Route::get('/verTodosLosDestinos', 'DestinosController@verTodosLosDestinos');
+
 Route::get('/destinos', 'DestinosController@pagDestinos');
 Route::get('/detalleDestino/{id}', 'DestinosController@detalleDestino')->middleware('auth');
 Route::post('busDestinosUser', 'DestinosController@busDestinosUser');
@@ -60,4 +60,5 @@ Route::post('/usuarioActualizado','UsuariosController@actualizarDatos');
 Route::post('/passActualizar','UsuariosController@actualizarPass');
 /**-------------------------------CARRITO----------------------- */
 Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito');
+Route::get('/borrarCarrito', 'UsuariosController@borrarCarrito');
 Route::get('/carritoCompra', 'UsuariosController@carritoCompra');

@@ -18,10 +18,10 @@
     <div class="carritoIcono">
     
         <div class="tit-carrito">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">       
-                <i class="fas fa-shopping-cart"></i>
-            </button>
-            <span> 1 </span>
+            <a type="button" class="btn btn-dark" href="/carritoCompra">       
+                <i class="fas fa-shopping-cart carrito-nav"> @if(Session::has('carrito'))<span class="bg-danger circulo-detalle"></span>@endif</i>
+            </a>
+           
         </div>  
     </div> 
 
@@ -342,7 +342,7 @@
                             <input type="hidden" value='{{$Destino->precio}}' name="precio">
                             <div class="form-group col-md-4 mx-auto">
                                 <label for="exampleInputEmail1">Cant.Pasajeros</label>
-                                <input type="number" class="form-control {{ null!=$errors->first('cantidadPasajes') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1" name="cantidadPasajes"
+                                <input type="number" class="form-control {{ null!=$errors->first('cantidadPasajes') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1" name="cantidadPasajes" min="1" max="10"
                                 value="{{old("cantidadPasajes",1)}}">
                                 <span id="archivoHelp" class="form-text text-danger invalid-fedback">{{$errors->first('cantidadPasajes')}}</span>
                             </div>

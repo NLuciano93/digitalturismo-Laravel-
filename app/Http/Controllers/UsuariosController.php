@@ -170,7 +170,7 @@ class UsuariosController extends Controller
         $usuario = User::find(Auth::user()->id);
         $favoritos = $usuario->favoritos()->paginate(6);
         $vac = compact('favoritos');
-        return view('/user', $vac);
+        return view('/user/index', $vac);
     }
     
     public function actualizarDatos(Request $request){
@@ -236,7 +236,7 @@ class UsuariosController extends Controller
     }
     public function carritoCompra(){
         if (!Session::has('carrito')) {
-            return view('/carritoCompra');
+            return view('/carritoCompra', ['productos' => []]);
         }else{
             $viejoCarrito = Session::get('carrito');
             $carrito = new Carrito($viejoCarrito);
@@ -245,5 +245,10 @@ class UsuariosController extends Controller
         }
 
         
+    }
+    public function borrarCarrito(){
+        Session::forget('carrito');
+
+        return $this->carritoCompra();
     }
 }
