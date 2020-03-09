@@ -2,13 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Provincia;
+use App\Mensje;
 use Faker\Generator as Faker;
 
-$factory->define(Provincia::class, function (Faker $faker) {
+$factory->define(Mensje::class, function (Faker $faker) {
     return [
-        "nombre_pais" => $faker->sentence(30),
-        "id_pais" => 1,
+        "email" => $faker->email(),
+        "mensaeje" => $faker->sentence(10),
         "created_at" =>$faker->date(),
         "updated_at" =>$faker->date()
     ];

@@ -41,8 +41,19 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // inicializa tabla COMENTARIO
+        // inicializa tabla PROVINCIAS
+        factory(App\Provincia::class, 23)->create();
+
+        // inicializa tabla DESTINOS
+        factory(App\Destino::class, 20)->create();
+
+        // inicializa tabla COMENTARIOS
         factory(App\Comentario::class, 10)->create();
 
+        // inicializa tabla MENSAJES
+        factory(App\Mensaje::class, 10)->create();
+
+        // inicializa tabla FAVORITOS
+        factory(App\Favorito::class, 5)->create();
     }
 }

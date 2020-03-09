@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProvinciaTable extends Migration
+class CreateFavoritoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProvinciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('provincia', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre_provincia', 50)->default(NULL);
-            $table->foreing('id_pais')->references('id_pais')->on('pais');
+        Schema::create('favoritos', function (Blueprint $table) {
+            $table->bigIncrements('id_favorito');
+            $table->foreing('id_usuario')->references('id_usuario')->on('users');
+            $table->foreing('id_destino')->references('id_destino')->on('destino');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateProvinciaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provincia');
+        Schema::dropIfExists('favorito');
     }
 }

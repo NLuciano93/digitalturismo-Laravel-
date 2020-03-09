@@ -2,13 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Provincia;
+use App\Favorito;
 use Faker\Generator as Faker;
 
-$factory->define(Provincia::class, function (Faker $faker) {
+$factory->define(Favorito::class, function (Faker $faker) {
     return [
-        "nombre_pais" => $faker->sentence(30),
-        "id_pais" => 1,
+        "id_usuario" => 1,
+        "id_destino" => $faker->numberBetween(1,20),
         "created_at" =>$faker->date(),
         "updated_at" =>$faker->date()
     ];

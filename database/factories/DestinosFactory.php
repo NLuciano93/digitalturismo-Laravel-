@@ -8,6 +8,8 @@ use Faker\Generator as Faker;
 $factory->define(Destino::class, function (Faker $faker) {
     return [
         "nombre_destino" => $faker->sentence(8),
+        "detalle" => $faker->sentence(5),
+        "descripcion" => $faker->sentence(15),
         "precio" => $faker->randomFloat(2, 10000, 40000),
         "promocion" => $faker->numberBetween(0,10),
         "avatar_destino" => "paisaje1.jpg",
