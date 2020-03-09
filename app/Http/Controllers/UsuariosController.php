@@ -110,6 +110,7 @@ class UsuariosController extends Controller
     }
 
     public function agregarFav(Request $request){
+       
         
         $usuario = User::find($request->input('usuario'));
         $usuario->favoritos()->attach($request["agregarFav"]);
@@ -119,6 +120,7 @@ class UsuariosController extends Controller
         return Redirect::back();
     }
     public function quitarFav(Request $request){
+        
         
         $usuario = User::find($request->input('usuario'));
         $usuario->favoritos()->detach($request["quitarFav"]);

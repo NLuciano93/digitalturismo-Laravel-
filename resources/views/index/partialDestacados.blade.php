@@ -18,7 +18,7 @@
                   <button type="submit" class="favorito-red" title="Eliminar Favorito" name="quitarFav" value="{{$destinoDestacado->id_destino}}"><i class="fas fa-heart"></i></button>
                 </form>                        
                  @else
-                 <form action="/quitarFavorito" method="post">
+                 <form action="/agregarFavorito" method="post">
                   @csrf
                   <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
                   <button type="submit" class="favorito" title="Agregar Favorito" name="agregarFav" value="{{$destinoDestacado->id_destino}}"><i class="fas fa-heart"></i></button>

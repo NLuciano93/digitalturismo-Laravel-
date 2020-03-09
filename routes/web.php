@@ -28,9 +28,9 @@ Route::post('/quitarFavoritoUser', 'UsuariosController@quitarFavUser');
 /********************* COMENTARIOSS *******************/
 Route::view('/comentario', 'comentario');
 Route::post('/comentario', 'UsuariosController@agregarComentario');
-Route::get('/verComentarios', 'DestinosController@verComentarios');
-Route::get('/verTodosComentarios', 'ComentariosController@todosComentarios');
-Route::get('/verComentariosDestino/{id}', 'DestinosController@verComentarios');
+Route::get('/verComentarios', 'DestinosController@verComentarios')->middleware('auth');
+Route::get('/verTodosComentarios', 'ComentariosController@todosComentarios')->middleware('auth');
+Route::get('/verComentariosDestino/{id}', 'DestinosController@verComentarios')->middleware('auth');
 
 /********************* DESTINOS *******************/
 /*---------------------ADMIN---------------------------*/
@@ -55,10 +55,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/user', 'UsuariosController@perfilUsuario');
+Route::get('/user', 'UsuariosController@perfilUsuario')->middleware('auth');
 Route::post('/usuarioActualizado','UsuariosController@actualizarDatos');
 Route::post('/passActualizar','UsuariosController@actualizarPass');
 /**-------------------------------CARRITO----------------------- */
-Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito');
-Route::get('/borrarCarrito', 'UsuariosController@borrarCarrito');
-Route::get('/carritoCompra', 'UsuariosController@carritoCompra');
+Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito')->middleware('auth');
+Route::get('/borrarCarrito', 'UsuariosController@borrarCarrito')->middleware('auth');
+Route::get('/carritoCompra', 'UsuariosController@carritoCompra')->middleware('auth');
