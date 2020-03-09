@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
         // inicializa tabla USERS
-        /* DB::table("users")->insert(
+        DB::table("users")->insert(
             [
                 "id"=> 1,
                 "name" =>"admin",
@@ -48,13 +48,13 @@ class DatabaseSeeder extends Seeder
         factory(App\Destino::class, 20)->create();
 
         // inicializa tabla COMENTARIOS
-        factory(App\Comentario::class, 10)->create(); */
+        factory(App\Comentario::class, 10)->create();
 
-      /*   // inicializa tabla FAVORITOS
+        // inicializa tabla FAVORITOS
         factory(App\Favorito::class, 5)->create();
- */
+
         // inicializa tabla MENSAJES
-        factory(App\Mensaje::class, 10)->create();
+        factory(App\Mensaje::class, 1)->create();
 
 
     }
