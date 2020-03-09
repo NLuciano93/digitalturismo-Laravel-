@@ -16,7 +16,7 @@ class CreateProvinciaTable extends Migration
         Schema::create('provincia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_provincia', 50)->default(NULL);
-            $table->foreing('id_pais')->references('id_pais')->on('pais');
+            $table->integer('id_pais');
             $table->timestamps();
         });
     }

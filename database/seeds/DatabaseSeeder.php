@@ -14,16 +14,16 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
         // inicializa tabla USERS
-        DB::table("users")->insert(
+        /* DB::table("users")->insert(
             [
                 "id"=> 1,
                 "name" =>"admin",
                 "email"=>"admin@admin.com",
                 "email_verified_at"=> NULL,
-                "password"=>Hash::make($data['12345678']),
-                "facebook" => NULL,
-                "twitter"=>NULL,
-                "instagram"=>NULL,
+                "password"=>'$2y$10$hhTW0KElMnPuQO9GFZT1yOIrXd6LI/KabIAMWv0kYNlql0pZtEMjS',
+                "facebook" => "admin",
+                "twitter"=>"admin",
+                "instagram"=>"admin",
                 "avatar"=>"userImage.png",
                 "rol_id"=>2, 
                 "created_at" =>NULL,
@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
             [
                 "id_pais"=> 1,
                 "nombre_pais" => "Argentina",
-                "created_at" =>now(),
-                "updated_at" =>now()
+                "created_at" =>NULL,
+                "updated_at" =>NULL
             ]
         );
 
@@ -48,12 +48,14 @@ class DatabaseSeeder extends Seeder
         factory(App\Destino::class, 20)->create();
 
         // inicializa tabla COMENTARIOS
-        factory(App\Comentario::class, 10)->create();
+        factory(App\Comentario::class, 10)->create(); */
 
+      /*   // inicializa tabla FAVORITOS
+        factory(App\Favorito::class, 5)->create();
+ */
         // inicializa tabla MENSAJES
         factory(App\Mensaje::class, 10)->create();
 
-        // inicializa tabla FAVORITOS
-        factory(App\Favorito::class, 5)->create();
+
     }
 }

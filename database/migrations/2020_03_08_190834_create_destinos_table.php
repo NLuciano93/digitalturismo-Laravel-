@@ -21,7 +21,7 @@ class CreateDestinosTable extends Migration
             $table->decimal('precio', 10, 2)->nullable(False);
             $table->tinyInteger('promocion')->nullable(False);
             $table->string('avatar_destino')->nullable(False);
-            $table->foreing('id_provincia')->references('id')->on('provincia');
+            $table->foreign('id_provincia')->references('id')->on('provincia');
             $table->timestamps();
         });
     }
