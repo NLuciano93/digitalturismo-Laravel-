@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-03-2020 a las 01:15:07
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.6
+-- Servidor: localhost
+-- Tiempo de generación: 05-03-2020 a las 15:53:45
+-- Versión del servidor: 5.7.26-0ubuntu0.18.10.1
+-- Versión de PHP: 7.2.19-0ubuntu0.18.10.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_destino` int(11) NOT NULL,
-  `comentario` text DEFAULT NULL,
+  `comentario` text,
   `puntuacion` tinyint(4) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -59,6 +59,8 @@ INSERT INTO `comentarios` (`id_comentario`, `id_usuario`, `id_destino`, `comenta
 CREATE TABLE `destinos` (
   `id_destino` int(11) NOT NULL,
   `nombre_destino` varchar(100) NOT NULL,
+  `detalle` text NOT NULL,
+  `descripcion` text NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `promocion` tinyint(4) DEFAULT NULL,
   `avatar_destino` varchar(100) NOT NULL,
@@ -71,15 +73,16 @@ CREATE TABLE `destinos` (
 -- Volcado de datos para la tabla `destinos`
 --
 
-INSERT INTO `destinos` (`id_destino`, `nombre_destino`, `precio`, `promocion`, `avatar_destino`, `id_provincia`, `created_at`, `updated_at`) VALUES
-(1, 'BARILOCHE \"SKI\" 7 DIAS', '14500.00', 10, 'barilocheEsquiando.jpg', 1, NULL, '2020-02-18 15:52:03'),
-(2, 'SALTA \"LA LINDA\"', '28900.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
-(3, 'MENDOZA CITY TOUR', '15000.00', 0, 'mendozaCiudad.jpg', 12, NULL, '0000-00-00 00:00:00'),
-(4, 'CATARATAS EXTREM 10 DIAS', '8900.00', 10, 'cataratas-iguazu.jpg', 13, NULL, '0000-00-00 00:00:00'),
-(5, 'MINA CLAVERO PURA AVENTURA', '10000.00', 0, 'paisaje1.jpg', 5, NULL, '0000-00-00 00:00:00'),
-(6, 'SALTA ALPINISMO EXTREMO', '11000.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
-(8, 'USHUAIA \"EL FIN DEL MUNDO\"', '10000.00', 0, 'img_5e3827062232a.jpg', 22, NULL, '0000-00-00 00:00:00'),
-(10, 'Chaco Love', '10000.00', 10, '1582034162foto.jpg', 3, '2020-02-18 13:56:02', '2020-02-18 13:56:02');
+INSERT INTO `destinos` (`id_destino`, `nombre_destino`, `detalle`, `descripcion`, `precio`, `promocion`, `avatar_destino`, `id_provincia`, `created_at`, `updated_at`) VALUES
+(1, 'BARILOCHE \"SKI\" 7 DIAS', 'Lugar fantástico', 'Lo que vos necesitas para dormir', '14500.00', 10, 'barilocheEsquiando.jpg', 1, NULL, '2020-03-05 18:31:35'),
+(2, 'SALTA \"LA LINDA\"', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '28900.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
+(3, 'MENDOZA CITY TOUR', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '15000.00', 0, 'mendozaCiudad.jpg', 12, NULL, '0000-00-00 00:00:00'),
+(4, 'CATARATAS EXTREM 10 DIAS', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '8900.00', 10, 'cataratas-iguazu.jpg', 13, NULL, '0000-00-00 00:00:00'),
+(5, 'MINA CLAVERO PURA AVENTURA', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '10000.00', 0, 'paisaje1.jpg', 5, NULL, '0000-00-00 00:00:00'),
+(6, 'SALTA ALPINISMO EXTREMO', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '11000.00', 0, 'saltaMontañaAlpinista.jpg', 16, NULL, '0000-00-00 00:00:00'),
+(8, 'USHUAIA \"EL FIN DEL MUNDO\"', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '10000.00', 0, 'img_5e3827062232a.jpg', 22, NULL, '0000-00-00 00:00:00'),
+(10, 'Chaco Love', 'Lugar fantástico', 'Lo que vos necesitas para descansar', '10000.00', 10, '1582034162foto.jpg', 3, '2020-02-18 13:56:02', '2020-02-18 13:56:02'),
+(12, 'MENDOZA CITY WINE', 'Visita el viñedo', 'Vino a full', '300000.00', 15, '1583433568Wallpaper-01.png', 12, '2020-03-05 18:39:28', '2020-03-05 18:39:28');
 
 -- --------------------------------------------------------
 
@@ -99,8 +102,14 @@ CREATE TABLE `favoritos` (
 
 INSERT INTO `favoritos` (`id_favorito`, `id_usuario`, `id_destino`) VALUES
 (19, 1, 2),
-(20, 1, 10),
-(21, 1, 4);
+(23, 1, 3),
+(25, 1, 10),
+(26, 1, 4),
+(27, 1, 4),
+(28, 1, 4),
+(29, 1, 8),
+(30, 1, 6),
+(31, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -210,6 +219,18 @@ INSERT INTO `pais` (`id_pais`, `nombre_pais`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `provincia`
 --
 
@@ -293,12 +314,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `facebook`, `twitter`, `instagram`, `avatar`, `rol_id`, `remember_token`, `updated_at`, `created_at`) VALUES
-(1, 'Luciano', 'natielloluciano@gmail.com', '$2y$10$m6891nXhtw.kxveSHvtg5.8mhXclbwuAYH5RkVIJ0P3VUVlzsI7j2', NULL, NULL, NULL, 'userImage.png', 1, NULL, '2020-02-22 01:30:49', '2020-02-22 01:30:49'),
+(1, 'Luciano', 'natielloluciano@gmail.com', '$2y$10$m6891nXhtw.kxveSHvtg5.8mhXclbwuAYH5RkVIJ0P3VUVlzsI7j2', NULL, NULL, NULL, 'userImage.png', 1, '9IAVWfHa1DJe5HgJ4HUE5zArDc0KCKoBL9xttHTmALqO0OxM0Cae9jF0zg7N', '2020-02-22 01:30:49', '2020-02-22 01:30:49'),
 (2, 'admin', 'admin@admin.com', '$2y$10$BVBR04gXjPm8axnUbS6jGuzNlZU9VWa5hl3EUMYAWCQ6qkpLMVn/C', NULL, NULL, NULL, 'userImage.png', 2, NULL, '2020-02-22 01:37:48', '2020-02-22 01:37:48'),
 (3, 'carla', 'carlos@asd.com', '$2y$10$4UiA2RVfdhpk2g2inL6C0ulaM2xX3zmb026UKvHDAoNKrhB407qFe', NULL, NULL, NULL, 'userImage.png', 1, NULL, '2020-02-23 02:41:52', '2020-02-23 02:41:52'),
 (4, 'carla', 'carla@carla.com', '$2y$10$6GS8PdGnwRdnURmoGqI/gepqEi8xRHdVXiD5s5EsqsCjRGnQCfoTu', 'https://www.facebook.com/', 'https://twitter.com/home', 'https://www.instagram.com/?hl=es-la', '1582415124Foto.png', 1, NULL, '2020-02-23 02:45:24', '2020-02-23 02:45:24'),
-(5, 'Fullmove', 'asd@asd.com', '$2y$10$xYEZi4UBePaZ4Qnmbw/jyOxrPFDXT7/BG2WTr0fMB1Q0qDOBQn8ge', 'facebook.com', NULL, NULL, 'userImage.png', 1, NULL, '2020-02-23 03:00:43', '2020-02-23 03:00:43'),
-(6, 'Luciano', 'natielloluciano@gmail.co', '$2y$10$3YE7bUXj1z2E50eE/ALz4.s548S4Io7MPlJCO8L4lpeUMVSWJqbJi', 'https://www.facebook.com/', 'https://twitter.com/home', 'https://www.instagram.com/?hl=es-la', '1582459446Foto.png', 1, NULL, '2020-02-23 15:04:07', '2020-02-23 15:04:07');
+(5, 'Fullmove', 'asd@asd.com', '$2y$10$k6GRgTgsNMIa2bYxt77xUeZMWDBlJX2ei/3lXvZsFuNdYcNTfdfyq', 'facebook.com', NULL, NULL, 'userImage.png', 1, 'TcgJmAeQVsWB3kxqMsNIbOGKEOOtmkTQW1TX5mrVdnYMqO3WnxJwON3K9yWw', '2020-03-05 02:55:54', '2020-02-23 03:00:43'),
+(6, 'Luciano', 'natielloluciano@gmail.co', '$2y$10$3YE7bUXj1z2E50eE/ALz4.s548S4Io7MPlJCO8L4lpeUMVSWJqbJi', 'https://www.facebook.com/', 'https://twitter.com/home', 'https://www.instagram.com/?hl=es-la', '1582459446Foto.png', 1, NULL, '2020-02-23 15:04:07', '2020-02-23 15:04:07'),
+(7, 'Luciano', 'natielloluciano@gmail.c', '$2y$10$snKcRXN4BPjT7M2QbT.gZ.iWpJsyaXtFeiPY/S9Nu4HzpY4AJgnJm', NULL, NULL, NULL, 'user.png', 1, NULL, '2020-03-04 15:19:40', '2020-03-04 15:19:40'),
+(8, 'papa', 'asd@asd.c', '$2y$10$dX4eLDm.Pn1.fEHPORCUc.UV.dHYz6pzrqYd8./Gg9ptCm49YZaf.', NULL, NULL, NULL, 'user.png', 1, NULL, '2020-03-04 15:20:37', '2020-03-04 15:20:37'),
+(9, 'Paula', 'pala@pal.a', '$2y$10$/a238BuIQVO10U8zYULUiuN4nNwCGAVmzIFgFL.FV9Awf6l/V8OnG', NULL, NULL, NULL, 'user.png', 1, NULL, '2020-03-04 15:22:16', '2020-03-04 15:22:16'),
+(10, 'admin', 'asd123@gmail.com', '$2y$10$YL.0ln9JyjT3XnFtGwRnQu9ki0JT4OTtK4eE9cJY8ZtmtGiKvWER6', NULL, NULL, NULL, 'user.png', 1, NULL, '2020-03-04 15:38:31', '2020-03-04 15:38:31'),
+(11, 'karen', 'karen@karen.com', '$2y$10$BjjEe3FhacAe2UDuU4Zt5.2zPKZEAFx.pkiI0Xbr/bkb619BuvMfm', NULL, NULL, NULL, 'user.png', 1, NULL, '2020-03-05 02:50:43', '2020-03-05 02:50:43');
 
 -- --------------------------------------------------------
 
@@ -414,6 +440,12 @@ ALTER TABLE `pais`
   ADD PRIMARY KEY (`id_pais`);
 
 --
+-- Indices de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `email` (`email`);
+
+--
 -- Indices de la tabla `provincia`
 --
 ALTER TABLE `provincia`
@@ -465,13 +497,13 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `destinos`
 --
 ALTER TABLE `destinos`
-  MODIFY `id_destino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_destino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `formas_pagos`
@@ -531,7 +563,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

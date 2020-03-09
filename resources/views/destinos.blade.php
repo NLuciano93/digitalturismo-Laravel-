@@ -1,10 +1,11 @@
-@extends('layout.plantillaDestinos')
+@extends('layout.plantilla')
 
-@section('cssProductos')
+@section('css')
      {{ asset('css/styleProductos.css') }}
 @endsection
 
 @section('principal')
+
 
 <div class="container-fluid">
 <div class="row">

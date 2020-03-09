@@ -6,7 +6,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <form method="POST" action="/busquedaUsuarios" class="col-12">
+            <form method="GET" action="" class="col-12">
+               
             <div class="form-row d-flex justify-content-center">
                 <div class="form-group mx-sm-3 mb-2 col-6">
                  
@@ -16,7 +17,7 @@
                      <button type="submit" class="btn btn-primary mb-2">Buscar</button>
                 </div>   
             </div>
-                @csrf
+                
                                     
                 
               </form>
@@ -25,7 +26,7 @@
 </div>
 <div class="container-fluid mt-5">
     <div class="row">
-        <table class="table table-striped table-bordered table-hover">
+        <table class="table table-striped table-bordered table-hover mb-0">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Nombre</th>
@@ -48,6 +49,9 @@
         </table>
     </div>
 </div>
+@if ($usuarios->count()==0)
+     <h3 class="bg-light p-3 text-center">No se encontraron usuarios</h3>
+@endif 
  
 <div class="container">
     <div class="row">

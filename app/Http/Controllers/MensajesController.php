@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Mensaje;
 
 
@@ -52,7 +53,8 @@ class MensajesController extends Controller
         $mensaje->email = $request->input('email');
         $mensaje->mensaje = $request->input('mensaje');
         $mensaje->save();
-        return redirect("/")->with('mensaje', 'Mensaje enviado correctamente');
+        Alert::success('' , 'Mensaje enviado correctamente' );
+        return redirect("/");
     }
 
     /**

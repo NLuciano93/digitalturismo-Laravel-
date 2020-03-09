@@ -79,8 +79,27 @@
     background-color: rgba(255, 255, 255, 0.61);
     color: black;
 }
-/* Stylo imagen user */
+
+/**********************carrito*********************************************/
+
+.aviso-carrito{
+    width:10px;
+    height: 10px;
+    border-radius: 50%;
+   /* background-color: red !important;*/
 }
+.circulo{
+    font-size: 0.5rem;
+    position:absolute;
+    top: -5px;
+    right: -8px;
+}
+.carrito-nav{
+    position:relative;
+
+}
+/* Stylo imagen user */
+
 .image_outer_container{
     margin-top: auto;
     margin-bottom: auto;
@@ -127,8 +146,27 @@ h2{
 .fab{
     border-radius: 50%;
 }
+.testimonial-card{
+    position: relative;
+}
+.form-fav{
+    display: inline-block;
+    position: absolute;
+    top: -5px;
+    right: 2px;
 
+}
 
+.boton-fav{
+    color: red;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    z-index: 20;
+}
+.precio-promo{
+    text-decoration: line-through;
+}
 .mujer{
 height: 30px;
 width: auto;

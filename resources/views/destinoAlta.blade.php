@@ -12,26 +12,37 @@
     <form action="/destinoAlta" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="exampleInputEmail1">Nombre Destino</label>
-        <input type="text" class="form-control {{ null!=$errors->first('nombre') ? 'is-invalid' : '' }}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre Destino" name="nombre"
-        value="{{old("title")}}">
+            <label for="nombre">Nombre Destino</label>
+        <input type="text" class="form-control {{ null!=$errors->first('nombre') ? 'is-invalid' : '' }}" id="nombre" aria-describedby="emailHelp" placeholder="Nombre Destino" name="nombre"
+        value="{{old("nombre")}}">
             <span id="archivoHelp" class="form-text text-danger invalid-fedback">{{$errors->first('nombre')}}</span>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail2">Precio(No colocar signos solo numero)</label>
-            <input type="number" class="form-control {{ null!=$errors->first('precio') ? 'is-invalid' : '' }}" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="$precio" name="precio" value="{{old("precio")}}">
+            <label for="detalle">Detalle Destino</label>
+        <input type="text" class="form-control {{ null!=$errors->first('detalle') ? 'is-invalid' : '' }}" id="detalle" aria-describedby="emailHelp" placeholder="Detalle Destino" name="detalle"
+        value="{{old("detalle")}}">
+            <span id="archivoHelp" class="form-text text-danger invalid-fedback">{{$errors->first('detalle')}}</span>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción Destino</label>
+        <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control" value="{{old('descripcion')}}" placeholder="Agrega una descripción del destino"></textarea>
+            <span id="archivoHelp" class="form-text text-danger invalid-fedback">{{$errors->first('descripcion')}}</span>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio(No colocar signos solo numero)</label>
+            <input type="number" class="form-control {{ null!=$errors->first('precio') ? 'is-invalid' : '' }}" id="precio" aria-describedby="emailHelp" placeholder="$precio" name="precio" value="{{old("precio")}}">
         <span id="archivoHelp" class="form-text text-danger">{{$errors->first('precio')}}</span>
         </div>
         <div class="form-group">
-            <label for="exampleInputEmail3">Promocion(0-100%)"Si no tiene promo colocar 0"</label>
-            <input type="number" class="form-control {{ null!=$errors->first('promocion') ? 'is-invalid' : '' }}" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="%promocion" name="promocion"
+            <label for="promocion">Promocion(0-100%)"Si no tiene promo colocar 0"</label>
+            <input type="number" class="form-control {{ null!=$errors->first('promocion') ? 'is-invalid' : '' }}" id="promocion" aria-describedby="emailHelp" placeholder="%promocion" name="promocion"
             value="{{old("promocion")}}">
             <span id="archivoHelp" class="form-text text-danger">{{$errors->first('promocion')}}</span>
         </div>
         
         <div class="form-group">
-        <label for="exampleInputEmail5">Provincia</label>
-            <select class="form-control {{ null!=$errors->first('provincia') ? 'is-invalid' : '' }}" name="provincia">
+        <label for="provincia">Provincia</label>
+            <select class="form-control {{ null!=$errors->first('provincia') ? 'is-invalid' : '' }}" name="provincia" id="provincia">
                 <option value="">Elegir provincia</option>
                 <?php foreach($provincias as $provincia): ?>
                 <option value="{{$provincia->id_provincia}}">
@@ -60,4 +71,15 @@
 
 </div>
     
+@endsection
+
+@section('script')
+<script>
+        $('.custom-file-input').on('change', function(event) {
+            var inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        }); 
+</script>
 @endsection

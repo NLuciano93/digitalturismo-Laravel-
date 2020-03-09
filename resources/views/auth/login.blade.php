@@ -37,8 +37,9 @@
     
             <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                <label class="custom-control-label" for="customCheck1">Recordarme</label>
+                <label class="custom-control-label" for="remember">Recordarme</label>
             </div>
+
             <input type="submit" value="Login" class="button">
             <div class="mt-2">
             <p>¿No tienes cuenta aun?<a class="link ml-2" href="{{ route('register') }}">Registrate</a></p>

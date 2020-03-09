@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use App\Destino;
 use App\Provincia;
 use App\Comentario;
+use App\Carrito;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
+use Session;
+
 
 class DestinosController extends Controller
 {
 
-    public function busquedaDestinoAdmin(Request $request)
+ /*    public function busquedaDestinoAdmin(Request $request)
     {
        $provincias= Provincia::all();
         if($request->input('provincia') && $request->input('busqueda') === null){
@@ -28,7 +33,7 @@ class DestinosController extends Controller
         
         $vac = compact('destinos', 'provincias');
         return view('/adminDestinos', $vac);
-    }
+    } */
     public function inicio()
     {
         $destinos = Destino::where("promocion", 0)->inRandomOrder()->take(3)->get();
@@ -53,7 +58,7 @@ class DestinosController extends Controller
             $query->orderBy('puntuacion', '>', 2);
         }])->get(); */
         $vac = compact('destinos','destinosPromo', 'destinosDestacados');
-        return view('inicio', $vac);
+        return view('/index/index', $vac);
 
     }
     /**
@@ -61,11 +66,26 @@ class DestinosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $destinos= Destino::paginate(8);
+        if($request->get('provincia') && $request->get('busqueda') === null){
+            $destinos = Destino::where('id_provincia', '=', $request->get('provincia'))->paginate(8);
+        }else if($request->get('provincia') && $request->get('busqueda')){
+            
+            $destinos = Destino::where('nombre_destino', 'like', '%'.$request->get('busqueda').'%')
+                        ->orWhere('id_provincia', '=', $request->get('provincia'))
+                        ->paginate(8);
+        }else{
+            $destinos= Destino::where('nombre_destino', 'like', '%'. $request->get('busqueda'). '%')
+                        ->paginate(8);
+        }
         $provincias = Provincia::all();
-
+        if($request->get('provincia') == -1){
+            dd("HOLA");
+            $destinos= Destino::paginate(8);
+            $vac = compact('destinos', 'provincias');
+            return view('/adminDestinos', $vac);
+        }
         $vac = compact('destinos', 'provincias');
         return view('/adminDestinos', $vac);
     }
@@ -96,10 +116,13 @@ class DestinosController extends Controller
        
         $reglas = [
             "nombre" => "required|string|min:3",
+            "detalle"=> "required|string|min:10",
+            "descripcion"=> "required|string|min:10",
             "precio" => "required|integer",
             "promocion" => "required|integer|min:0|max:100",
             "provincia" => "required",
-            "imagenPerfil" => "required|image|mimes:jpeg,jpg,png,svg,bmp,webp"
+            "imagenPerfil" => "required|image|mimes:jpeg,jpg,png,svg,bmp,webp",
+            
 
         ];
         $mensajes =[
@@ -125,6 +148,8 @@ class DestinosController extends Controller
         $destinoNuevo = new Destino();
        
         $destinoNuevo->nombre_destino = strtoupper($request["nombre"]);
+        $destinoNuevo->detalle = $request["detalle"];
+        $destinoNuevo->descripcion = $request["descripcion"];
         $destinoNuevo->precio = $request["precio"];
         $destinoNuevo->promocion = $request["promocion"];
         $destinoNuevo->avatar_destino = $imageName;
@@ -132,7 +157,8 @@ class DestinosController extends Controller
        
 
         $destinoNuevo->save();
-        return redirect("/adminDestinos")->with('mensaje', 'Destino '. $destinoNuevo->nombre_destino. ' agregado con éxito');
+        Alert::success('Destino Agregado' , $destinoNuevo->nombre_destino);
+        return redirect("/adminDestinos");
     }
 
     /**
@@ -172,11 +198,14 @@ class DestinosController extends Controller
      */
     public function update(Request $request)
     {
+        
         $reglas = [
             "nombre" => "required|string|min:3",
             "precio" => "required|integer",
             "promocion" => "required|integer|min:0|max:100",
             "provincia" => "required",
+            "descripcion" => "required|string|min:10",
+            "detalle"=>"required|string|min:10"
             
 
         ];
@@ -193,6 +222,8 @@ class DestinosController extends Controller
 
         $Destino = Destino::find($request->input('id'));
         $Destino->nombre_destino = $request["nombre"];
+        $Destino->detalle = $request["detalle"];
+        $Destino->descripcion= $request["descripcion"];
         $Destino->precio = $request["precio"];
         $Destino->promocion = $request["promocion"];
         
@@ -204,7 +235,8 @@ class DestinosController extends Controller
         
         $Destino->id_provincia = (int)$request["provincia"];
         $Destino->save();
-        return redirect('/adminDestinos')->with('mensaje', 'Destino '. $Destino->nombre_destino. ' fue modificado correctamente');
+        Alert::success('Destino Actualizado' , $Destino->nombre_destino);
+        return redirect('/adminDestinos');
     }
 
     /**
@@ -230,11 +262,11 @@ class DestinosController extends Controller
         return view("/verComentarioDestino", $vac);
     }
     
-    public function verTodosLosDestinos(){
+   /*  public function verTodosLosDestinos(){
         $Destinos = Destino::paginate(12);
         $vac = compact('Destinos');
         return view('/verTodosLosDestinos', $vac);
-    }
+    } */
     public function verComentarioDestino($id)
     {
         $destino = Destino::find($id);
@@ -307,5 +339,31 @@ class DestinosController extends Controller
         return view('/destinos', $vac);
     }
 
+    public function agregarCarrito(Request $request, $id)
+    {
+       
+        $validarCant= $request->input('cantidadPasajes');
+        if ($validarCant < 1 || $validarCant >10) {
+            Alert::warning('' , 'Falla en la cantidad asignada');
+            return redirect()->back();
+        }
+        $Destino = Destino::find($id);
+        $cantidadPasajes = $request->input('cantidadPasajes');
+        
+        /* compruebo si en la sesion ya existe un carrito y se la paso a la variable */
+        /* Session::flush();*/
+       /*  dd(Session::get('carrito'));  */
+        $carritoViejo = Session::has('carrito') ? Session::get('carrito') : null;
+        /*Le paso al constructor el viejo carrito */
+        $carrito = new Carrito($carritoViejo);
+        /* aca le mando el destino comprado al metodo agregar */
+        $carrito->agregar($Destino, $Destino->id_destino, $cantidadPasajes);
+        /* dd(Session::get('carrito')); */
+
+        $request->session()->put('carrito', $carrito);
+        
+        return redirect()->back();
+    }
+    
 }
 

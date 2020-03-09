@@ -7,23 +7,20 @@
 {{-- {{dd($destinos)}} --}}
 <div class="container-fluid mt-5">
     <div class="row">
-        @if (session('mensaje'))
-            <div class="col-12 my-3 alert alert-success">
-                {{session('mensaje')}}
-            </div>
-        @endif
+       
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <form method="POST" action="/busquedaDestinos" class="form-inline">
-                        @csrf
+                    <form method="GET" action="" class="form-inline">
+                        
                         <div class="form-group mx-sm-3 mb-2">
                          
                           <input type="text" class="form-control" id="busqueda" placeholder="Busqueda" name="busqueda">
                         </div>
                         <div class="form-group mb-2 mx-sm-3">                                                           
                                 <select id="inputState" class="form-control" name="provincia">
-                                  <option value="">Elegir Provinicia</option>
+                                  <option value="">Elegir Provincia</option>
+                                  <option value="-1">TODAS</option>
                                   @foreach ($provincias as $provincia)
                                 <option value="{{$provincia->id_provincia}}">{{$provincia->nombre_provincia}}</option>
                                   @endforeach
@@ -39,7 +36,7 @@
         <div class="col-12 my-3">
             <a href="/destinoAlta" class="btn btn-primary btn-lg" tabindex="-1" role="button">AGREGAR DESTINO</a>
         </div>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover mb-0">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Nombre Destino</th>
@@ -52,9 +49,10 @@
             
             </tr>
         </thead>
-        <tbody>    
+        <tbody>
+               
         @foreach ($destinos as $destino)
-        
+            
             <tr>
                 
                 <td>{{$destino->nombre_destino}}</td>
@@ -70,8 +68,12 @@
         @endforeach
         </tbody>
     </table>
+    
     </div>
-</div>
+</div>  
+@if ($destinos->count()==0)
+     <h3 class="bg-light p-3 text-center">No se encontraron destinos</h3>
+@endif 
     <div class="container">
         <div class="row">
             {{$destinos->links()}}
