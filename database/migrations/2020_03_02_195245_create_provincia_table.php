@@ -13,7 +13,7 @@ class CreateProvinciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('provincias', function (Blueprint $table) {
+        Schema::create('provincia', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_provincia', 50)->default(NULL);
             $table->unsignedBigInteger('id_pais');
