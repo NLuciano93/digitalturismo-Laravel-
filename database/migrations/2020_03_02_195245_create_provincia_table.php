@@ -13,11 +13,12 @@ class CreateProvinciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('provincia', function (Blueprint $table) {
+        Schema::create('provincias', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_provincia', 50)->default(NULL);
-            $table->integer('id_pais');
+            $table->unsignedBigInteger('id_pais');
             $table->timestamps();
+            $table->foreign('id_pais')->references('id_pais')->on('pais');
         });
     }
 

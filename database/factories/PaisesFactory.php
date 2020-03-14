@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Pais::class, function (Faker $faker) {
     return [
-        "nombre_pais" => $faker->sentence(10),
+        "nombre_pais" => $faker->word(),
         "created_at" =>$faker->date(),
         "updated_at" =>$faker->date()
     ];
