@@ -142,6 +142,7 @@ class UsuariosController extends Controller
 
     public function agregarComentario(Request $request)
     {
+        
         $validator = Validator::make($request->all(),
         [
             'puntuacion'=> 'required|integer|between:1,5|',

@@ -190,17 +190,12 @@
           <form action="/comentario" method="post">
             @csrf
           <input type="hidden" name="usuario" value="{{Auth::user()->id}}">
+          
               <div class="form-group">
+                  <input type="hidden" name="puntuacion" value="" id="puntuacion"> 
                     <label for="puntuacion">Calificar:</label>
-                    <select name="puntuacion" id="puntuacion" class="form-control @error('puntuacion') is-invalid @enderror">
-                        <option>Elegir calificación</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-              </div>
+                    <i class="fas fa-star estrella m-1" id="1"></i><i class="fas fa-star estrella m-1" id="2"></i><i class="fas fa-star estrella m-1" id="3"></i><i class="fas fa-star estrella m-1" id="4"></i><i class="fas fa-star estrella m-1" id="5"></i><b><span class="star-elegida ml-3">0</span><span> / 5</span></b>
+              </div>             
               @error('puntuacion')
               <div class="alert alert-danger">
                 <strong>{{$message}}</strong>
@@ -361,4 +356,52 @@
     </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script>
+          let i1= document.getElementById("1");
+          let i2= document.getElementById("2"); 
+          let i3= document.getElementById("3"); 
+          let i4= document.getElementById("4"); 
+          let i5= document.getElementById("5");
+          let starSeleccionada = document.querySelector('.star-elegida');
+          let puntuacion = document.querySelector('#puntuacion');
+          let iconos = [i1, i2, i3, i4,i5];
+          for (let i = 0; i < iconos.length; i++) {
+              iconos[i].addEventListener('mouseover', function(){
+                  for (let ix = 0; ix < iconos[i].getAttribute('id'); ix++) {
+                    iconos[ix].classList.toggle('estrella-amarilla');
+                      
+                  }
+              })
+              
+          }
+          for (let i = 0; i < iconos.length; i++) {
+              iconos[i].addEventListener('mouseout', function(){
+                  for (let ix = 0; ix < iconos[i].getAttribute('id'); ix++) {
+                    iconos[ix].classList.toggle('estrella-amarilla');
+                      
+                  }
+              })   
+          }
+          for (let i = 0; i < iconos.length; i++) {
+              iconos[i].addEventListener('click', function(){
+                  starSeleccionada.innerText= iconos[i].getAttribute('id');
+                  puntuacion.setAttribute('value', iconos[i].getAttribute('id')); 
+                  for (let j = 0; j < iconos.length; j++) {
+                      iconos[j].classList.remove('estrella-amarilla-confirm');
+                      
+                  }
+                  for (let ix = 0; ix < iconos[i].getAttribute('id'); ix++) {
+                    iconos[ix].classList.toggle('estrella-amarilla-confirm');
+                      
+                  }
+              })   
+          }
+          
+        
+
+
+    </script>
 @endsection
