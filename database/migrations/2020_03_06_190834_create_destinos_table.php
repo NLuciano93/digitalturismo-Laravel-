@@ -23,7 +23,7 @@ class CreateDestinosTable extends Migration
             $table->string('avatar_destino')->nullable(False);
             $table->unsignedBigInteger('id_provincia');
             $table->timestamps();
-            $table->foreign('id_provincia')->references('id')->on('provincia');
+            $table->foreign('id_provincia')->references('id_provincia')->on('provincia');
         });
     }
 
