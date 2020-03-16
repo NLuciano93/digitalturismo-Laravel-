@@ -15,11 +15,13 @@ class CreateComentariosTable extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->bigIncrements('id_comentario')->nullable(false);
-            $table->integer('id_usuario');
-            $table->integer('id_destino');
+            $table->unsignedBigInteger('id_usuario');
+            $table->unsignedBigInteger('id_destino');
             $table->text('comentario');
             $table->tinyInteger('puntuacion');
             $table->timestamps();
+            $table->foreign('id_usuario')->references('id')->on('users');
+            $table->foreign('id_destino')->references('id_destino')->on('destinos');
         });
     }
 
