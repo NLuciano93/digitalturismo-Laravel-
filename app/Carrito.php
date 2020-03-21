@@ -52,5 +52,13 @@ class Carrito
        
         
     }
+    public function borrarItem($id){
+        $cantidad= $this->items[$id]['cantidad'];
+        $precio = $this->items[$id]['precio'];
+        $this->totalCant-=$cantidad;
+        $this->totalPrecio -=$precio;
+        
+        unset($this->items[$id]);
+    }
 
 }

@@ -26,7 +26,7 @@
          <td class="">{{$producto['item']['nombre_destino']}}</td>
          <td class="">{{$producto['cantidad']}}</td>
         <td class="">${{$producto['precio']}}</td>        
-        <td class=""><button disabled="disabled" class="btn btn-danger">Eliminar</button></td>
+      <td class=""><a href="/borrarItemCarritoCompra/{{$producto['item']['id_destino']}}" class="btn btn-danger">Eliminar</a></td>
     </tr>
   @empty
       <tr>

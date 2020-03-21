@@ -13,24 +13,26 @@
       <h1>Registrate</h1>
       <div class="contenedor">
         
-      <div class="form-group">
-        <div class="input-contenedor  @error('name') border border-danger @enderror">
+      <div class="form-group" id="name-group">
+        <div class="input-contenedor  @error('name') border border-danger @enderror" id="contenedor-name">
           <i class="fas fa-user icon"></i>
-          <input type="text" name="name" placeholder="Nombre Completo" value="{{old('name')}}" required>  
+          <input type="text" name="name" placeholder="Nombre Completo" value="{{old('name')}}" >  
         </div>
+        
         @error('name')
             <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
             
         @enderror
       </div>
     
-      <div class="form-group">
-        <div class="input-contenedor  @error('email') border border-danger @enderror">
+      <div class="form-group" id="email-group">
+        <div class="input-contenedor  @error('email') border border-danger @enderror" id="contenedor-email">
           <i class="fas fa-envelope icon"></i>
-          <input type="email" name="email" placeholder="Correo Electronico" value="{{old('email')}}" required>  
+          <input type="email" name="email" placeholder="Correo Electronico" value="{{old('email')}}" >  
         </div>
+        
         @error('email')
-            <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
+            <div class="alert alert-danger"> <strong >{{$message}}</strong></div>
             
         @enderror
       </div>
@@ -40,10 +42,7 @@
           <i class="fab fa-facebook icon"></i>
         <input type="text" name="facebook" placeholder="Facebook" value="{{old('facebook')}}">
         </div>
-        @error('facebook')
-            <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
-            
-        @enderror
+        
       </div>
     
       <div class="form-group">
@@ -51,10 +50,7 @@
           <i class="fab fa-twitter-square icon"></i>
         <input type="text" name="twitter" placeholder="Twitter" value="{{old('twitter')}}">
           </div>
-          @error('twitter')
-            <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
-            
-        @enderror
+          
         </div>
 
         <div class="form-group">
@@ -62,18 +58,16 @@
             <i class="fab fa-instagram icon"></i>
             <input type="text" name="instagram" placeholder="Instagram" value="{{old('instagram')}}">
           </div>
-          @error('instagram')
-            <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
-            
-        @enderror
-        </div>
-    
-        <div class="form-group">
-        <div class="input-contenedor @error('password') border border-danger @enderror">
-          <i class="fas fa-key icon"></i>
-          <input type="password" name="password" placeholder="Contraseña">
           
         </div>
+    
+        <div class="form-group" id="password-group">
+        <div class="input-contenedor @error('password') border border-danger @enderror" id="contenedor-password">
+          <i class="fas fa-key icon"></i>
+          <input type="password" name="password" placeholder="Contraseña" >
+          
+        </div>
+        
         @error('password')
         <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
         
@@ -83,19 +77,19 @@
         <div class="form-group">
         <div class="input-contenedor">
           <i class="fas fa-key icon"></i>
-          <input type="password" name="password_confirmation" placeholder="Repetir Contraseña">
+          <input type="password" name="password_confirmation" placeholder="Repetir Contraseña" >
           
         </div>
         
         </div>
     
-        <div class="custom-file mb-3">
-          <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="avatar">
+        <div class="custom-file mb-3" id="avatar-group">
+          <input type="file" class="custom-file-input" lang="es" name="avatar" id="contenedor-avatar">
           <label class="custom-file-label" for="customFileLang">Seleccionar Foto de Perfil</label>
-          @error('avatar')
-        <div class="alert alert-danger"> <strong>{{$message}}</strong></div>
-        
-    @enderror
+          
+        @error('avatar')
+        <div class="alert alert-danger"> <strong>{{$message}}</strong></div>       
+        @enderror
         </div>
         <input type="submit" value="Registrate"  class="button">
         <p>Al hacer clic en "Registrate", aceptas nuestras Condiciones de uso y Politica de privacidad</p>
@@ -188,12 +182,5 @@
 </div> --}}
 @endsection
 @section('script')
-    <script>
-            $('.custom-file-input').on('change', function(event) {
-                var inputFile = event.currentTarget;
-                $(inputFile).parent()
-                    .find('.custom-file-label')
-                    .html(inputFile.files[0].name);
-            }); 
-    </script>
+<script src="{{asset('js/validarRegistro.js')}}"></script>
 @endsection

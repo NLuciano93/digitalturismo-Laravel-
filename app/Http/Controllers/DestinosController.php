@@ -201,7 +201,7 @@ class DestinosController extends Controller
         
         $reglas = [
             "nombre" => "required|string|min:3",
-            "precio" => "required|integer",
+            "precio" => "required|numeric",
             "promocion" => "required|integer|min:0|max:100",
             "provincia" => "required",
             "descripcion" => "required|string|min:10",
@@ -370,7 +370,7 @@ class DestinosController extends Controller
         /* dd(Session::get('carrito')); */
 
         $request->session()->put('carrito', $carrito);
-        
+        Alert::success('Destino agregado al carrito🛒');
         return redirect()->back();
     }
     

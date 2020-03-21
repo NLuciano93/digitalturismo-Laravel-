@@ -60,3 +60,4 @@ Route::post('/passActualizar','UsuariosController@actualizarPass');
 Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito')->middleware('auth');
 Route::get('/borrarCarrito', 'UsuariosController@borrarCarrito')->middleware('auth');
 Route::get('/carritoCompra', 'UsuariosController@carritoCompra')->middleware('auth');
+Route::get('/borrarItemCarritoCompra/{id}', 'UsuariosController@borrarItemCarritoCompra')->middleware('auth');

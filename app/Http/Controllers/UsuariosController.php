@@ -243,6 +243,7 @@ class UsuariosController extends Controller
         }else{
             $viejoCarrito = Session::get('carrito');
             $carrito = new Carrito($viejoCarrito);
+           /*  dd($carrito); */
 
             return view('/carritoCompra', ['productos' =>$carrito->items, 'precioTotal' =>$carrito->totalPrecio]);
         }
@@ -252,6 +253,23 @@ class UsuariosController extends Controller
     public function borrarCarrito(){
         Session::forget('carrito');
 
+        return $this->carritoCompra();
+    }
+
+    public function borrarItemCarritoCompra($id){
+        $carritoViejo = Session::get('carrito');
+        
+        $carrito = new Carrito($carritoViejo);
+       
+        $carrito->borrarItem($id);
+
+        if ($carrito->totalCant) {
+            session()->put('carrito', $carrito);
+        }else{
+            Session::forget('carrito');
+        }
+        
+        
         return $this->carritoCompra();
     }
 }
