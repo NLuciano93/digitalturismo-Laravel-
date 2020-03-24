@@ -25,7 +25,13 @@
         <td class=""><img class="imagen-compra img-thumbnail" src="{{asset('images/destinos/'. $producto['item']['avatar_destino'])}}"></td>
          <td class="">{{$producto['item']['nombre_destino']}}</td>
          <td class="">{{$producto['cantidad']}}</td>
-        <td class="">${{$producto['precio']}}</td>        
+        <td class="">
+        @if ($producto['item']['promocion'])
+        ${{$producto['precioPromo']}} <p> <small class="precio-promo">${{$producto['precio']}}</small><small>{{$producto['item']['promocion']}}%OFF</small></p>
+        @else
+             ${{$producto['precio']}}
+        @endif 
+        </td>        
       <td class=""><a href="/borrarItemCarritoCompra/{{$producto['item']['id_destino']}}" class="btn btn-danger">Eliminar</a></td>
     </tr>
   @empty
@@ -47,7 +53,7 @@
     
     <div class="col-12 text-right">
         <a href="/borrarCarrito" type="button" class="btn btn-secondary">Borrar Todo</a>
-        <button type="button" class="btn btn-warning">Pagar</button>
+        <a href="/checkout" type="button" class="btn btn-warning">Pagar</a>
     </div>
         </div>
     </div>

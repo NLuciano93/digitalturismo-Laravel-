@@ -61,3 +61,5 @@ Route::get('/agregarCarrito/{id}', 'DestinosController@agregarCarrito')->middlew
 Route::get('/borrarCarrito', 'UsuariosController@borrarCarrito')->middleware('auth');
 Route::get('/carritoCompra', 'UsuariosController@carritoCompra')->middleware('auth');
 Route::get('/borrarItemCarritoCompra/{id}', 'UsuariosController@borrarItemCarritoCompra')->middleware('auth');
+Route::get('/checkout', 'UsuariosController@getCheckout')->middleware('auth');
+Route::post('/checkout', 'UsuariosController@postCheckout')->middleware('auth');

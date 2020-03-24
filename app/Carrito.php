@@ -26,8 +26,15 @@ class Carrito
         
         $itemGuardado = ['cantidad'=>$cantidadPasajes, 'precio' => $item->precio, 'item' =>$item];
         /**Lo pongo aca para que no haya conflictos al sumar el total porque sino suma el total del precio de cada item y no los que agrego en un request */
-        $itemGuardado['precio']= $item->precio * $itemGuardado['cantidad'];
-        $this->totalPrecio += $itemGuardado['precio'];
+        if($item->promocion){
+            $itemGuardado['precio']= $item->precio * $itemGuardado['cantidad'];
+            $itemGuardado['precioPromo'] = ($item->precio -($item->precio* ($item->promocion/100)) ) * $itemGuardado['cantidad'];
+            $this->totalPrecio += $itemGuardado['precioPromo'];
+        }else{
+            $itemGuardado['precio']= $item->precio * $itemGuardado['cantidad'];
+            $this->totalPrecio += $itemGuardado['precio'];
+        }
+        
         /* Compruebo si el item que agrego ya está en el atributo item, primero comprobando que exitan items en la clase*/
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -41,8 +48,14 @@ class Carrito
 
         }
         /* Aca sumo las cantidades del itemguardado, si ya habia se  suman los nuevos  */
+        if ($item->promocion) {
+            $itemGuardado['precio']= $item->precio * $itemGuardado['cantidad'];
+            $itemGuardado['precioPromo'] = ($item->precio -($item->precio* ($item->promocion/100)) ) * $itemGuardado['cantidad'];
+        } else {
+             $itemGuardado['precio']= $item->precio * $itemGuardado['cantidad'];
+        }
         
-        $itemGuardado['precio']= $item->precio * $itemGuardado['cantidad'];
+       
         
         $this->items[$id]  = $itemGuardado;
         /* Agrego a la cantidad total de compra, la cantidad de producto nuevo*/

@@ -36,6 +36,7 @@
         <div class="row">
         
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <a href="#modalImagenes" data-target="#modalImagenes" data-toggle="modal">
                 <div class="contenedor-collage">
                     <div class="collage">
                         <img class="img-Principal" src=
@@ -57,6 +58,7 @@
                         "{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}"  alt="Bariloche">
                     </div>
                 </div>
+                </a>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -74,7 +76,13 @@
                     
                     <div class="costos">
                         <h6 class="text-right m-1">Costo por Pasajero</h6>
-                        <h4 class="text-right m-1">${{$Destino->precio}}</h4>
+                   @if ($Destino->promocion > 0)
+                   <h4 class="text-right m-1"> <span class="precio-promo">${{$Destino->precio}} </span><small>{{$Destino->promocion}}%OFF</small></h4>
+                   <h3 class="text-right m-1"><b>${{$Destino->precio - ($Destino->precio *($Destino->promocion/100))}}</b></h3>
+                   @else
+                       <h4 class="text-right m-1">${{$Destino->precio}}</h4>
+                   @endif
+                        
                         <h3 class="m-1">Detalle</h3>
                         <p class="m-1">{{$Destino->detalle}}</p>
                         <h3 class="m-1">Descripción</h3>
@@ -355,6 +363,54 @@
         </div>      
     </div>
 </div>
+
+{{-- Modal Imagenes --}}
+
+<!-- Modal -->
+<div class="modal fade" id="modalImagenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title w-100" id="exampleModalLabel">Imágenes de {{$Destino->nombre_destino}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{{ asset('images/destinos') }}/{{ $Destino->avatar_destino}}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
 

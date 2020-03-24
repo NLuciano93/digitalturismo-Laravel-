@@ -272,4 +272,19 @@ class UsuariosController extends Controller
         
         return $this->carritoCompra();
     }
+
+    public function getCheckout(){
+        if (!Session::has('carrito')) {
+            $this->carritoCompra();
+        }else{
+            $carritoViejo = Session::get('carrito');
+        
+            $carrito = new Carrito($carritoViejo);
+            $total = $carrito->totalPrecio;
+            return view('/carritoCheckout', ['total'=> $total]);
+        }
+    }
+    public function postCheckout(){
+        dd("hola");
+    }
 }
