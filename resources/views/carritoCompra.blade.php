@@ -13,6 +13,7 @@
     <tr>
       <th scope="col"></th>
       <th scope="col">Nombre Destino</th>
+    
       <th scope="col">Cantidad</th>
       <th scope="col">Precio</th>
       <th scope="col">Eliminar</th>
@@ -22,7 +23,8 @@
    
   @forelse ($productos as $producto)
       <tr class="shadow-sm">
-        <td class=""><img class="imagen-compra img-thumbnail" src="{{asset('images/destinos/'. $producto['item']['avatar_destino'])}}"></td>
+        <td class=""><a href="/detalleDestino/{{$producto['item']['id_destino']}}" title="Ver Destino"><img class="imagen-compra img-thumbnail" src="{{asset('images/destinos/'. $producto['item']['avatar_destino'])}}"></a></td>
+     
          <td class="">{{$producto['item']['nombre_destino']}}</td>
          <td class="">{{$producto['cantidad']}}</td>
         <td class="">
