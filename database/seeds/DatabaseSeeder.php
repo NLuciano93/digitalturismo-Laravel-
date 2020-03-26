@@ -54,6 +54,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Favorito::class, 5)->create();
 
         // inicializa tabla MENSAJES
-        factory(App\Mensaje::class, 1)->create();
+        factory(App\Mensaje::class, 5)->create();
     }
 }
