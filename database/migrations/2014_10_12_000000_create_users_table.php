@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable(false);
             $table->timestamp('email_verified_at')->nullable()->default(NULL);
             $table->string('password', 255)->nullable(false);
-            $table->string('facebook', 200)->default(NULL);
-            $table->string('twitter', 200)->default(NULL);
-            $table->string('instagram', 200)->default(NULL);
-            $table->string('avatar', 200)->default(NULL);
+            $table->string('facebook', 200)->nullable()->default(NULL);
+            $table->string('twitter', 200)->nullable()->default(NULL);
+            $table->string('instagram', 200)nullable()->->default(NULL);
+            $table->string('avatar', 200)->nullable()->default(NULL);
             $table->integer('rol_id');
             $table->rememberToken()->default(NULL);
             $table->timestamps();
