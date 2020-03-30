@@ -14,7 +14,7 @@ class CreateFavoritoTable extends Migration
     public function up()
     {
         Schema::create('favoritos', function (Blueprint $table) {
-            $table->bigIncrements('id_favorito');
+            $table->bigIncrements('id_favorito')->nullable(false);
             $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_destino');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateFavoritoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorito');
+        Schema::dropIfExists('favoritos');
     }
 }

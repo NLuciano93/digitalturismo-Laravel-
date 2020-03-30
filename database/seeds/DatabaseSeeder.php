@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         // inicializa tabla FAVORITOS
         factory(App\Favorito::class, 5)->create();
-
+        
         // inicializa tabla MENSAJES
         factory(App\Mensaje::class, 5)->create();
     }
