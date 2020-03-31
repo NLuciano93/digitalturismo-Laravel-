@@ -277,10 +277,21 @@ class DestinosController extends Controller
     }
     
     /** metodo para pagina DESTINOS - listado general y carrusel */
-    public function pagDestinos()
+    public function pagDestinos(Request $request)
     {
-        $Destinos = Destino::paginate(12);
+        $Destinos = Destino::paginate(8);
         $provincias = Provincia::all();
+        if($request->input('provincia') && $request->input('busqueda') === null){
+            $Destinos = Destino::where('id_provincia', $request->input('provincia'))->paginate(8);
+        }else if($request->input('provincia') && $request->input('busqueda')){
+            
+            $Destinos = Destino::where('nombre_destino', 'like', '%'.$request->input('busqueda').'%')
+                        ->where('id_provincia', $request->input('provincia'))
+                        ->paginate(8);
+        }else{
+            $Destinos= Destino::where('nombre_destino', 'like', '%'. $request->input('busqueda'). '%')
+                        ->paginate(8);
+        }
        
         $destinosRandom = Destino::where('promocion', '>', 0)->inRandomOrder()->take(4)->get();
         

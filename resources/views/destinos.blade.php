@@ -46,9 +46,9 @@
                                         alt="Estrellas">
                                     </div> 
                                     <div class="tit-Destino-carru" >
-                                        <a href="detalleProducto.php">
+                                        <p href="detalleProducto.php">
                                             <h3>{{$destinosRandom[0]->nombre_destino}}</h3>
-                                        </a>
+                                        </p>
                                     </div>
                                 </div>
                                 
@@ -65,9 +65,9 @@
                                     alt="Estrellas">
                                 </div>
                                     <div class="tit-Destino-carru" >
-                                        <a href="detalleProducto.php">
+                                        <p href="detalleProducto.php">
                                             <h3>{{$destinosRandom[1]->nombre_destino}}</h3>
-                                        </a>
+                                        </p>
                                     </div>
                                 </div>
                                 
@@ -84,9 +84,9 @@
                                         alt="Estrellas">
                                     </div>
                                     <div class="tit-Destino-carru" >
-                                        <a href="detalleProducto.php">
+                                        <p href="detalleProducto.php">
                                             <h3>{{$destinosRandom[2]->nombre_destino}}</h3>
-                                        </a>
+                                        </p>
                                     </div>
                                 </div>
                                 
@@ -103,9 +103,9 @@
                                     alt="Estrellas">
                                 </div>
                                     <div class="tit-Destino-carru" >
-                                        <a href="detalleProducto.php">
+                                        <p href="detalleProducto.php">
                                             <h3>{{$destinosRandom[3]->nombre_destino}}</h3>
-                                        </a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -130,8 +130,8 @@
         <!-- Todos los destinos  -->
        <section>
         <nav class="navbar navbar-light bg-dark d-flex justify-content-center">
-            <form class="form" action="/busDestinosUser" method="post">
-                @csrf
+            <form class="form" action="/destinos" method="get">
+               
              <div class="form-row">
                 <div class="form-group my-1">
                     <input class="form-control mr-sm-3" type="search" name='busqueda' value="{{--  /* isset($_POST['destino']) ? $_POST['destino'] : ''  */ --}}" placeholder="Buscar Destino" aria-label="Default" 
@@ -225,10 +225,14 @@
                         </div>
                         
                     @endforeach
-                     
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 control-paginacion">
+                     <div class="container">
+                         <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 control-paginacion">
                             {{ $Destinos->links() }}
-                    </div>  
+                                </div>  
+                         </div>
+                     </div>
+                   
                 </div>
 
             </div>

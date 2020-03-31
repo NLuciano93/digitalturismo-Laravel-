@@ -313,11 +313,11 @@
             <div class="modal-body">
             <!-- <-- renglon Titulos datos -->
                 <div class="row">
-                    <div class="col-md-4 mx-auto">
+                    <div class="col-4 mx-auto">
                         <h5>Destino</h5>
                     </div>
 
-                    <div class="col-md-4 mx-auto">
+                    <div class="col-4 mx-auto">
                         <h5>Costo Unit.</h5>
                     </div>
                 </div>
@@ -325,10 +325,10 @@
             <!-- renglon destinos -->
                 <div class="row">
                     
-                    <div class="col-md-4 mx-auto">
+                    <div class="col-4 mx-auto">
                         <h6>{{$Destino->nombre_destino}}</h6>
                     </div>
-                    <div class="col-md-4 mx-auto">
+                    <div class="col-4 mx-auto">
                         <h6>{{$Destino->precio}}</h6>
                     </div>
 

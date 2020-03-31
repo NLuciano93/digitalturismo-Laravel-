@@ -55,12 +55,12 @@ formulario.addEventListener('submit', function (event) {
     }
     for (let mensaje in mensajes) {       
         let input = document.querySelector('#contenedor-'+mensaje);
-       console.log(input);                   
+                        
         if (mensajes[mensaje]) {
-            console.log(mensaje);                                        
+                                                  
             let elementoPadre = document.querySelector('#'+mensaje+'-group');
             input.classList.add('border', 'border-danger');
-            console.log(elementoPadre);                       
+                             
             elementoPadre.insertAdjacentHTML('afterend', `<div class="alert alert-danger"><strong>${mensajes[mensaje]}</strong></div>`);
             errores++;                        
         }

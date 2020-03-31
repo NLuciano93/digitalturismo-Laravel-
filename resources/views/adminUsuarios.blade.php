@@ -37,24 +37,24 @@
             </thead>
             <tbody>
 
-                @foreach ($usuarios as $usuario)
+                @forelse ($usuarios as $usuario)
                 <tr>
                     <td>{{$usuario->name}}</td>
                     <td>{{$usuario->email}}</td>
                 <td><a href="/borrarUsuario/{{$usuario->id_usuario}}" class="btn btn-danger">Eliminar</a></td>
                 </tr>
-                @endforeach
+                @empty
+                <h3>Error al cargar usuarios!</h3>
+                @endforelse
            
             </tbody>
         </table>
     </div>
 </div>
-@if ($usuarios->count()==0)
-     <h3 class="bg-light p-3 text-center">No se encontraron usuarios</h3>
-@endif 
+
  
 <div class="container">
-    <div class="row">
+    <div class="row mt-3">
         {{$usuarios->links()}}
     </div>
 </div>

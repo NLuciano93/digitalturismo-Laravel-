@@ -173,6 +173,7 @@ h2{
 }
 .testimonial-card{
     position: relative;
+    height: 100%;
 }
 .form-fav{
     display: inline-block;
@@ -215,6 +216,10 @@ width: auto;
  .list-group-item:hover{
 background-color: azure;
 color: black;
+ }
+
+ .card-favorito-user{
+     
  }
  @media (min-width: 992px){
 

@@ -60,7 +60,7 @@
                                 <a class="nav-item nav-link active" href="/adminInicio">Home Admin</a>
                                 <a class="nav-item nav-link active" href="/adminUsuarios">Lista de Usuarios</a>
                                 <a class="nav-item nav-link active" href="/adminDestinos">Lista de Destinos</a>
-                                <a class="nav-item nav-link active" href="#3">Viajes Comprados</a>
+                                <a class="nav-item nav-link active" href="/adminMensajes">Mensajes</a>
                                 
                                 </div>
                                 <ul class="navbar-nav ml-md-auto">

@@ -17,7 +17,11 @@ class MensajesController extends Controller
      */
     public function index()
     {
-        //
+        $mensajes = Mensaje::paginate(8);
+
+        $vac = compact('mensajes');
+
+        return view('/adminMensajes', $vac);
     }
 
     /**
@@ -99,6 +103,8 @@ class MensajesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mensaje = Mensaje::find($id);
+        $mensaje->delete();
+        return redirect("/adminMensajes");
     }
 }

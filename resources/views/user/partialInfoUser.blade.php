@@ -1,13 +1,13 @@
 <div class="tab-pane fade  @if(!session('favorito')) @if(!($errors->first('viejaPassword') || $errors->first('password')))show active @endif @endif" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
     <h2 class="mb-3">Actualizar Datos</h2>
-    <form action="/usuarioActualizado" method="post" enctype="multipart/form-data">
+    <form action="/usuarioActualizado" method="post" enctype="multipart/form-data" id="formuActualizarUser">
       {{ csrf_field() }}   
       
       <div class="form-row">
         <div class="col-md-12">
-          <div class="md-form form-group">
+          <div class="md-form form-group email-group">
            
-      <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail4MD" placeholder="Insertar Email" name="email" value="{{Auth::user()->email}}">
+      <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Insertar Email" name="email" value="{{Auth::user()->email}}">
       @error('email')
           <div class="alert alert-danger">
               <strong id="emailHelp" class="form-text text-danger">{{$message}}</strong>
@@ -19,8 +19,8 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="md-form form-group">
-            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="inputAddressMD" placeholder="Insertar Nombre" name="nombre" value="{{Auth::user()->name}}">
+          <div class="md-form form-group nombre-group">
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" placeholder="Insertar Nombre" name="nombre" value="{{Auth::user()->name}}">
             @error('nombre')
             <div class="alert alert-danger">
                 <strong id="nombreHelp" class="form-text text-danger">{{$message}}</strong>
@@ -47,8 +47,8 @@
           </div>
         </div>
       </div>                  
-      <div class="custom-file">
-        <input type="file" class="custom-file-input @error('avatar') is-invalid @enderror" id="customFileLang" lang="es" name="avatar">
+      <div class="custom-file avatar-group">
+        <input type="file" class="custom-file-input @error('avatar') is-invalid @enderror" id="avatar" lang="es" name="avatar">
         <label class="custom-file-label" for="customFileLang">Seleccionar Foto de Perfil</label>
         @error('avatar')
           <div class="alert alert-danger">

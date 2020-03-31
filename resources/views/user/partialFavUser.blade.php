@@ -3,7 +3,7 @@
       <div class="row">
         
         @forelse ($favoritos as $favorito)
-        <div class="col-lg-4 col-md-12 mb-4">                      
+        <div class="col-lg-4 col-md-12 mb-4 card-favorito-user">                      
           <div class="card testimonial-card">
             <form action="/quitarFavoritoUser" method="POST" class="form-fav">
               @csrf

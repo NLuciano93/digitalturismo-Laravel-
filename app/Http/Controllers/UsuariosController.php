@@ -155,6 +155,8 @@ class UsuariosController extends Controller
         }
         
         $usuario = User::find($request->input('usuario'));
+        
+        $usuario->comentarios()->detach($request["destino"]);
         $usuario->comentarios()->attach($request["destino"], 
                                         [
                                             'puntuacion' => $request->input('puntuacion'),

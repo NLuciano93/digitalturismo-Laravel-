@@ -37,26 +37,26 @@
                 <div class="mision col-12 row justify-content-center">
                   <div class="col-sm-6">
                     <h2>Nuestra Misión</h2>
-                    <h4 class="mt-3">DigitalTurismo busca fomentar el turismo en Argentina, para que crezca el sector, trayéndole a los usuarios los más lindos paisajes para visitar.</h4>
+                    <h5 class="mt-3">DigitalTurismo busca fomentar el turismo en Argentina, para que crezca el sector, trayéndole a los usuarios los más lindos paisajes para visitar.</h5>
                 </div>
                 </div>
                 
                 <div id="contacto" class="contacto mt-5 col-md-6">
                   <h3>Contacto</h3>
-                  <form action="/contacto" method="POST">
+                  <form action="/contacto" method="POST" id="formuMensaje">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group" id="email-group">
                       <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email..." name="email" value="{{old('email')}}">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter email..." name="email" value="{{old('email')}}">
                       
                     </div>
                     @error('email')
                       <div class="alert alert-danger"> <strong>{{$message}}</strong></div>                        
                     @enderror
                     
-                    <div class="form-group">
+                    <div class="form-group" id="comentario-group">
                       <label for="exampleFormControlTextarea1">Mensaje</label>
-                    <textarea class="form-control @error('mensaje') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5" placeholder="Mensaje..." name="mensaje" value="">{{old('mensaje')}}</textarea>
+                    <textarea class="form-control @error('mensaje') is-invalid @enderror" id="comentario" rows="5" placeholder="Mensaje..." name="mensaje">{{old('mensaje')}}</textarea>
                       
                     </div>
                     @error('mensaje')
@@ -86,4 +86,8 @@
   
   
 
+@endsection
+
+@section('script')
+  <script src="{{asset('js/validarMensajeIndex.js')}}"></script>
 @endsection

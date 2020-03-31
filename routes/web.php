@@ -39,6 +39,8 @@ Route::post('/destinoAlta', "DestinosController@store")->middleware('auth', 'val
 Route::post('/destinoMod', "DestinosController@update")->middleware('auth', 'validarAdmin');
 Route::get('/destinoMod/{id}', 'DestinosController@edit')->middleware('auth', 'validarAdmin');
 Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('auth', 'validarAdmin');
+Route::get('/adminMensajes', 'MensajesController@index');
+Route::get('/borrarMensaje/{id}', 'MensajesController@destroy');
 
 
 
@@ -47,7 +49,7 @@ Route::get('/borrarDestino/{id}', 'DestinosController@destroy')->middleware('aut
 Route::get('/verDestino/{id}', 'DestinosController@verComentarios')->middleware('auth');
 Route::get('/destinos', 'DestinosController@pagDestinos');
 Route::get('/detalleDestino/{id}', 'DestinosController@detalleDestino')->middleware('auth');
-Route::post('busDestinosUser', 'DestinosController@busDestinosUser');
+
 
 Auth::routes();
 
