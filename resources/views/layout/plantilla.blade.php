@@ -28,6 +28,16 @@
     .none{
       display: none;
     }
+    marquee{
+      background-color:deeppink;
+      color: white;
+     font-size: 28px;
+     display: block;      
+     width: 100%;
+     height: 50px;
+    text-align: center;
+    font-weight: bold;
+    }
   </style>
   <script src="https://kit.fontawesome.com/67f61afa3e.js" crossorigin="anonymous"></script>
   <title>digitalturismo</title>
@@ -50,6 +60,10 @@
         @include('layout.nav')
     </div>
   </div>
+  <div class="m-0 p-0">
+    <marquee onmouseover="this.stop();" onmouseout="this.start();" scrollamount="10">LOS HECHOS OCURRIDOS POR LA PANDEMIA DEL COVID-19 AFECTARÁN LA NORMAL COMERCIALIZACIÓN DE DESTINOS. PD: VIRUS CDTM! 👊😡 </marquee>
+  </div>
+  
     
 
     @yield('principal')
